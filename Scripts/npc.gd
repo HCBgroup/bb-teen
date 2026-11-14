@@ -18,10 +18,18 @@ func _ready() -> void:
 
 	# Visual representation
 	var spr := Sprite2D.new()
-	spr.scale = Vector2(0.065, 0.065)
-	spr.position = Vector2(0, -20)
+	spr.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	spr.position = Vector2(0, -22)
 	if sprite_texture:
 		spr.texture = sprite_texture
+		var tex_h := float(sprite_texture.get_height())
+		if tex_h > 0.0:
+			var s := 50.0 / tex_h
+			spr.scale = Vector2(s, s)
+		else:
+			spr.scale = Vector2(0.065, 0.065)
+	else:
+		spr.scale = Vector2(0.065, 0.065)
 	add_child(spr)
 
 	# Collider for physics bumping

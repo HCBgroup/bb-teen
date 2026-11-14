@@ -1,166 +1,181 @@
-[gd_scene format=3 uid="uid://crgttvr7gnggb"]
+[gd_scene load_steps=18 format=3 uid="uid://crgttvr7gnggb"]
 
-[ext_resource type="Script" uid="uid://b4quopxq00enl" path="res://Scripts/house.gd" id="1_house"]
+[ext_resource type="Script" path="res://Scripts/house.gd" id="1_house"]
 [ext_resource type="Texture2D" uid="uid://dfmkx1vkevmi7" path="res://assests/house/house_layout.png" id="2_layout"]
 [ext_resource type="PackedScene" uid="uid://664qps4hqm6m" path="res://Scence/Arun_charchter(evin).tscn" id="3_arun"]
-[ext_resource type="Script" uid="uid://w8lwa7sxyngq" path="res://Scripts/scene_transition_door.gd" id="4_door"]
-[ext_resource type="Script" uid="uid://b6r8s0xyftcjr" path="res://Scripts/npc.gd" id="5_npc"]
+[ext_resource type="Script" path="res://Scripts/scene_transition_door.gd" id="4_door"]
+[ext_resource type="Script" path="res://Scripts/npc.gd" id="5_npc"]
 [ext_resource type="Texture2D" uid="uid://c5uhuotjqdows" path="res://assests/house/mom_idle.png" id="6_mom"]
-[ext_resource type="Script" uid="uid://d1g1fcc5rhk3s" path="res://Scripts/interactive_prop.gd" id="7_prop"]
+[ext_resource type="Script" path="res://Scripts/interactive_prop.gd" id="7_prop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_top_wall"]
-size = Vector2(560, 32)
+size = Vector2(1160, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_left_wall"]
-size = Vector2(32, 320)
+size = Vector2(32, 480)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_right_wall"]
-size = Vector2(32, 320)
+size = Vector2(32, 480)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bottom_left"]
-size = Vector2(370, 32)
+size = Vector2(968, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bottom_right"]
-size = Vector2(130, 32)
+size = Vector2(168, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_div_wall_top"]
-size = Vector2(16, 128)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_div_top"]
+size = Vector2(16, 290)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_div_wall_bot"]
-size = Vector2(16, 112)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_div_bot"]
+size = Vector2(16, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bed"]
-size = Vector2(40, 56)
+size = Vector2(110, 170)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vanity"]
+size = Vector2(80, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_desk"]
-size = Vector2(40, 32)
+size = Vector2(150, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bookshelf"]
+size = Vector2(80, 180)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kitchen_counter"]
-size = Vector2(100, 36)
+size = Vector2(340, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fridge"]
+size = Vector2(70, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dining_table"]
-size = Vector2(56, 44)
+size = Vector2(200, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_door_exit"]
-size = Vector2(48, 24)
+size = Vector2(80, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_prop_zone"]
-radius = 28.0
+radius = 45.0
 
-[node name="House" type="Node2D" unique_id=1543600463]
-y_sort_enabled = true
+[node name="House" type="Node2D"]
 script = ExtResource("1_house")
 
-[node name="HouseLayout" type="Sprite2D" parent="." unique_id=1079769028]
+[node name="HouseLayout" type="Sprite2D" parent="."]
 z_index = -10
 texture_filter = 1
 texture = ExtResource("2_layout")
 centered = false
 
-[node name="WallsAndFurniture" type="StaticBody2D" parent="." unique_id=487447539]
-collision_layer = 2
-collision_mask = 0
+[node name="WallsAndFurniture" type="StaticBody2D" parent="."]
 
-[node name="TopWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1824927704]
-position = Vector2(320, 88)
+[node name="TopWall" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(640, 195)
 shape = SubResource("RectangleShape2D_top_wall")
 
-[node name="LeftWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1819627836]
-position = Vector2(56, 240)
+[node name="LeftWall" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(48, 430)
 shape = SubResource("RectangleShape2D_left_wall")
 
-[node name="RightWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1122294968]
-position = Vector2(584, 240)
+[node name="RightWall" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(1232, 430)
 shape = SubResource("RectangleShape2D_right_wall")
 
-[node name="BottomWallLeft" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=519826822]
-position = Vector2(235, 392)
+[node name="BottomWallLeft" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(516, 676)
 shape = SubResource("RectangleShape2D_bottom_left")
 
-[node name="BottomWallRight" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=2083321784]
-position = Vector2(525, 392)
+[node name="BottomWallRight" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(1164, 676)
 shape = SubResource("RectangleShape2D_bottom_right")
 
-[node name="DividingWallTop" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=560185698]
-position = Vector2(312, 144)
-shape = SubResource("RectangleShape2D_div_wall_top")
+[node name="DividingWallTop" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(624, 205)
+shape = SubResource("RectangleShape2D_div_top")
 
-[node name="DividingWallBottom" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1980549800]
-position = Vector2(312, 336)
-shape = SubResource("RectangleShape2D_div_wall_bot")
+[node name="DividingWallBottom" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(624, 590)
+shape = SubResource("RectangleShape2D_div_bot")
 
-[node name="BedCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1221795177]
-position = Vector2(96, 136)
+[node name="BedCollider" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(155, 300)
 shape = SubResource("RectangleShape2D_bed")
 
-[node name="DeskCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=303873852]
-position = Vector2(224, 124)
+[node name="VanityCollider" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(310, 202)
+shape = SubResource("RectangleShape2D_vanity")
+
+[node name="DeskCollider" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(440, 252)
 shape = SubResource("RectangleShape2D_desk")
 
-[node name="KitchenCounterCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=953280956]
-position = Vector2(400, 126)
+[node name="BookshelfCollider" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(570, 290)
+shape = SubResource("RectangleShape2D_bookshelf")
+
+[node name="KitchenCounterCollider" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(840, 250)
 shape = SubResource("RectangleShape2D_kitchen_counter")
 
-[node name="DiningTableCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1048347238]
-position = Vector2(464, 230)
+[node name="FridgeCollider" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(1055, 260)
+shape = SubResource("RectangleShape2D_fridge")
+
+[node name="DiningTableCollider" type="CollisionShape2D" parent="WallsAndFurniture"]
+position = Vector2(850, 440)
 shape = SubResource("RectangleShape2D_dining_table")
 
-[node name="DoorToWalkway" type="Area2D" parent="." unique_id=581916963]
-position = Vector2(432, 390)
+[node name="DoorToWalkway" type="Area2D" parent="."]
+position = Vector2(1040, 670)
 script = ExtResource("4_door")
 target_scene = "res://Scence/Walkway.tscn"
 target_door_id = "from_house"
 prompt_message = "[E] Step Outside"
+auto_transition = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToWalkway" unique_id=613064618]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToWalkway"]
 shape = SubResource("RectangleShape2D_door_exit")
 
-[node name="NPC_Mom" type="StaticBody2D" parent="." unique_id=1909519107]
-position = Vector2(410, 160)
+[node name="NPC_Mom" type="StaticBody2D" parent="."]
+position = Vector2(850, 350)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("5_npc")
-dialogue_lines = ["Good morning, Arun! You're awake!", "I made hot breakfast. Drink your turmeric milk before leaving.", "Don't stress about the math exam today, beta. Just give your best.", "Your father and I believe in you, no matter what."]
+dialogue_lines = ["Good morning, Arun! You're awake!", "I made hot breakfast. Drink your turmeric milk before leaving.", "Don't stress about the math exam today, beta. Just give your best.", "Your father and I believe in you, no matter what happens.", "Now hurry! The school walkway is just outside the front door."]
 npc_name = "Mom"
 sprite_texture = ExtResource("6_mom")
 
-[node name="Prop_AlarmClock" type="Area2D" parent="." unique_id=543054400]
-position = Vector2(120, 120)
+[node name="Prop_Mirror" type="Area2D" parent="."]
+position = Vector2(310, 210)
+script = ExtResource("7_prop")
+prop_name = "Wall Mirror"
+prompt_text = "[E] Look into Mirror"
+modal_title = "GOLD-RIMMED BEDROOM MIRROR"
+modal_content = "You stare into the glass. Tired eyes, uniform collar half-straightened.\n\nThe reflection of an Indian teen carrying the weight of a thousand expectations.\n\n'Everyone is waiting to see my marks today. But failure isn't final.\nTake a breath, Arun. Bounce Back.'\n\n[OBJECTIVE: Go to the kitchen, drink Mom's turmeric milk, and head through front door to school!]"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_Mirror"]
+shape = SubResource("CircleShape2D_prop_zone")
+
+[node name="Prop_AlarmClock" type="Area2D" parent="."]
+position = Vector2(240, 242)
 script = ExtResource("7_prop")
 prop_name = "Alarm Clock"
 prompt_text = "[E] Check Clock"
 modal_title = "DIGITAL BEDSIDE CLOCK"
-modal_content = "TIME: 07:42 AM  |  ALARM: OFF
------------------------------------------------
-The alarm has been ringing for 15 minutes!
+modal_content = "TIME: 07:42 AM  |  ALARM: OFF\n-----------------------------------------------\nThe alarm has been ringing for 15 minutes!\n\nThe mid-term exam at school begins at 08:30 AM!\nIf you rush through the walkway path now,\nyou will reach classroom just in time."
 
-The mid-term exam at school begins at 08:30 AM!
-If you rush through the walkway path now,
-you will reach classroom just in time."
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_AlarmClock" unique_id=1004872399]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_AlarmClock"]
 shape = SubResource("CircleShape2D_prop_zone")
 
-[node name="Prop_Diary" type="Area2D" parent="." unique_id=1001334958]
-position = Vector2(224, 124)
+[node name="Prop_Diary" type="Area2D" parent="."]
+position = Vector2(390, 265)
 script = ExtResource("7_prop")
 prop_name = "Personal Diary"
 prompt_text = "[E] Read Diary"
 modal_title = "ARUN'S STUDY DIARY"
-modal_content = "ENTRY: 'THE PRESSURE COOKER'
-===============================================
-'Everyone expects top marks. Uncle Sharma was
- bragging about his son's 99 percentile again.
+modal_content = "ENTRY: 'THE PRESSURE COOKER'\n===============================================\n'Everyone expects top marks. Uncle Sharma was\n bragging about his son's 99 percentile again.\n\n Mom works so hard, and Dad looks tired every night.\n I can't let them down. But my chest feels tight\n whenever I open this algebra textbook.\n\n Goal for today: Don't freeze up. Remember to breathe.\n Bounce Back when panic hits.'"
 
- Mom works so hard, and Dad looks tired every night.
- I can't let them down. But my chest feels tight
- whenever I open this algebra textbook.
-
- Goal for today: Don't freeze up. Remember to breathe.
- Bounce Back when panic hits.'"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_Diary" unique_id=770357803]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_Diary"]
 shape = SubResource("CircleShape2D_prop_zone")
 
-[node name="Arun_Charchter(Evin)" parent="." unique_id=1006316804 instance=ExtResource("3_arun")]
-position = Vector2(110, 180)
+[node name="Arun_Charchter(Evin)" parent="." instance=ExtResource("3_arun")]
+z_index = 10
+position = Vector2(310, 245)
