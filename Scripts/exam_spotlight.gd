@@ -1,11 +1,10 @@
 class_name ExamSpotlightSequence
 extends Area2D
 
-## Orchestrates the dramatic exam spotlight sequence, Arun's anxiety thoughts,
-## and the arrival of the magical Bounce Back guide.
+## Orchestrates the dramatic exam shot, Arun's mid-term tension,
+## and the transition into the Marksheet Dodge Minigame.
 
 @export var arun: CharacterBody2D
-@export var magical_guide: MagicalGuide
 
 var _is_player_near: bool = false
 var _sequence_started: bool = false
@@ -27,7 +26,9 @@ var _dialogue_idx: int = 0
 var _char_idx: int = 0
 var _current_target: String = ""
 var _typewriter_timer: float = 0.0
+var _typewriter_speed: float = 0.02
 var _is_typing: bool = false
+var _current_pitch: float = 1.0
 
 func _ready() -> void:
 	collision_layer = 0
@@ -100,77 +101,90 @@ func _setup_dialogue_ui() -> void:
 	_dialogue_panel.offset_top = -180
 	_dialogue_panel.offset_right = 420
 	_dialogue_panel.offset_bottom = -30
-	_dialogue_panel.visible = false
-	_canvas_layer.add_child(_dialogue_panel)
+	_dialogue_panel.name = "DialogueBox"
 
 	var vbox = VBoxContainer.new()
 	vbox.add_theme_constant_override("separation", 6)
 	_dialogue_panel.add_child(vbox)
 
 	_speaker_lbl = Label.new()
-	_speaker_lbl.add_theme_font_size_override("font_size", 14)
+	_speaker_lbl.text = "ARUN"
+	_speaker_lbl.add_theme_font_size_override("font_size", 13)
+	_speaker_lbl.add_theme_color_override("font_color", Color(1.0, 0.8, 0.2))
 	vbox.add_child(_speaker_lbl)
 
 	_text_lbl = Label.new()
-	_text_lbl.add_theme_font_size_override("font_size", 15)
-	_text_lbl.add_theme_color_override("font_color", Color.WHITE)
+	_text_lbl.text = "..."
 	_text_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_text_lbl.custom_minimum_size = Vector2(760, 50)
+	_text_lbl.add_theme_font_size_override("font_size", 14)
+	_text_lbl.add_theme_color_override("font_color", Color.WHITE)
+	_text_lbl.custom_minimum_size = Vector2(800, 60)
 	vbox.add_child(_text_lbl)
 
 	_continue_lbl = Label.new()
 	_continue_lbl.text = "▶ Press [E] or [SPACE] to continue"
-	_continue_lbl.add_theme_font_size_override("font_size", 11)
-	_continue_lbl.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
 	_continue_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_continue_lbl.add_theme_font_size_override("font_size", 11)
+	_continue_lbl.add_theme_color_override("font_color", Color(0.7, 0.7, 0.8))
 	vbox.add_child(_continue_lbl)
 
-var _current_pitch: float = 1.0
+	_dialogue_panel.visible = false
+	_canvas_layer.add_child(_dialogue_panel)
 
 func _process(delta: float) -> void:
-	if _sequence_started and arun and _shader_mat:
-		# Update screen coordinate of Arun for spotlight
-		var canvas_pos = arun.get_global_transform_with_canvas().origin
-		_shader_mat.set_shader_parameter("player_screen_pos", canvas_pos)
-
 	if _is_typing and _char_idx < _current_target.length():
 		_typewriter_timer += delta
-		if _typewriter_timer >= 0.02:
+		if _typewriter_timer >= _typewriter_speed:
 			_typewriter_timer = 0.0
 			_char_idx += 1
 			_text_lbl.text = _current_target.substr(0, _char_idx)
 
-			# Play dialogue chatter blip every 2 characters
 			if _char_idx % 2 == 0:
 				var audio_mgr = get_node_or_null("/root/AudioManager")
 				if audio_mgr and audio_mgr.has_method("play_talk_blip"):
 					audio_mgr.play_talk_blip(_current_pitch)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_pressed() or event.is_echo():
+	if not (event is InputEventKey) or not event.is_pressed() or event.is_echo():
+		return
+
+	var key_event := event as InputEventKey
+	var is_interact_key := (
+		key_event.keycode == KEY_E or
+		key_event.physical_keycode == KEY_E or
+		key_event.keycode == KEY_SPACE or
+		key_event.physical_keycode == KEY_SPACE or
+		key_event.keycode == KEY_ENTER or
+		event.is_action_pressed("ui_accept")
+	)
+
+	if not is_interact_key:
 		return
 
 	if not _sequence_started:
-		if _is_player_near and (event.is_action_pressed("ui_accept") or event.is_physical_key_pressed(KEY_E) or (event is InputEventKey and event.keycode == KEY_E)):
+		if _is_player_near:
 			start_exam_sequence()
 	else:
-		if event.is_action_pressed("ui_accept") or event.is_physical_key_pressed(KEY_E) or (event is InputEventKey and (event.keycode == KEY_E or event.keycode == KEY_SPACE or event.keycode == KEY_ENTER)):
-			if _char_idx < _current_target.length():
-				_char_idx = _current_target.length()
+		if _char_idx < _current_target.length():
+			_char_idx = _current_target.length()
+			if _text_lbl:
 				_text_lbl.text = _current_target
-			else:
-				_advance_dialogue()
+		else:
+			_advance_dialogue()
 
 func start_exam_sequence() -> void:
+	if _sequence_started:
+		return
 	_sequence_started = true
 	_is_player_near = false
-	_prompt_label.visible = false
+	if _prompt_label:
+		_prompt_label.visible = false
 
 	if not arun:
 		arun = get_node_or_null("../Arun_Charchter(Evin)")
 
 	if arun:
-		# Sit Arun squarely at the desk
+		# Sit Arun squarely at Desk 24
 		arun.global_position = Vector2(418, 465)
 		var move_comp = arun.get_node_or_null("MovementComponent")
 		if move_comp:
@@ -178,7 +192,8 @@ func start_exam_sequence() -> void:
 			move_comp.facing_dir = Vector2.UP
 
 	# Enable spotlight overlay & smoothly dim the room
-	_overlay_rect.visible = true
+	if _overlay_rect:
+		_overlay_rect.visible = true
 	var tween = create_tween().set_parallel(true)
 	tween.tween_method(func(v: float):
 		if _shader_mat:
@@ -198,37 +213,45 @@ func start_exam_sequence() -> void:
 
 	await tween.finished
 
-	# Begin thought dialogue sequence
+	# The Exam Shot: Room goes dead silent, clock ticks, and the exam begins
 	_dialogue_lines = [
+		{
+			"speaker": "📋 MR. KUMAR (Invigilator)",
+			"color": Color(1.0, 0.85, 0.3),
+			"text": "\"Silence in the examination hall. Pens ready. You have 90 minutes. Turn your papers over... and begin!\""
+		},
 		{
 			"speaker": "💭 ARUN (Heart Pounding)",
 			"color": Color(0.4, 0.8, 1.0),
-			"text": "\"Question 1: 'Solve for x under extreme time pressure.' The numbers are starting to blur together...\""
+			"text": "\"Question 1: 'Solve for x under extreme pressure.' The numbers are blurring... Everyone's pens are scratching so fast!\""
 		},
 		{
-			"speaker": "💭 ARUN (Panic Rising)",
-			"color": Color(1.0, 0.4, 0.4),
-			"text": "\"Everyone else is turning pages so fast. My hands won't stop shaking. What if I freeze?! What will Mom and Dad say?!\""
+			"speaker": "💭 ARUN (Steeling Resolve)",
+			"color": Color(1.0, 0.5, 0.3),
+			"text": "\"No! I won't freeze up today. Deep breath. I'm going to shred through this exam and BOUNCE BACK!\""
 		}
 	]
 	_dialogue_idx = 0
-	_dialogue_panel.visible = true
+	if _dialogue_panel:
+		_dialogue_panel.visible = true
 	_display_current_line()
 
 func _display_current_line() -> void:
 	if _dialogue_idx < _dialogue_lines.size():
 		var data = _dialogue_lines[_dialogue_idx]
-		_speaker_lbl.text = data["speaker"]
-		_speaker_lbl.add_theme_color_override("font_color", data["color"])
+		if _speaker_lbl:
+			_speaker_lbl.text = data["speaker"]
+			_speaker_lbl.add_theme_color_override("font_color", data["color"])
 		_current_target = data["text"]
 		_char_idx = 0
-		_text_lbl.text = ""
+		if _text_lbl:
+			_text_lbl.text = ""
 		_is_typing = true
 
-		if "MENTOR" in data["speaker"] or "✨" in data["speaker"]:
-			_current_pitch = 1.45
+		if "KUMAR" in data["speaker"]:
+			_current_pitch = 0.9
 		else:
-			_current_pitch = 0.95
+			_current_pitch = 1.05
 
 		var audio_mgr = get_node_or_null("/root/AudioManager")
 		if audio_mgr:
@@ -237,57 +260,16 @@ func _display_current_line() -> void:
 			if audio_mgr.has_method("speak_tts"):
 				audio_mgr.speak_tts(_current_target, _current_pitch)
 	else:
-		_dialogue_panel.visible = false
+		_transition_to_minigame()
 
 func _advance_dialogue() -> void:
 	_dialogue_idx += 1
-	if _dialogue_idx == 2:
-		# Anxiety peak: trigger Magical Guide swoop-in!
-		_dialogue_panel.visible = false
-		_is_typing = false
-		var audio_mgr = get_node_or_null("/root/AudioManager")
-		if audio_mgr and audio_mgr.has_method("play_powerup"):
-			audio_mgr.play_powerup()
-
-		if not magical_guide:
-			magical_guide = get_node_or_null("../MagicalGuide")
-
-		if magical_guide:
-			magical_guide.fly_in(Vector2(470, 440))
-			await magical_guide.arrival_finished
-			magical_guide.pulse_wisdom()
-			if audio_mgr and audio_mgr.has_method("play_magic_sparkle"):
-				audio_mgr.play_magic_sparkle()
-
-		_dialogue_lines.append({
-			"speaker": "✨ BOUNCE MENTOR (Magical Guide)",
-			"color": Color(1.0, 0.85, 0.3),
-			"text": "\"ARUN! Look up! Stop holding your breath!\""
-		})
-		_dialogue_lines.append({
-			"speaker": "✨ BOUNCE MENTOR",
-			"color": Color(1.0, 0.85, 0.3),
-			"text": "\"A rubber ball only leaps higher the harder it hits the floor. Pressure doesn't break who you are — how you Bounce Back does!\""
-		})
-		_dialogue_lines.append({
-			"speaker": "✨ BOUNCE MENTOR",
-			"color": Color(1.0, 0.85, 0.3),
-			"text": "\"Take a deep breath. Focus your mind. You've prepared for this. Let's solve this exam together!\""
-		})
-		_dialogue_lines.append({
-			"speaker": "💭 ARUN (Empowered)",
-			"color": Color(0.4, 1.0, 0.6),
-			"text": "\"He's right... Panic is just energy waiting to be redirected. I don't have to freeze. I can Bounce Back!\""
-		})
-
-		_dialogue_panel.visible = true
-		_display_current_line()
-	elif _dialogue_idx < _dialogue_lines.size():
+	if _dialogue_idx < _dialogue_lines.size():
 		_display_current_line()
 	else:
-		_finish_exam_sequence()
+		_transition_to_minigame()
 
-func _finish_exam_sequence() -> void:
+func _transition_to_minigame() -> void:
 	_dialogue_panel.visible = false
 	_is_typing = false
 
@@ -295,24 +277,15 @@ func _finish_exam_sequence() -> void:
 	if audio_mgr:
 		if audio_mgr.has_method("stop_tts"):
 			audio_mgr.stop_tts()
-		if audio_mgr.has_method("play_prop_open"):
-			audio_mgr.play_prop_open()
+		if audio_mgr.has_method("play_powerup"):
+			audio_mgr.play_powerup()
 
-	# Restore lighting with golden glow
-	var tween = create_tween().set_parallel(true)
-	tween.tween_method(func(v: float):
-		if _shader_mat:
-			_shader_mat.set_shader_parameter("darkness", v)
-	, 0.90, 0.0, 1.2)
-
-	if arun:
-		arun.take_stress(-50.0) # Golden flash of relief
-		var move_comp = arun.get_node_or_null("MovementComponent")
-		if move_comp:
-			move_comp.set_process(true)
-
-	await tween.finished
-	_overlay_rect.visible = false
+	# Dramatic transition into Marksheet Dodge Minigame
+	var scene_mgr = get_node_or_null("/root/SceneManager")
+	if scene_mgr:
+		scene_mgr.change_scene_to("res://minigame/marksheet_dodge_game.tscn")
+	else:
+		get_tree().change_scene_to_file("res://minigame/marksheet_dodge_game.tscn")
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and not _sequence_started:

@@ -4,6 +4,8 @@ extends StaticBody2D
 ## Interactive NPC with a stylish head-hovering dialogue speech box,
 ## retro typewriter chatter SFX, native OS TTS support, and physical collision.
 
+signal dialogue_finished(npc_name: String)
+
 @export var dialogue_lines: PackedStringArray = ["Hello!", "Nice day, isn't it?"]
 @export var npc_name: String = "Student"
 @export var sprite_texture: Texture2D
@@ -284,6 +286,8 @@ func _close_dialogue() -> void:
 	var audio_mgr = get_node_or_null("/root/AudioManager")
 	if audio_mgr and audio_mgr.has_method("stop_tts"):
 		audio_mgr.stop_tts()
+
+	dialogue_finished.emit(npc_name)
 
 func _on_player_enter(body: Node2D) -> void:
 	if body is CharacterBody2D:

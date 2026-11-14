@@ -3,6 +3,8 @@ extends Node2D
 const SceneMgr = preload("res://Scripts/scene_manager.gd")
 
 @onready var player: CharacterBody2D = $"Arun_Charchter(Evin)"
+@onready var teacher: GameNPC = $NPC_Teacher
+@onready var exam_sequence: ExamSpotlightSequence = $ExamSpotlightSequence
 
 func _ready() -> void:
 	# Configure camera limits strictly to classroom interior (no outer void visible)
@@ -17,3 +19,11 @@ func _ready() -> void:
 	else:
 		if player:
 			player.global_position = Vector2(391, 450)
+
+	# When Mr. Kumar finishes talking, he assigns Arun to his exam desk
+	if teacher and teacher.has_signal("dialogue_finished"):
+		teacher.dialogue_finished.connect(_on_teacher_dialogue_finished)
+
+func _on_teacher_dialogue_finished(npc_name: String) -> void:
+	if npc_name == "Mr. Kumar" and exam_sequence:
+		exam_sequence.start_exam_sequence()

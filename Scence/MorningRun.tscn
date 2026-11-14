@@ -1,0 +1,256 @@
+[gd_scene load_steps=24 format=3 uid="uid://cm0rn1ngrund4sh"]
+
+[ext_resource type="Script" path="res://Scripts/platformer_run.gd" id="1_run"]
+[ext_resource type="Texture2D" path="res://assests/platformer/sky.webp" id="2_sky"]
+[ext_resource type="Texture2D" path="res://assests/platformer/distant_platforms_1.webp" id="3_dist1"]
+[ext_resource type="Texture2D" path="res://assests/platformer/distant_platforms_2.webp" id="3_dist2"]
+[ext_resource type="Texture2D" path="res://assests/platformer/cloud_1.webp" id="4_c1"]
+[ext_resource type="Texture2D" path="res://assests/platformer/cloud_2.webp" id="5_c2"]
+[ext_resource type="Texture2D" path="res://assests/platformer/cloud_3.webp" id="5_c3"]
+[ext_resource type="Texture2D" path="res://assests/platformer/ground_strip_1.png" id="6_g1"]
+[ext_resource type="Texture2D" path="res://assests/platformer/ground_strip_2.png" id="7_g2"]
+[ext_resource type="Texture2D" path="res://assests/platformer/ground_strip_3.png" id="8_g3"]
+[ext_resource type="Texture2D" path="res://assests/platformer/one_way_platform.webp" id="9_plat"]
+[ext_resource type="Texture2D" path="res://assests/platformer/tree_1.webp" id="10_t1"]
+[ext_resource type="Texture2D" path="res://assests/platformer/tree_2.webp" id="11_t2"]
+[ext_resource type="Texture2D" path="res://assests/platformer/bush_1.webp" id="12_b1"]
+[ext_resource type="PackedScene" path="res://Scence/PlatformerPlayer.tscn" id="13_player"]
+[ext_resource type="PackedScene" path="res://Scence/MotivationCoin.tscn" id="14_coin"]
+[ext_resource type="Script" path="res://Scripts/scene_transition_door.gd" id="15_door"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground1"]
+size = Vector2(680, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground2"]
+size = Vector2(600, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground3"]
+size = Vector2(800, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat"]
+size = Vector2(240, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(80, 120)
+
+[node name="MorningRun" type="Node2D"]
+script = ExtResource("1_run")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -50
+
+[node name="LayerSky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.08, 0.02)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="SkySprite" type="Sprite2D" parent="ParallaxBackground/LayerSky"]
+z_index = -40
+position = Vector2(1024, 260)
+scale = Vector2(2.0, 2.0)
+texture = ExtResource("2_sky")
+
+[node name="LayerDistantHills" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.05)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="Dist1" type="Sprite2D" parent="ParallaxBackground/LayerDistantHills"]
+z_index = -30
+position = Vector2(512, 430)
+texture = ExtResource("3_dist1")
+
+[node name="Dist2" type="Sprite2D" parent="ParallaxBackground/LayerDistantHills"]
+z_index = -30
+position = Vector2(1536, 430)
+texture = ExtResource("3_dist2")
+
+[node name="LayerClouds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.35, 0.08)
+motion_mirroring = Vector2(1800, 0)
+
+[node name="Cloud1" type="Sprite2D" parent="ParallaxBackground/LayerClouds"]
+z_index = -20
+position = Vector2(300, 130)
+texture = ExtResource("4_c1")
+
+[node name="Cloud2" type="Sprite2D" parent="ParallaxBackground/LayerClouds"]
+z_index = -20
+position = Vector2(880, 170)
+texture = ExtResource("5_c2")
+
+[node name="Cloud3" type="Sprite2D" parent="ParallaxBackground/LayerClouds"]
+z_index = -20
+position = Vector2(1480, 120)
+texture = ExtResource("5_c3")
+
+[node name="LevelGeometry" type="StaticBody2D" parent="."]
+z_index = 0
+collision_layer = 2
+collision_mask = 0
+
+[node name="ColGround1" type="CollisionShape2D" parent="LevelGeometry"]
+position = Vector2(340, 770)
+shape = SubResource("RectangleShape2D_ground1")
+
+[node name="SpriteGround1" type="Sprite2D" parent="LevelGeometry"]
+position = Vector2(340, 770)
+texture = ExtResource("6_g1")
+
+[node name="ColGround2" type="CollisionShape2D" parent="LevelGeometry"]
+position = Vector2(1420, 770)
+shape = SubResource("RectangleShape2D_ground2")
+
+[node name="SpriteGround2" type="Sprite2D" parent="LevelGeometry"]
+position = Vector2(1420, 770)
+texture = ExtResource("7_g2")
+
+[node name="ColGround3" type="CollisionShape2D" parent="LevelGeometry"]
+position = Vector2(2400, 770)
+shape = SubResource("RectangleShape2D_ground3")
+
+[node name="SpriteGround3" type="Sprite2D" parent="LevelGeometry"]
+position = Vector2(2400, 770)
+texture = ExtResource("8_g3")
+
+[node name="ColPlat1" type="CollisionShape2D" parent="LevelGeometry"]
+position = Vector2(900, 420)
+shape = SubResource("RectangleShape2D_plat")
+one_way_collision = true
+
+[node name="SpritePlat1" type="Sprite2D" parent="LevelGeometry"]
+position = Vector2(900, 420)
+texture = ExtResource("9_plat")
+
+[node name="ColPlat2" type="CollisionShape2D" parent="LevelGeometry"]
+position = Vector2(1060, 350)
+shape = SubResource("RectangleShape2D_plat")
+one_way_collision = true
+
+[node name="SpritePlat2" type="Sprite2D" parent="LevelGeometry"]
+position = Vector2(1060, 350)
+texture = ExtResource("9_plat")
+
+[node name="ColPlat3" type="CollisionShape2D" parent="LevelGeometry"]
+position = Vector2(1820, 420)
+shape = SubResource("RectangleShape2D_plat")
+one_way_collision = true
+
+[node name="SpritePlat3" type="Sprite2D" parent="LevelGeometry"]
+position = Vector2(1820, 420)
+texture = ExtResource("9_plat")
+
+[node name="ColPlat4" type="CollisionShape2D" parent="LevelGeometry"]
+position = Vector2(1980, 350)
+shape = SubResource("RectangleShape2D_plat")
+one_way_collision = true
+
+[node name="SpritePlat4" type="Sprite2D" parent="LevelGeometry"]
+position = Vector2(1980, 350)
+texture = ExtResource("9_plat")
+
+[node name="Props" type="Node2D" parent="."]
+z_index = 1
+
+[node name="Tree1" type="Sprite2D" parent="Props"]
+position = Vector2(200, 410)
+texture = ExtResource("10_t1")
+
+[node name="Bush1" type="Sprite2D" parent="Props"]
+position = Vector2(380, 500)
+texture = ExtResource("12_b1")
+
+[node name="Bush2" type="Sprite2D" parent="Props"]
+position = Vector2(580, 500)
+texture = ExtResource("12_b1")
+
+[node name="Tree2" type="Sprite2D" parent="Props"]
+position = Vector2(1280, 410)
+texture = ExtResource("11_t2")
+
+[node name="Bush3" type="Sprite2D" parent="Props"]
+position = Vector2(1580, 500)
+texture = ExtResource("12_b1")
+
+[node name="Tree3" type="Sprite2D" parent="Props"]
+position = Vector2(2200, 410)
+texture = ExtResource("10_t1")
+
+[node name="Bush4" type="Sprite2D" parent="Props"]
+position = Vector2(2550, 500)
+texture = ExtResource("12_b1")
+
+[node name="Coins" type="Node2D" parent="."]
+z_index = 5
+
+[node name="Coin1" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(260, 480)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(360, 460)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(460, 440)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(560, 470)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(800, 390)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(890, 370)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(980, 320)
+
+[node name="Coin8" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(1060, 300)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(1220, 470)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(1360, 440)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(1490, 440)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(1620, 470)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(1820, 370)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(1980, 300)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(2300, 480)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("14_coin")]
+position = Vector2(2500, 480)
+
+[node name="DoorToHouse" type="Area2D" parent="."]
+position = Vector2(60, 470)
+script = ExtResource("15_door")
+target_scene = "res://Scence/House.tscn"
+target_door_id = "from_run"
+prompt_message = "[E] Return Home"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToHouse"]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="DoorToWalkway" type="Area2D" parent="."]
+position = Vector2(2680, 470)
+script = ExtResource("15_door")
+target_scene = "res://Scence/Walkway.tscn"
+target_door_id = "from_run"
+prompt_message = "[E] Reach School Grounds"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToWalkway"]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="PlatformerPlayer" parent="." instance=ExtResource("13_player")]
+position = Vector2(120, 510)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 50

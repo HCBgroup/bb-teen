@@ -1,0 +1,253 @@
+[gd_scene format=3 uid="uid://d30sgc5hdr8n4"]
+
+[ext_resource type="PackedScene" path="res://minigame/components/player.tscn" id="1_player_comp"]
+[ext_resource type="Script" uid="uid://bf2k4l2uh5pbr" path="res://minigame/marksheet_dodge_game.gd" id="2_minigame_script"]
+[ext_resource type="Texture2D" uid="uid://cadgyl5o32f8g" path="res://assets/backgrounds/bg_blue_tile.png" id="2_r03wo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ghsu"]
+size = Vector2(20, 800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ghvd"]
+size = Vector2(20, 800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pl7uw"]
+size = Vector2(1320, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m861c"]
+size = Vector2(1320, 20)
+
+[node name="MarksheetDodgeGame" type="Node2D" unique_id=7990865]
+script = ExtResource("2_minigame_script")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1355092218]
+unique_name_in_owner = true
+position = Vector2(640, 360)
+
+[node name="Background" type="Sprite2D" parent="." unique_id=966596931]
+position = Vector2(640, 360)
+scale = Vector2(5.5, 3.2)
+texture = ExtResource("2_r03wo")
+
+[node name="ArenaBorders" type="StaticBody2D" parent="." unique_id=819396398]
+collision_layer = 4
+collision_mask = 0
+
+[node name="WallLeft" type="CollisionShape2D" parent="ArenaBorders" unique_id=1936405347]
+position = Vector2(-10, 360)
+shape = SubResource("RectangleShape2D_6ghsu")
+
+[node name="WallRight" type="CollisionShape2D" parent="ArenaBorders" unique_id=1693813775]
+position = Vector2(1290, 360)
+shape = SubResource("RectangleShape2D_3ghvd")
+
+[node name="WallTop" type="CollisionShape2D" parent="ArenaBorders" unique_id=790099060]
+position = Vector2(640, 50)
+shape = SubResource("RectangleShape2D_pl7uw")
+
+[node name="WallBottom" type="CollisionShape2D" parent="ArenaBorders" unique_id=630228128]
+position = Vector2(640, 715)
+shape = SubResource("RectangleShape2D_m861c")
+
+[node name="MarksheetContainer" type="Node2D" parent="." unique_id=428404310]
+unique_name_in_owner = true
+
+[node name="EffectsContainer" type="Node2D" parent="." unique_id=1726511048]
+unique_name_in_owner = true
+
+[node name="Player" parent="." unique_id=43420431 instance=ExtResource("1_player_comp")]
+unique_name_in_owner = true
+position = Vector2(640, 520)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=491226198]
+unique_name_in_owner = true
+wait_time = 1.1
+
+[node name="DifficultyTimer" type="Timer" parent="." unique_id=749680174]
+unique_name_in_owner = true
+wait_time = 5.0
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1510748635]
+unique_name_in_owner = true
+
+[node name="HUD" type="MarginContainer" parent="UI" unique_id=353981920]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD" unique_id=861184745]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="HpContainer" type="HBoxContainer" parent="UI/HUD/HBoxContainer" unique_id=108791542]
+layout_mode = 2
+
+[node name="HpTitle" type="Label" parent="UI/HUD/HBoxContainer/HpContainer" unique_id=1399149872]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 22
+text = "HP: "
+
+[node name="HpValue" type="Label" parent="UI/HUD/HBoxContainer/HpContainer" unique_id=1172149765]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.25, 0.25, 1)
+theme_override_font_sizes/font_size = 24
+text = "♥ ♥ ♥ ♥ ♥"
+
+[node name="ScoreContainer" type="HBoxContainer" parent="UI/HUD/HBoxContainer" unique_id=285262656]
+layout_mode = 2
+
+[node name="ScoreTitle" type="Label" parent="UI/HUD/HBoxContainer/ScoreContainer" unique_id=1151698793]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "SCORE: "
+
+[node name="ScoreValue" type="Label" parent="UI/HUD/HBoxContainer/ScoreContainer" unique_id=1760677255]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="ShreddedContainer" type="HBoxContainer" parent="UI/HUD/HBoxContainer" unique_id=2047952500]
+layout_mode = 2
+
+[node name="ShreddedTitle" type="Label" parent="UI/HUD/HBoxContainer/ShreddedContainer" unique_id=2128597268]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 22
+text = "SHREDDED: "
+
+[node name="ShreddedValue" type="Label" parent="UI/HUD/HBoxContainer/ShreddedContainer" unique_id=1688569283]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="TimerContainer" type="HBoxContainer" parent="UI/HUD/HBoxContainer" unique_id=1619384444]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="TimerTitle" type="Label" parent="UI/HUD/HBoxContainer/TimerContainer" unique_id=1148873689]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "TIME: "
+
+[node name="TimerValue" type="Label" parent="UI/HUD/HBoxContainer/TimerContainer" unique_id=1168077726]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+
+[node name="ControlsTip" type="Label" parent="UI" unique_id=78214483]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -36.0
+offset_right = 350.0
+offset_bottom = -8.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_font_sizes/font_size = 16
+text = "[WASD / Arrows] Move | [SPACE / Z] Attack & Shred Papers | Avoid Falling Marksheets!"
+horizontal_alignment = 1
+
+[node name="GameOverPanel" type="Control" parent="UI" unique_id=1120615299]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DarkOverlay" type="ColorRect" parent="UI/GameOverPanel" unique_id=481460421]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.04, 0.04, 0.08, 0.85)
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/GameOverPanel" unique_id=1323037368]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverPanel/CenterContainer" unique_id=52775923]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GameOverTitle" type="Label" parent="UI/GameOverPanel/CenterContainer/VBoxContainer" unique_id=1442129161]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.2, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 52
+text = "EXAM OVER!"
+horizontal_alignment = 1
+
+[node name="GameOverSubtitle" type="Label" parent="UI/GameOverPanel/CenterContainer/VBoxContainer" unique_id=652953754]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 20
+text = "The marksheets caught you! Time to study harder."
+horizontal_alignment = 1
+
+[node name="StatsBox" type="VBoxContainer" parent="UI/GameOverPanel/CenterContainer/VBoxContainer" unique_id=888267151]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FinalScore" type="Label" parent="UI/GameOverPanel/CenterContainer/VBoxContainer/StatsBox" unique_id=472660163]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 28
+text = "Final Score: 0"
+horizontal_alignment = 1
+
+[node name="SurvivalTime" type="Label" parent="UI/GameOverPanel/CenterContainer/VBoxContainer/StatsBox" unique_id=2083019029]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Survived: 00:00"
+horizontal_alignment = 1
+
+[node name="PapersShredded" type="Label" parent="UI/GameOverPanel/CenterContainer/VBoxContainer/StatsBox" unique_id=2018457048]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Papers Shredded: 0"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="UI/GameOverPanel/CenterContainer/VBoxContainer" unique_id=1867909297]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="UI/GameOverPanel/CenterContainer/VBoxContainer/ButtonContainer" unique_id=708348967]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "RETRY (R)"
+
+[node name="ExitButton" type="Button" parent="UI/GameOverPanel/CenterContainer/VBoxContainer/ButtonContainer" unique_id=1899076082]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "BACK / EXIT"

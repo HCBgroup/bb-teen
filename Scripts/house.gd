@@ -23,14 +23,14 @@ func _ready() -> void:
 	_setup_dialogue_box()
 
 	var door: String = SceneMgr.get_target_door()
-	if door == "from_walkway":
+	if door == "from_walkway" or door == "from_run":
 		# Entering from front door
 		if player:
-			player.global_position = Vector2(1185, 570)
+			player.global_position = Vector2(1170, 590)
 	else:
 		# Game starts in bedroom staring into gold mirror
 		if player:
-			player.global_position = Vector2(162, 210)
+			player.global_position = Vector2(184, 195)
 			var move_comp = player.get_node_or_null("MovementComponent")
 			if move_comp:
 				move_comp.facing_dir = Vector2.UP
