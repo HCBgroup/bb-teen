@@ -55,7 +55,13 @@ func _physics_process(_delta: float) -> void:
 	if not is_active or current_health <= 0:
 		return
 
-	if is_attack_just_pressed() and not is_attacking:
+	var attack_pressed := false
+	if InputMap.has_action("attack") and Input.is_action_just_pressed("attack"):
+		attack_pressed = true
+	elif Input.is_action_just_pressed("ui_accept") or Input.is_physical_key_pressed(KEY_SPACE) or Input.is_physical_key_pressed(KEY_Z):
+		attack_pressed = true
+
+	if attack_pressed and not is_attacking:
 		start_attack()
 
 	if is_attacking:
@@ -66,27 +72,25 @@ func _physics_process(_delta: float) -> void:
 	process_animation()
 	move_and_slide()
 
-func is_attack_just_pressed() -> bool:
-	if Input.is_action_just_pressed("ui_accept"):
-		return true
-	if Input.is_physical_key_pressed(KEY_SPACE) or Input.is_physical_key_pressed(KEY_Z) or Input.is_physical_key_pressed(KEY_ENTER):
-		return true
-	if InputMap.has_action("attack") and Input.is_action_just_pressed("attack"):
-		return true
-	return false
-
 func process_movement() -> void:
-	var direction := Vector2.ZERO
-	if Input.is_action_pressed("ui_left") or Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT) or (InputMap.has_action("left") and Input.is_action_pressed("left")):
-		direction.x -= 1.0
-	if Input.is_action_pressed("ui_right") or Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT) or (InputMap.has_action("right") and Input.is_action_pressed("right")):
-		direction.x += 1.0
-	if Input.is_action_pressed("ui_up") or Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP) or (InputMap.has_action("up") and Input.is_action_pressed("up")):
-		direction.y -= 1.0
-	if Input.is_action_pressed("ui_down") or Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN) or (InputMap.has_action("down") and Input.is_action_pressed("down")):
-		direction.y += 1.0
+	var direction: Vector2 = Vector2.ZERO
+	if InputMap.has_action("left") and InputMap.has_action("right") and InputMap.has_action("up") and InputMap.has_action("down"):
+		direction = Input.get_vector("left", "right", "up", "down")
+	else:
+		direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
-	direction = direction.normalized()
+	if direction == Vector2.ZERO:
+		if Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT):
+			direction.x -= 1.0
+		if Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT):
+			direction.x += 1.0
+		if Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP):
+			direction.y -= 1.0
+		if Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN):
+			direction.y += 1.0
+		if direction != Vector2.ZERO:
+			direction = direction.normalized()
+
 	if direction != Vector2.ZERO:
 		velocity = direction * move_speed
 		if abs(direction.x) >= abs(direction.y):

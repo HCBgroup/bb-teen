@@ -21,7 +21,7 @@ signal player_damaged(damage: int, remaining_hp: int)
 @export var auto_start: bool = true
 ## Target survival time in seconds. 0.0 = endless until player runs out of HP.
 @export var target_survival_time: float = 0.0
-## Target score to win minigame (10 points = 1 paper shredded).
+## Target score to complete exam. Default 10 points.
 @export var target_score: int = 10
 ## Starting and maximum player health.
 @export var initial_player_health: int = 5
@@ -130,9 +130,7 @@ func reset_game() -> void:
 func _process(delta: float) -> void:
 	if not is_active:
 		if is_game_over:
-			if Input.is_physical_key_pressed(KEY_SPACE) or Input.is_physical_key_pressed(KEY_ENTER) or Input.is_action_just_pressed("ui_accept"):
-				_go_to_credits()
-			elif Input.is_physical_key_pressed(KEY_R):
+			if Input.is_action_just_pressed("attack") or Input.is_key_pressed(KEY_R):
 				_on_restart_pressed()
 		return
 
@@ -170,7 +168,8 @@ func _on_paper_shredded(points: int, global_pos: Vector2) -> void:
 	emit_signal("paper_shredded", points, global_pos)
 	spawn_floating_text("+" + str(points), global_pos, Color(0.2, 0.95, 0.3))
 	update_hud()
-	if target_score > 0 and score >= target_score:
+
+	if target_score > 0 and score >= target_score and not is_game_over:
 		_finish_minigame(true)
 
 func _on_paper_hit_player(penalty: int, global_pos: Vector2) -> void:
@@ -220,22 +219,24 @@ func _finish_minigame(passed: bool) -> void:
 
 	# Update Game Over UI
 	if passed:
-		result_title_label.text = "EXAM OVERCOME! 🎉"
+		result_title_label.text = "EXAM PASSED! 🎉"
 		result_title_label.add_theme_color_override("font_color", Color(0.2, 0.95, 0.4))
-		result_subtitle_label.text = "You faced your exam fear, shredded the marksheets, and Bounced Back!"
-		exit_button.text = "ROLL END CREDITS ▶"
-		restart_button.text = "REPLAY MINIGAME"
-		# Auto-transition to End Credits after 3.0 seconds
-		get_tree().create_timer(3.0).timeout.connect(func():
-			if is_game_over and is_instance_valid(self):
-				_go_to_credits()
+		result_subtitle_label.text = "You shredded through the exam! Bouncing Back to victory!"
+		
+		# Auto transition to End Credits
+		var tw = create_tween()
+		tw.tween_interval(2.0)
+		tw.tween_callback(func():
+			var scene_mgr = get_node_or_null("/root/SceneManager")
+			if scene_mgr:
+				scene_mgr.change_scene_to("res://Scence/EndCredits.tscn")
+			else:
+				get_tree().change_scene_to_file("res://Scence/EndCredits.tscn")
 		)
 	else:
-		result_title_label.text = "EXAM ANXIETY PEAK!"
+		result_title_label.text = "EXAM OVER!"
 		result_title_label.add_theme_color_override("font_color", Color(0.95, 0.2, 0.2))
-		result_subtitle_label.text = "Don't freeze up! Shake it off and Bounce Back!"
-		restart_button.text = "TRY AGAIN (Bounce Back!)"
-		exit_button.text = "SKIP TO CREDITS"
+		result_subtitle_label.text = "The marksheets caught you! Press [R] or Try Again to Bounce Back!"
 
 	final_score_label.text = "Final Score: " + str(score)
 	var minutes: int = int(survival_time / 60.0)
@@ -247,13 +248,6 @@ func _finish_minigame(passed: bool) -> void:
 	game_over_panel.modulate.a = 0.0
 	var tween: Tween = create_tween()
 	tween.tween_property(game_over_panel, "modulate:a", 1.0, 0.35)
-
-func _go_to_credits() -> void:
-	var scene_mgr = get_node_or_null("/root/SceneManager")
-	if scene_mgr and scene_mgr.has_method("change_scene_to"):
-		scene_mgr.change_scene_to("res://Scence/EndCredits.tscn")
-	else:
-		get_tree().change_scene_to_file("res://Scence/EndCredits.tscn")
 
 func _on_difficulty_timer_timeout() -> void:
 	if spawn_interval > min_spawn_interval:
@@ -289,8 +283,14 @@ func screen_shake(duration: float, intensity: float) -> void:
 	tween.tween_property(camera, "offset", Vector2.ZERO, 0.05)
 
 func _on_restart_pressed() -> void:
-	reset_game()
+	if standalone_mode:
+		get_tree().reload_current_scene()
+	else:
+		reset_game()
 
 func _on_exit_pressed() -> void:
 	emit_signal("minigame_exited")
-	_go_to_credits()
+	if standalone_mode:
+		get_tree().quit()
+	else:
+		visible = false
