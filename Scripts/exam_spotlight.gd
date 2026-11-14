@@ -181,28 +181,24 @@ func start_exam_sequence() -> void:
 	# Enable spotlight overlay & smoothly dim the room
 	if _overlay_rect:
 		_overlay_rect.visible = true
-	var tween = create_tween()
-	if tween:
-		tween.set_parallel(true)
-		tween.tween_method(func(v: float):
-			if _shader_mat:
-				_shader_mat.set_shader_parameter("darkness", v)
-		, 0.0, 0.90, 1.4).set_trans(Tween.TRANS_SINE)
+	var tween = create_tween().set_parallel(true)
+	tween.tween_method(func(v: float):
+		if _shader_mat:
+			_shader_mat.set_shader_parameter("darkness", v)
+	, 0.0, 0.90, 1.4).set_trans(Tween.TRANS_SINE)
 
-		# Pulse the spotlight slightly like a nervous heartbeat
-		var pulse_tween = create_tween()
-		if pulse_tween:
-			pulse_tween.set_loops(6)
-			pulse_tween.tween_method(func(r: float):
-				if _shader_mat:
-					_shader_mat.set_shader_parameter("inner_radius", r)
-			, 60.0, 52.0, 0.5)
-			pulse_tween.tween_method(func(r: float):
-				if _shader_mat:
-					_shader_mat.set_shader_parameter("inner_radius", r)
-			, 52.0, 60.0, 0.5)
+	# Pulse the spotlight slightly like a nervous heartbeat
+	var pulse_tween = create_tween().set_loops(6)
+	pulse_tween.tween_method(func(r: float):
+		if _shader_mat:
+			_shader_mat.set_shader_parameter("inner_radius", r)
+	, 60.0, 52.0, 0.5)
+	pulse_tween.tween_method(func(r: float):
+		if _shader_mat:
+			_shader_mat.set_shader_parameter("inner_radius", r)
+	, 52.0, 60.0, 0.5)
 
-		await tween.finished
+	await tween.finished
 
 	# The Exam Shot: Room goes dead silent, clock ticks, and the exam begins
 	_dialogue_lines = [
@@ -223,17 +219,20 @@ func start_exam_sequence() -> void:
 		}
 	]
 	_dialogue_idx = 0
-	_dialogue_panel.visible = true
+	if _dialogue_panel:
+		_dialogue_panel.visible = true
 	_display_current_line()
 
 func _display_current_line() -> void:
 	if _dialogue_idx < _dialogue_lines.size():
 		var data = _dialogue_lines[_dialogue_idx]
-		_speaker_lbl.text = data["speaker"]
-		_speaker_lbl.add_theme_color_override("font_color", data["color"])
+		if _speaker_lbl:
+			_speaker_lbl.text = data["speaker"]
+			_speaker_lbl.add_theme_color_override("font_color", data["color"])
 		_current_target = data["text"]
 		_char_idx = 0
-		_text_lbl.text = ""
+		if _text_lbl:
+			_text_lbl.text = ""
 		_is_typing = true
 
 		if "KUMAR" in data["speaker"]:
@@ -278,11 +277,9 @@ func _transition_to_minigame() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and not _sequence_started:
 		_is_player_near = true
-		if _prompt_label:
-			_prompt_label.visible = true
+		_prompt_label.visible = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		_is_player_near = false
-		if _prompt_label:
-			_prompt_label.visible = false
+		_prompt_label.visible = false
