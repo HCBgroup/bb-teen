@@ -19,22 +19,24 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8bdw"]
-size = Vector2(66.25, 147.5)
+size = Vector2(14, 10)
 
 [node name="Arun_Charchter(Evin)" type="Node2D" unique_id=795189499]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=419735395]
+motion_mode = 1
 script = ExtResource("1_bd0o1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=18880827]
-position = Vector2(-8.25, -35.49997)
-scale = Vector2(0.3717435, 0.33733332)
+texture_filter = 1
+position = Vector2(0, -16)
+scale = Vector2(0.045, 0.045)
 sprite_frames = SubResource("SpriteFrames_5aaqh")
 autoplay = "default"
-frame_progress = 0.6987094
+frame_progress = 0.6052402
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=102974538]
-position = Vector2(-2.25, -3.5)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_h8bdw")
 metadata/_edit_group_ = true
