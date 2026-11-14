@@ -7,7 +7,7 @@ const SceneMgr = preload("res://Scripts/scene_manager.gd")
 func _ready() -> void:
 	# Configure camera limits strictly to classroom interior (no outer void visible)
 	if player and player.has_method("configure_camera"):
-		player.configure_camera(Rect2(58, 56, 664, 616), Vector2(1.0, 1.0))
+		player.configure_camera(Rect2(58, 180, 664, 480), Vector2(1.6, 1.6))
 
 	var door: String = SceneMgr.get_target_door()
 	if door == "from_walkway":

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bvy535q8h41b2"]
+
+[ext_resource type="Script" path="res://Scripts/magical_guide.gd" id="1_guide"]
+[ext_resource type="Texture2D" uid="uid://bs0k660uugwvy" path="res://assests/school/magical_guide.png" id="2_spr"]
+
+[node name="MagicalGuide" type="Node2D"]
+z_index = 25
+script = ExtResource("1_guide")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_spr")

@@ -6,7 +6,7 @@ const SceneMgr = preload("res://Scripts/scene_manager.gd")
 
 func _ready() -> void:
 	if player and player.has_method("configure_camera"):
-		player.configure_camera(Rect2(0, 0, 1272, 855), Vector2(1.0, 1.0))
+		player.configure_camera(Rect2(0, 0, 1272, 855), Vector2(1.5, 1.5))
 
 	var door: String = SceneMgr.get_target_door()
 	if door == "from_school":
