@@ -145,19 +145,32 @@ func _process(delta: float) -> void:
 					audio_mgr.play_talk_blip(_current_pitch)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_pressed() or event.is_echo():
+	if not (event is InputEventKey) or not event.is_pressed() or event.is_echo():
+		return
+
+	var key_event := event as InputEventKey
+	var is_interact_key := (
+		key_event.keycode == KEY_E or
+		key_event.physical_keycode == KEY_E or
+		key_event.keycode == KEY_SPACE or
+		key_event.physical_keycode == KEY_SPACE or
+		key_event.keycode == KEY_ENTER or
+		event.is_action_pressed("ui_accept")
+	)
+
+	if not is_interact_key:
 		return
 
 	if not _sequence_started:
-		if _is_player_near and (event.is_action_pressed("ui_accept") or event.is_physical_key_pressed(KEY_E) or (event is InputEventKey and event.keycode == KEY_E)):
+		if _is_player_near:
 			start_exam_sequence()
 	else:
-		if event.is_action_pressed("ui_accept") or event.is_physical_key_pressed(KEY_E) or (event is InputEventKey and (event.keycode == KEY_E or event.keycode == KEY_SPACE or event.keycode == KEY_ENTER)):
-			if _char_idx < _current_target.length():
-				_char_idx = _current_target.length()
+		if _char_idx < _current_target.length():
+			_char_idx = _current_target.length()
+			if _text_lbl:
 				_text_lbl.text = _current_target
-			else:
-				_advance_dialogue()
+		else:
+			_advance_dialogue()
 
 func start_exam_sequence() -> void:
 	if _sequence_started:

@@ -198,31 +198,6 @@ dialogue_lines = PackedStringArray("Psst! Arun! Look at this paper airplane I ma
 npc_name = "Rohan"
 sprite_texture = ExtResource("8_rohan")
 
-[node name="Prop_ExamPaper" type="Area2D" parent="."]
-position = Vector2(418, 455)
-script = ExtResource("10_prop")
-prompt_text = "[E] Read Exam Paper"
-modal_title = "MID-TERM EXAM: MATHEMATICS & LOGIC"
-modal_content = "STUDENT: Arun Sharma | ROLL NO: 24 | TIME: 90 MINS
----------------------------------------------------------
-Q1. If mental pressure increases by 20% every minute,
-    calculate the time remaining until complete freeze.
-    [Arun's scribbled answer in margin:
-     'Take a deep breath and Bounce Back!']
-
-Q2. Solve for x:  x + Anxiety = Progress
-    [Teacher's note in red ink:
-     'x = Resilience. You've got this, Arun!']
-
-Q3. Multiple Choice:
-    When feeling overwhelmed, you should:
-    (A) Panic and freeze
-    (B) Give up completely
-    (C) Breathe, focus, and step forward [X]"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_ExamPaper"]
-shape = SubResource("CircleShape2D_sjpxy")
-
 [node name="Prop_NoticeBoard" type="Area2D" parent="."]
 position = Vector2(125, 235)
 script = ExtResource("10_prop")
