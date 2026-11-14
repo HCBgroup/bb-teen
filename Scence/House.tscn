@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://crgttvr7gnggb"]
+
+[ext_resource type="Script" uid="uid://b4quopxq00enl" path="res://Scripts/house.gd" id="1_house"]
+[ext_resource type="Texture2D" uid="uid://dfmkx1vkevmi7" path="res://assests/house/house_layout.png" id="2_layout"]
+[ext_resource type="PackedScene" uid="uid://664qps4hqm6m" path="res://Scence/Arun_charchter(evin).tscn" id="3_arun"]
+[ext_resource type="Script" uid="uid://w8lwa7sxyngq" path="res://Scripts/scene_transition_door.gd" id="4_door"]
+[ext_resource type="Script" uid="uid://b6r8s0xyftcjr" path="res://Scripts/npc.gd" id="5_npc"]
+[ext_resource type="Texture2D" uid="uid://c5uhuotjqdows" path="res://assests/house/mom_idle.png" id="6_mom"]
+[ext_resource type="Script" uid="uid://d1g1fcc5rhk3s" path="res://Scripts/interactive_prop.gd" id="7_prop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_top_wall"]
+size = Vector2(560, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_left_wall"]
+size = Vector2(32, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right_wall"]
+size = Vector2(32, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bottom_left"]
+size = Vector2(370, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bottom_right"]
+size = Vector2(130, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_div_wall_top"]
+size = Vector2(16, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_div_wall_bot"]
+size = Vector2(16, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bed"]
+size = Vector2(40, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_desk"]
+size = Vector2(40, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kitchen_counter"]
+size = Vector2(100, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dining_table"]
+size = Vector2(56, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door_exit"]
+size = Vector2(48, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_prop_zone"]
+radius = 28.0
+
+[node name="House" type="Node2D" unique_id=1543600463]
+y_sort_enabled = true
+script = ExtResource("1_house")
+
+[node name="HouseLayout" type="Sprite2D" parent="." unique_id=1079769028]
+z_index = -10
+texture_filter = 1
+texture = ExtResource("2_layout")
+centered = false
+
+[node name="WallsAndFurniture" type="StaticBody2D" parent="." unique_id=487447539]
+collision_layer = 2
+collision_mask = 0
+
+[node name="TopWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1824927704]
+position = Vector2(320, 88)
+shape = SubResource("RectangleShape2D_top_wall")
+
+[node name="LeftWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1819627836]
+position = Vector2(56, 240)
+shape = SubResource("RectangleShape2D_left_wall")
+
+[node name="RightWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1122294968]
+position = Vector2(584, 240)
+shape = SubResource("RectangleShape2D_right_wall")
+
+[node name="BottomWallLeft" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=519826822]
+position = Vector2(235, 392)
+shape = SubResource("RectangleShape2D_bottom_left")
+
+[node name="BottomWallRight" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=2083321784]
+position = Vector2(525, 392)
+shape = SubResource("RectangleShape2D_bottom_right")
+
+[node name="DividingWallTop" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=560185698]
+position = Vector2(312, 144)
+shape = SubResource("RectangleShape2D_div_wall_top")
+
+[node name="DividingWallBottom" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1980549800]
+position = Vector2(312, 336)
+shape = SubResource("RectangleShape2D_div_wall_bot")
+
+[node name="BedCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1221795177]
+position = Vector2(96, 136)
+shape = SubResource("RectangleShape2D_bed")
+
+[node name="DeskCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=303873852]
+position = Vector2(224, 124)
+shape = SubResource("RectangleShape2D_desk")
+
+[node name="KitchenCounterCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=953280956]
+position = Vector2(400, 126)
+shape = SubResource("RectangleShape2D_kitchen_counter")
+
+[node name="DiningTableCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1048347238]
+position = Vector2(464, 230)
+shape = SubResource("RectangleShape2D_dining_table")
+
+[node name="DoorToWalkway" type="Area2D" parent="." unique_id=581916963]
+position = Vector2(432, 390)
+script = ExtResource("4_door")
+target_scene = "res://Scence/Walkway.tscn"
+target_door_id = "from_house"
+prompt_message = "[E] Step Outside"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToWalkway" unique_id=613064618]
+shape = SubResource("RectangleShape2D_door_exit")
+
+[node name="NPC_Mom" type="StaticBody2D" parent="." unique_id=1909519107]
+position = Vector2(410, 160)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_npc")
+dialogue_lines = ["Good morning, Arun! You're awake!", "I made hot breakfast. Drink your turmeric milk before leaving.", "Don't stress about the math exam today, beta. Just give your best.", "Your father and I believe in you, no matter what."]
+npc_name = "Mom"
+sprite_texture = ExtResource("6_mom")
+
+[node name="Prop_AlarmClock" type="Area2D" parent="." unique_id=543054400]
+position = Vector2(120, 120)
+script = ExtResource("7_prop")
+prop_name = "Alarm Clock"
+prompt_text = "[E] Check Clock"
+modal_title = "DIGITAL BEDSIDE CLOCK"
+modal_content = "TIME: 07:42 AM  |  ALARM: OFF
+-----------------------------------------------
+The alarm has been ringing for 15 minutes!
+
+The mid-term exam at school begins at 08:30 AM!
+If you rush through the walkway path now,
+you will reach classroom just in time."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_AlarmClock" unique_id=1004872399]
+shape = SubResource("CircleShape2D_prop_zone")
+
+[node name="Prop_Diary" type="Area2D" parent="." unique_id=1001334958]
+position = Vector2(224, 124)
+script = ExtResource("7_prop")
+prop_name = "Personal Diary"
+prompt_text = "[E] Read Diary"
+modal_title = "ARUN'S STUDY DIARY"
+modal_content = "ENTRY: 'THE PRESSURE COOKER'
+===============================================
+'Everyone expects top marks. Uncle Sharma was
+ bragging about his son's 99 percentile again.
+
+ Mom works so hard, and Dad looks tired every night.
+ I can't let them down. But my chest feels tight
+ whenever I open this algebra textbook.
+
+ Goal for today: Don't freeze up. Remember to breathe.
+ Bounce Back when panic hits.'"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_Diary" unique_id=770357803]
+shape = SubResource("CircleShape2D_prop_zone")
+
+[node name="Arun_Charchter(Evin)" parent="." unique_id=1006316804 instance=ExtResource("3_arun")]
+position = Vector2(110, 180)

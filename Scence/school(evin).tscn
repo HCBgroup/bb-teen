@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://w8lwa7sxyngq" path="res://Scripts/scene_transition_door.gd" id="4_36an1"]
 [ext_resource type="Script" uid="uid://b6r8s0xyftcjr" path="res://Scripts/npc.gd" id="5_1wnpj"]
 [ext_resource type="Texture2D" uid="uid://dmn3ou52kjo1t" path="res://assests/Arunboy/Idle/frame-1.png" id="6_wd4wk"]
-[ext_resource type="Script" path="res://Scripts/interactive_prop.gd" id="7_36an1"]
+[ext_resource type="Script" uid="uid://d1g1fcc5rhk3s" path="res://Scripts/interactive_prop.gd" id="7_36an1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fi46"]
 size = Vector2(800, 36)
@@ -54,7 +54,7 @@ size = Vector2(90, 100)
 size = Vector2(210, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxeco"]
-size = Vector2(80, 30)
+size = Vector2(84, 52)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sjpxy"]
 radius = 36.0
@@ -139,7 +139,7 @@ texture = ExtResource("3_gh6pd")
 centered = false
 
 [node name="DoorToWalkway" type="Area2D" parent="." unique_id=2125143712]
-position = Vector2(391, 668)
+position = Vector2(391, 646)
 script = ExtResource("4_36an1")
 target_scene = "res://Scence/Walkway.tscn"
 target_door_id = "from_school"

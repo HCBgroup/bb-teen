@@ -6,6 +6,7 @@ const SceneMgr = preload("res://Scripts/scene_manager.gd")
 @export_file("*.tscn") var target_scene: String = "res://Scence/school(evin).tscn"
 @export var target_door_id: String = "from_walkway"
 @export var prompt_message: String = "[E] Enter"
+@export var auto_transition: bool = true
 
 var player_in_range: bool = false
 var prompt_label: Label
@@ -54,7 +55,10 @@ func _trigger_transition() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		player_in_range = true
-		prompt_label.visible = true
+		if auto_transition:
+			_trigger_transition()
+		else:
+			prompt_label.visible = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:

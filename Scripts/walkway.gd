@@ -12,6 +12,9 @@ func _ready() -> void:
 	if door == "from_school":
 		if player:
 			player.global_position = Vector2(1130, 430)
+	elif door == "from_house":
+		if player:
+			player.global_position = Vector2(140, 430)
 	else:
 		if player:
 			player.global_position = Vector2(300, 430)

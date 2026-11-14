@@ -30,6 +30,8 @@ func setup(p_target: Node2D, p_limit_rect: Rect2 = Rect2(), p_zoom: Vector2 = Ve
 func apply_settings() -> void:
 	if camera == null:
 		return
+	camera.enabled = true
+	camera.make_current()
 	camera.zoom = zoom
 	camera.position_smoothing_enabled = true
 	camera.position_smoothing_speed = smoothing_speed
@@ -38,3 +40,4 @@ func apply_settings() -> void:
 	camera.limit_right = int(limit_rect.position.x + limit_rect.size.x)
 	camera.limit_bottom = int(limit_rect.position.y + limit_rect.size.y)
 	camera.editor_draw_limits = true
+	camera.reset_smoothing()
