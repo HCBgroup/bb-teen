@@ -9,70 +9,70 @@
 [ext_resource type="Script" uid="uid://d1g1fcc5rhk3s" path="res://Scripts/interactive_prop.gd" id="7_prop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_top_wall"]
-size = Vector2(1200, 20)
+size = Vector2(1280, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_left_wall"]
-size = Vector2(20, 620)
+size = Vector2(40, 720)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_right_wall"]
-size = Vector2(20, 620)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right_wall_top"]
+size = Vector2(40, 500)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bottom_left"]
-size = Vector2(1105, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right_wall_bottom"]
+size = Vector2(40, 100)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bottom_right"]
-size = Vector2(15, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bottom_wall"]
+size = Vector2(1280, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_part_lt"]
-size = Vector2(12, 232)
+size = Vector2(16, 150)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_part_lb"]
-size = Vector2(12, 153)
+size = Vector2(16, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_part_rt"]
-size = Vector2(12, 232)
+size = Vector2(16, 150)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_part_rb"]
-size = Vector2(12, 153)
+size = Vector2(16, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bed"]
-size = Vector2(90, 140)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_desk"]
-size = Vector2(95, 60)
+size = Vector2(80, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nightstand"]
-size = Vector2(50, 50)
+size = Vector2(45, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_desk"]
+size = Vector2(100, 65)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bookshelf"]
-size = Vector2(140, 130)
+size = Vector2(130, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sofa"]
-size = Vector2(170, 90)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bench"]
-size = Vector2(70, 120)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_armchair"]
-size = Vector2(70, 70)
+size = Vector2(180, 75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_coffee_table"]
-size = Vector2(150, 80)
+size = Vector2(120, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bench"]
+size = Vector2(50, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_armchair"]
+size = Vector2(55, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv"]
-size = Vector2(100, 90)
+size = Vector2(90, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dresser"]
-size = Vector2(120, 110)
+size = Vector2(110, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_counter"]
-size = Vector2(190, 80)
+size = Vector2(190, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dining"]
 size = Vector2(120, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_door_exit"]
-size = Vector2(80, 70)
+size = Vector2(60, 80)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mirror"]
 radius = 45.0
@@ -97,110 +97,112 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="TopWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1958033943]
-position = Vector2(640, 50)
+position = Vector2(640, 70)
 shape = SubResource("RectangleShape2D_top_wall")
 
-[node name="LeftWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=414190325]
-position = Vector2(40, 360)
+[node name="LeftWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1924619726]
+position = Vector2(15, 360)
 shape = SubResource("RectangleShape2D_left_wall")
 
-[node name="RightWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=18647065]
-position = Vector2(1240, 360)
-shape = SubResource("RectangleShape2D_right_wall")
+[node name="RightWallTop" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=2086432386]
+position = Vector2(1265, 250)
+shape = SubResource("RectangleShape2D_right_wall_top")
 
-[node name="BottomWallLeft" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1838548104]
-position = Vector2(592, 670)
-shape = SubResource("RectangleShape2D_bottom_left")
+[node name="RightWallBottom" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=2086432387]
+position = Vector2(1265, 670)
+shape = SubResource("RectangleShape2D_right_wall_bottom")
 
-[node name="BottomWallRight" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=261444287]
-position = Vector2(1232, 670)
-shape = SubResource("RectangleShape2D_bottom_right")
+[node name="BottomWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1849187310]
+position = Vector2(640, 700)
+shape = SubResource("RectangleShape2D_bottom_wall")
 
-[node name="PartitionLeftTop" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1256526136]
-position = Vector2(270, 164)
+[node name="PartitionLeftTop" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=2145325997]
+position = Vector2(258, 115)
 shape = SubResource("RectangleShape2D_part_lt")
 
-[node name="PartitionLeftBottom" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=2139334044]
-position = Vector2(270, 596)
+[node name="PartitionLeftBottom" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1327170195]
+position = Vector2(258, 560)
 shape = SubResource("RectangleShape2D_part_lb")
 
-[node name="PartitionRightTop" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1659241794]
-position = Vector2(1010, 164)
+[node name="PartitionRightTop" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1626245648]
+position = Vector2(1022, 115)
 shape = SubResource("RectangleShape2D_part_rt")
 
-[node name="PartitionRightBottom" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1799509744]
-position = Vector2(1010, 596)
+[node name="PartitionRightBottom" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1961449339]
+position = Vector2(1022, 560)
 shape = SubResource("RectangleShape2D_part_rb")
 
-[node name="Col_Bed" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=309441580]
-position = Vector2(100, 410)
+[node name="BedCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=612502662]
+position = Vector2(95, 245)
 shape = SubResource("RectangleShape2D_bed")
 
-[node name="Col_Desk" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1556637670]
-position = Vector2(202, 450)
-shape = SubResource("RectangleShape2D_desk")
-
-[node name="Col_Nightstand" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1498753708]
-position = Vector2(185, 365)
+[node name="NightstandCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=94528172]
+position = Vector2(167, 202)
 shape = SubResource("RectangleShape2D_nightstand")
 
-[node name="Col_Bookshelf" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=2081183656]
-position = Vector2(410, 220)
+[node name="DeskCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1903672901]
+position = Vector2(110, 522)
+shape = SubResource("RectangleShape2D_desk")
+
+[node name="BookshelfCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1630138902]
+position = Vector2(330, 185)
 shape = SubResource("RectangleShape2D_bookshelf")
 
-[node name="Col_Sofa" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=313656200]
-position = Vector2(670, 330)
+[node name="SofaCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=165842819]
+position = Vector2(585, 290)
 shape = SubResource("RectangleShape2D_sofa")
 
-[node name="Col_Bench" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1706397211]
-position = Vector2(590, 360)
-shape = SubResource("RectangleShape2D_bench")
-
-[node name="Col_Armchair" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=820018082]
-position = Vector2(890, 420)
-shape = SubResource("RectangleShape2D_armchair")
-
-[node name="Col_CoffeeTable" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=2145705243]
-position = Vector2(680, 400)
+[node name="CoffeeTableCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=199928371]
+position = Vector2(588, 385)
 shape = SubResource("RectangleShape2D_coffee_table")
 
-[node name="Col_TV" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1414377186]
-position = Vector2(680, 500)
+[node name="BenchCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=199928372]
+position = Vector2(495, 340)
+shape = SubResource("RectangleShape2D_bench")
+
+[node name="ArmchairCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=199928373]
+position = Vector2(680, 360)
+shape = SubResource("RectangleShape2D_armchair")
+
+[node name="TvCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=199928374]
+position = Vector2(588, 490)
 shape = SubResource("RectangleShape2D_tv")
 
-[node name="Col_Dresser" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=52443506]
-position = Vector2(980, 260)
+[node name="DresserCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=199928375]
+position = Vector2(840, 185)
 shape = SubResource("RectangleShape2D_dresser")
 
-[node name="Col_KitchenCounter" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=998471010]
-position = Vector2(1125, 120)
+[node name="KitchenCounterCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=202334455]
+position = Vector2(1135, 205)
 shape = SubResource("RectangleShape2D_counter")
 
-[node name="Col_DiningTable" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1490637625]
-position = Vector2(1100, 320)
+[node name="DiningTableCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=202334456]
+position = Vector2(1120, 360)
 shape = SubResource("RectangleShape2D_dining")
 
-[node name="DoorToWalkway" type="Area2D" parent="." unique_id=949031090]
-position = Vector2(1185, 630)
+[node name="DoorToMorningRun" type="Area2D" parent="." unique_id=1587391924]
+position = Vector2(1210, 590)
+collision_layer = 0
+collision_mask = 1
 script = ExtResource("4_door")
 target_scene = "res://Scence/MorningRun.tscn"
 target_door_id = "from_house"
-prompt_message = "[E] Dash Outside"
+prompt_message = "[E] Head Outside to School"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToWalkway" unique_id=1267403803]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToMorningRun" unique_id=1267403803]
 shape = SubResource("RectangleShape2D_door_exit")
 
 [node name="Mom" type="StaticBody2D" parent="." unique_id=2076812822]
-position = Vector2(1020, 320)
+position = Vector2(1090, 270)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("5_npc")
-dialogue_lines = ["Arun! Eat your breakfast before it gets cold!", "Don't worry so much about the math exam. Do your best!", "Remember what we talked about: breathe, stay focused, and bounce back!"]
+dialogue_lines = ["Arun! Eat your breakfast before it gets cold!", "Don't stress so much over the exam today. Just give it your best!", "Remember: breathe, stay focused, and bounce back!"]
 npc_name = "Mom"
 sprite_texture = ExtResource("6_mom")
 
 [node name="Prop_Mirror" type="Area2D" parent="." unique_id=519374779]
-position = Vector2(162, 135)
+position = Vector2(184, 110)
 script = ExtResource("7_prop")
 prop_name = "Gold Mirror"
 prompt_text = "[E] Look in Mirror"
@@ -213,7 +215,7 @@ modal_content = "You look into your reflection. Your eyes seem nervous.
 shape = SubResource("CircleShape2D_mirror")
 
 [node name="Prop_AlarmClock" type="Area2D" parent="." unique_id=458889904]
-position = Vector2(185, 365)
+position = Vector2(167, 202)
 script = ExtResource("7_prop")
 prop_name = "Alarm Clock"
 prompt_text = "[E] Check Alarm Clock"
@@ -226,7 +228,7 @@ The red digits blink steadily. School starts in 30 minutes!"
 shape = SubResource("CircleShape2D_clock")
 
 [node name="Prop_Diary" type="Area2D" parent="." unique_id=1478573803]
-position = Vector2(202, 450)
+position = Vector2(100, 520)
 script = ExtResource("7_prop")
 prop_name = "Arun's Diary"
 prompt_text = "[E] Read Diary"
@@ -239,4 +241,4 @@ I need to remember: taking a breath is not giving up. It's giving yourself room 
 shape = SubResource("CircleShape2D_diary")
 
 [node name="Arun_Charchter(Evin)" parent="." unique_id=1907216433 instance=ExtResource("3_arun")]
-position = Vector2(162, 210)
+position = Vector2(184, 195)

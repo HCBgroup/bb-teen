@@ -25,9 +25,13 @@ MCPRuntimeServer="*res://addons/godot_mcp_toolkit/runtime/mcp_runtime_server.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/size/resizable=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep"
+window/stretch/scale=1.0
+window/stretch/scale_mode="fractional"
 
 [editor_plugins]
 
@@ -43,5 +47,6 @@ server/version="latest"
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0.09, 0.08, 0.14, 1)
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

@@ -52,6 +52,13 @@ func _ready() -> void:
 	if DisplayServer.has_feature(DisplayServer.FEATURE_TEXT_TO_SPEECH):
 		_voices = DisplayServer.tts_get_voices()
 
+	# Ensure crisp 1280x720 canvas scaling across all screens and modes
+	var root_win = get_tree().root
+	if root_win:
+		root_win.content_scale_size = Vector2i(1280, 720)
+		root_win.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+		root_win.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
+
 	# Start background music
 	start_bgm()
 
