@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c01nm0tivc01n"]
+[gd_scene format=3 uid="uid://c01nm0tivc01n"]
 
 [ext_resource type="Script" path="res://Scripts/motivation_coin.gd" id="1_coin"]
 [ext_resource type="Texture2D" path="res://assests/platformer/coin/coin_1.png" id="2_c1"]

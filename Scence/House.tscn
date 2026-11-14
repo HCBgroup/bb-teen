@@ -183,9 +183,9 @@ shape = SubResource("RectangleShape2D_dining")
 [node name="DoorToWalkway" type="Area2D" parent="." unique_id=949031090]
 position = Vector2(1185, 630)
 script = ExtResource("4_door")
-target_scene = "res://Scence/Walkway.tscn"
+target_scene = "res://Scence/MorningRun.tscn"
 target_door_id = "from_house"
-prompt_message = "[E] Exit to Walkway"
+prompt_message = "[E] Dash Outside"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToWalkway" unique_id=1267403803]
 shape = SubResource("RectangleShape2D_door_exit")
