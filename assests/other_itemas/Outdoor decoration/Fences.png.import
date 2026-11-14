@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2cfh0ehj1dqb"
-path="res://.godot/imported/Fences.png-6bce171f3f2bfb27a70c5ad433ca4745.ctex"
+path="res://.godot/imported/Fences.png-476a2cc28229cce0a3e14cac7cb3bf6a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/other_itemas/Outdoor decoration/Fences.png"
-dest_files=["res://.godot/imported/Fences.png-6bce171f3f2bfb27a70c5ad433ca4745.ctex"]
+source_file="res://assests/other_itemas/Outdoor decoration/Fences.png"
+dest_files=["res://.godot/imported/Fences.png-476a2cc28229cce0a3e14cac7cb3bf6a.ctex"]
 
 [params]
 

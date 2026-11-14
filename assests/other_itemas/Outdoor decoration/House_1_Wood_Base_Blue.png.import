@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://elkhopjxo7e1"
-path="res://.godot/imported/House_1_Wood_Base_Blue.png-26b29bddafa6c7c474fee152394c06f5.ctex"
+path="res://.godot/imported/House_1_Wood_Base_Blue.png-3d58ef50a393acd83d8407822bd9c4b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/other_itemas/Outdoor decoration/House_1_Wood_Base_Blue.png"
-dest_files=["res://.godot/imported/House_1_Wood_Base_Blue.png-26b29bddafa6c7c474fee152394c06f5.ctex"]
+source_file="res://assests/other_itemas/Outdoor decoration/House_1_Wood_Base_Blue.png"
+dest_files=["res://.godot/imported/House_1_Wood_Base_Blue.png-3d58ef50a393acd83d8407822bd9c4b4.ctex"]
 
 [params]
 

@@ -1,3 +1,40 @@
 [gd_scene format=3 uid="uid://664qps4hqm6m"]
 
+[ext_resource type="Script" uid="uid://dlrsgxexxmunm" path="res://Scripts/character_body_2d.gd" id="1_bd0o1"]
+[ext_resource type="Texture2D" uid="uid://dmn3ou52kjo1t" path="res://assests/Arunboy/Idle/frame-1.png" id="1_n5jdl"]
+[ext_resource type="Texture2D" uid="uid://dvjsbtxw500oq" path="res://assests/Arunboy/Idle/frame-2.png" id="2_bd0o1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5aaqh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_n5jdl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bd0o1")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8bdw"]
+size = Vector2(66.25, 147.5)
+
 [node name="Arun_Charchter(Evin)" type="Node2D" unique_id=795189499]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=419735395]
+script = ExtResource("1_bd0o1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=18880827]
+position = Vector2(-8.25, -35.49997)
+scale = Vector2(0.3717435, 0.33733332)
+sprite_frames = SubResource("SpriteFrames_5aaqh")
+autoplay = "default"
+frame_progress = 0.6987094
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=102974538]
+position = Vector2(-2.25, -3.5)
+shape = SubResource("RectangleShape2D_h8bdw")
+metadata/_edit_group_ = true

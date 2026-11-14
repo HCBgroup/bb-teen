@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cled2i2hk28p4"]
+
+[ext_resource type="PackedScene" uid="uid://664qps4hqm6m" path="res://Scence/Arun_charchter(evin).tscn" id="1_bec7o"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5aaqh"]
+distance = -58.0
+
+[node name="School(Evin)" type="Node2D" unique_id=1702948037]
+
+[node name="Arun_Charchter(Evin)" parent="." unique_id=795189499 instance=ExtResource("1_bec7o")]
+position = Vector2(501, 354)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=396462656]
+position = Vector2(537, 410)
+shape = SubResource("WorldBoundaryShape2D_5aaqh")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1652013169]
+position = Vector2(571, 318)
