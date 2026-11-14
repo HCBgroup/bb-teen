@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://minigame/components/player.gd" id="2_player_script"]
+[ext_resource type="SpriteFrames" path="res://minigame/components/player_sprite_frames.tres" id="2_wcv35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofit2"]
+size = Vector2(32, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7dyd"]
+size = Vector2(40, 40)
+
+[node name="Player" type="CharacterBody2D" unique_id=43420431]
+collision_mask = 4
+script = ExtResource("2_player_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=267890360]
+scale = Vector2(3.5, 3.5)
+sprite_frames = ExtResource("2_wcv35")
+animation = &"attack_down"
+autoplay = "idle_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=41506353]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_ofit2")
+
+[node name="AttackHitbox" type="Area2D" parent="." unique_id=448074702]
+position = Vector2(0, 36)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=1936861213]
+shape = SubResource("RectangleShape2D_r7dyd")
+
+[node name="InvulnerabilityTimer" type="Timer" parent="." unique_id=1130908898]
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]

@@ -1,6 +1,8 @@
 class_name GameNPC
 extends StaticBody2D
 
+signal dialogue_finished()
+
 ## Interactive NPC with a stylish head-hovering dialogue speech box,
 ## retro typewriter chatter SFX, native OS TTS support, and physical collision.
 
@@ -284,6 +286,8 @@ func _close_dialogue() -> void:
 	var audio_mgr = get_node_or_null("/root/AudioManager")
 	if audio_mgr and audio_mgr.has_method("stop_tts"):
 		audio_mgr.stop_tts()
+
+	dialogue_finished.emit()
 
 func _on_player_enter(body: Node2D) -> void:
 	if body is CharacterBody2D:

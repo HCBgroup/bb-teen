@@ -158,6 +158,7 @@ shape = SubResource("RectangleShape2D_oxeco")
 [node name="NPC_Teacher" type="StaticBody2D" parent="." unique_id=1728985788]
 position = Vector2(391, 200)
 script = ExtResource("5_1wnpj")
+dialogue_lines = ["Ah, Arun! Right on time. We are about to commence the Mathematics Mid-Term Examination.", "Please take your assigned seat at Desk #5 immediately. Silence in the examination hall!", "Keep your head cool, stay focused, and do your best. Your exam begins now!"]
 npc_name = "Mr. Kumar"
 sprite_texture = ExtResource("6_wd4wk")
 
