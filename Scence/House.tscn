@@ -1,0 +1,242 @@
+[gd_scene format=3 uid="uid://crgttvr7gnggb"]
+
+[ext_resource type="Script" uid="uid://b4quopxq00enl" path="res://Scripts/house.gd" id="1_house"]
+[ext_resource type="Texture2D" uid="uid://dfmkx1vkevmi7" path="res://assests/house/house_layout.png" id="2_layout"]
+[ext_resource type="PackedScene" uid="uid://664qps4hqm6m" path="res://Scence/Arun_charchter(evin).tscn" id="3_arun"]
+[ext_resource type="Script" uid="uid://w8lwa7sxyngq" path="res://Scripts/scene_transition_door.gd" id="4_door"]
+[ext_resource type="Script" uid="uid://b6r8s0xyftcjr" path="res://Scripts/npc.gd" id="5_npc"]
+[ext_resource type="Texture2D" uid="uid://c5uhuotjqdows" path="res://assests/house/mom_idle.png" id="6_mom"]
+[ext_resource type="Script" uid="uid://d1g1fcc5rhk3s" path="res://Scripts/interactive_prop.gd" id="7_prop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_top_wall"]
+size = Vector2(1200, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_left_wall"]
+size = Vector2(20, 620)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right_wall"]
+size = Vector2(20, 620)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bottom_left"]
+size = Vector2(1105, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bottom_right"]
+size = Vector2(15, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_part_lt"]
+size = Vector2(12, 232)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_part_lb"]
+size = Vector2(12, 153)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_part_rt"]
+size = Vector2(12, 232)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_part_rb"]
+size = Vector2(12, 153)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bed"]
+size = Vector2(90, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_desk"]
+size = Vector2(95, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nightstand"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bookshelf"]
+size = Vector2(140, 130)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sofa"]
+size = Vector2(170, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bench"]
+size = Vector2(70, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_armchair"]
+size = Vector2(70, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coffee_table"]
+size = Vector2(150, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tv"]
+size = Vector2(100, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dresser"]
+size = Vector2(120, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_counter"]
+size = Vector2(190, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dining"]
+size = Vector2(120, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door_exit"]
+size = Vector2(80, 70)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mirror"]
+radius = 45.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_clock"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_diary"]
+radius = 45.0
+
+[node name="House" type="Node2D" unique_id=1799031524]
+script = ExtResource("1_house")
+
+[node name="HouseLayout" type="Sprite2D" parent="." unique_id=1068955755]
+z_index = -10
+texture_filter = 1
+texture = ExtResource("2_layout")
+centered = false
+
+[node name="WallsAndFurniture" type="StaticBody2D" parent="." unique_id=1538606160]
+collision_layer = 2
+collision_mask = 0
+
+[node name="TopWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1958033943]
+position = Vector2(640, 50)
+shape = SubResource("RectangleShape2D_top_wall")
+
+[node name="LeftWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=414190325]
+position = Vector2(40, 360)
+shape = SubResource("RectangleShape2D_left_wall")
+
+[node name="RightWall" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=18647065]
+position = Vector2(1240, 360)
+shape = SubResource("RectangleShape2D_right_wall")
+
+[node name="BottomWallLeft" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1838548104]
+position = Vector2(592, 670)
+shape = SubResource("RectangleShape2D_bottom_left")
+
+[node name="BottomWallRight" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=261444287]
+position = Vector2(1232, 670)
+shape = SubResource("RectangleShape2D_bottom_right")
+
+[node name="PartitionLeftTop" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1256526136]
+position = Vector2(270, 164)
+shape = SubResource("RectangleShape2D_part_lt")
+
+[node name="PartitionLeftBottom" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=2139334044]
+position = Vector2(270, 596)
+shape = SubResource("RectangleShape2D_part_lb")
+
+[node name="PartitionRightTop" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1659241794]
+position = Vector2(1010, 164)
+shape = SubResource("RectangleShape2D_part_rt")
+
+[node name="PartitionRightBottom" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1799509744]
+position = Vector2(1010, 596)
+shape = SubResource("RectangleShape2D_part_rb")
+
+[node name="Col_Bed" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=309441580]
+position = Vector2(100, 410)
+shape = SubResource("RectangleShape2D_bed")
+
+[node name="Col_Desk" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1556637670]
+position = Vector2(202, 450)
+shape = SubResource("RectangleShape2D_desk")
+
+[node name="Col_Nightstand" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1498753708]
+position = Vector2(185, 365)
+shape = SubResource("RectangleShape2D_nightstand")
+
+[node name="Col_Bookshelf" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=2081183656]
+position = Vector2(410, 220)
+shape = SubResource("RectangleShape2D_bookshelf")
+
+[node name="Col_Sofa" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=313656200]
+position = Vector2(670, 330)
+shape = SubResource("RectangleShape2D_sofa")
+
+[node name="Col_Bench" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1706397211]
+position = Vector2(590, 360)
+shape = SubResource("RectangleShape2D_bench")
+
+[node name="Col_Armchair" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=820018082]
+position = Vector2(890, 420)
+shape = SubResource("RectangleShape2D_armchair")
+
+[node name="Col_CoffeeTable" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=2145705243]
+position = Vector2(680, 400)
+shape = SubResource("RectangleShape2D_coffee_table")
+
+[node name="Col_TV" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1414377186]
+position = Vector2(680, 500)
+shape = SubResource("RectangleShape2D_tv")
+
+[node name="Col_Dresser" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=52443506]
+position = Vector2(980, 260)
+shape = SubResource("RectangleShape2D_dresser")
+
+[node name="Col_KitchenCounter" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=998471010]
+position = Vector2(1125, 120)
+shape = SubResource("RectangleShape2D_counter")
+
+[node name="Col_DiningTable" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1490637625]
+position = Vector2(1100, 320)
+shape = SubResource("RectangleShape2D_dining")
+
+[node name="DoorToWalkway" type="Area2D" parent="." unique_id=949031090]
+position = Vector2(1185, 630)
+script = ExtResource("4_door")
+target_scene = "res://Scence/Walkway.tscn"
+target_door_id = "from_house"
+prompt_message = "[E] Exit to Walkway"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToWalkway" unique_id=1267403803]
+shape = SubResource("RectangleShape2D_door_exit")
+
+[node name="Mom" type="StaticBody2D" parent="." unique_id=2076812822]
+position = Vector2(1020, 320)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_npc")
+dialogue_lines = ["Arun! Eat your breakfast before it gets cold!", "Don't worry so much about the math exam. Do your best!", "Remember what we talked about: breathe, stay focused, and bounce back!"]
+npc_name = "Mom"
+sprite_texture = ExtResource("6_mom")
+
+[node name="Prop_Mirror" type="Area2D" parent="." unique_id=519374779]
+position = Vector2(162, 135)
+script = ExtResource("7_prop")
+prop_name = "Gold Mirror"
+prompt_text = "[E] Look in Mirror"
+modal_title = "BEDROOM MIRROR"
+modal_content = "You look into your reflection. Your eyes seem nervous.
+
+'I have to believe in myself today. No running away.'"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_Mirror" unique_id=1084511229]
+shape = SubResource("CircleShape2D_mirror")
+
+[node name="Prop_AlarmClock" type="Area2D" parent="." unique_id=458889904]
+position = Vector2(185, 365)
+script = ExtResource("7_prop")
+prop_name = "Alarm Clock"
+prompt_text = "[E] Check Alarm Clock"
+modal_title = "DIGITAL ALARM CLOCK"
+modal_content = "TIME: 7:45 AM
+
+The red digits blink steadily. School starts in 30 minutes!"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_AlarmClock" unique_id=1661066666]
+shape = SubResource("CircleShape2D_clock")
+
+[node name="Prop_Diary" type="Area2D" parent="." unique_id=1478573803]
+position = Vector2(202, 450)
+script = ExtResource("7_prop")
+prop_name = "Arun's Diary"
+prompt_text = "[E] Read Diary"
+modal_title = "ARUN'S DIARY - NOV 14"
+modal_content = "'Math mid-term today. Every time I see a tough problem, my heart races.
+
+I need to remember: taking a breath is not giving up. It's giving yourself room to bounce back.'"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_Diary" unique_id=604433597]
+shape = SubResource("CircleShape2D_diary")
+
+[node name="Arun_Charchter(Evin)" parent="." unique_id=1907216433 instance=ExtResource("3_arun")]
+position = Vector2(162, 210)

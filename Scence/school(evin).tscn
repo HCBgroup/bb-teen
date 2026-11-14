@@ -1,646 +1,17 @@
-[gd_scene format=4 uid="uid://cled2i2hk28p4"]
+[gd_scene format=3 uid="uid://cled2i2hk28p4"]
 
+[ext_resource type="Script" uid="uid://mk14s6fem2wh" path="res://Scripts/school.gd" id="1_0hk1x"]
 [ext_resource type="PackedScene" uid="uid://664qps4hqm6m" path="res://Scence/Arun_charchter(evin).tscn" id="1_bec7o"]
-[ext_resource type="Texture2D" uid="uid://d4kbpq6c163tp" path="res://assests/school/coolschool_tileset (1).png" id="2_7ldhw"]
 [ext_resource type="Texture2D" uid="uid://dhotstwj41iwa" path="res://assests/school/classroom_layout.png" id="3_gh6pd"]
+[ext_resource type="Script" uid="uid://w8lwa7sxyngq" path="res://Scripts/scene_transition_door.gd" id="4_36an1"]
+[ext_resource type="Script" uid="uid://b6r8s0xyftcjr" path="res://Scripts/npc.gd" id="5_1wnpj"]
+[ext_resource type="Texture2D" uid="uid://dmn3ou52kjo1t" path="res://assests/Arunboy/Idle/frame-1.png" id="6_wd4wk"]
+[ext_resource type="Script" uid="uid://d1g1fcc5rhk3s" path="res://Scripts/interactive_prop.gd" id="7_36an1"]
+[ext_resource type="PackedScene" uid="uid://bvy535q8h41b2" path="res://Scence/MagicalGuide.tscn" id="8_guide"]
+[ext_resource type="Script" uid="uid://ml35urqg11jp" path="res://Scripts/exam_spotlight.gd" id="9_exam"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gh6pd"]
-texture = ExtResource("2_7ldhw")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-11:1/0 = 0
-12:1/0 = 0
-13:1/0 = 0
-14:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-8:2/0 = 0
-9:2/0 = 0
-10:2/0 = 0
-11:2/0 = 0
-12:2/0 = 0
-13:2/0 = 0
-14:2/0 = 0
-15:2/0 = 0
-16:2/0 = 0
-17:2/0 = 0
-18:2/0 = 0
-19:2/0 = 0
-20:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-9:3/0 = 0
-10:3/0 = 0
-11:3/0 = 0
-12:3/0 = 0
-13:3/0 = 0
-14:3/0 = 0
-15:3/0 = 0
-16:3/0 = 0
-17:3/0 = 0
-18:3/0 = 0
-19:3/0 = 0
-20:3/0 = 0
-21:3/0 = 0
-22:3/0 = 0
-23:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-9:4/0 = 0
-10:4/0 = 0
-11:4/0 = 0
-12:4/0 = 0
-13:4/0 = 0
-14:4/0 = 0
-15:4/0 = 0
-16:4/0 = 0
-17:4/0 = 0
-18:4/0 = 0
-19:4/0 = 0
-20:4/0 = 0
-21:4/0 = 0
-22:4/0 = 0
-23:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-15:5/0 = 0
-16:5/0 = 0
-17:5/0 = 0
-18:5/0 = 0
-19:5/0 = 0
-20:5/0 = 0
-21:5/0 = 0
-22:5/0 = 0
-23:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-15:6/0 = 0
-16:6/0 = 0
-17:6/0 = 0
-18:6/0 = 0
-19:6/0 = 0
-20:6/0 = 0
-21:6/0 = 0
-22:6/0 = 0
-23:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-8:7/0 = 0
-9:7/0 = 0
-10:7/0 = 0
-11:7/0 = 0
-12:7/0 = 0
-13:7/0 = 0
-14:7/0 = 0
-15:7/0 = 0
-16:7/0 = 0
-17:7/0 = 0
-18:7/0 = 0
-19:7/0 = 0
-20:7/0 = 0
-21:7/0 = 0
-22:7/0 = 0
-23:7/0 = 0
-0:8/0 = 0
-1:8/0 = 0
-2:8/0 = 0
-3:8/0 = 0
-4:8/0 = 0
-5:8/0 = 0
-6:8/0 = 0
-7:8/0 = 0
-8:8/0 = 0
-9:8/0 = 0
-10:8/0 = 0
-11:8/0 = 0
-12:8/0 = 0
-13:8/0 = 0
-14:8/0 = 0
-21:8/0 = 0
-22:8/0 = 0
-23:8/0 = 0
-0:9/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-3:9/0 = 0
-4:9/0 = 0
-5:9/0 = 0
-6:9/0 = 0
-7:9/0 = 0
-8:9/0 = 0
-9:9/0 = 0
-10:9/0 = 0
-11:9/0 = 0
-12:9/0 = 0
-13:9/0 = 0
-14:9/0 = 0
-15:9/0 = 0
-16:9/0 = 0
-17:9/0 = 0
-18:9/0 = 0
-19:9/0 = 0
-20:9/0 = 0
-21:9/0 = 0
-22:9/0 = 0
-23:9/0 = 0
-0:10/0 = 0
-1:10/0 = 0
-2:10/0 = 0
-3:10/0 = 0
-4:10/0 = 0
-5:10/0 = 0
-6:10/0 = 0
-7:10/0 = 0
-8:10/0 = 0
-9:10/0 = 0
-10:10/0 = 0
-11:10/0 = 0
-12:10/0 = 0
-13:10/0 = 0
-14:10/0 = 0
-15:10/0 = 0
-16:10/0 = 0
-17:10/0 = 0
-18:10/0 = 0
-19:10/0 = 0
-20:10/0 = 0
-21:10/0 = 0
-22:10/0 = 0
-23:10/0 = 0
-0:11/0 = 0
-1:11/0 = 0
-2:11/0 = 0
-3:11/0 = 0
-4:11/0 = 0
-5:11/0 = 0
-15:11/0 = 0
-16:11/0 = 0
-17:11/0 = 0
-18:11/0 = 0
-19:11/0 = 0
-20:11/0 = 0
-21:11/0 = 0
-22:11/0 = 0
-23:11/0 = 0
-0:12/0 = 0
-1:12/0 = 0
-2:12/0 = 0
-3:12/0 = 0
-4:12/0 = 0
-5:12/0 = 0
-6:12/0 = 0
-7:12/0 = 0
-8:12/0 = 0
-9:12/0 = 0
-10:12/0 = 0
-11:12/0 = 0
-15:12/0 = 0
-16:12/0 = 0
-17:12/0 = 0
-18:12/0 = 0
-19:12/0 = 0
-20:12/0 = 0
-0:13/0 = 0
-1:13/0 = 0
-2:13/0 = 0
-3:13/0 = 0
-4:13/0 = 0
-5:13/0 = 0
-6:13/0 = 0
-7:13/0 = 0
-8:13/0 = 0
-9:13/0 = 0
-10:13/0 = 0
-11:13/0 = 0
-15:13/0 = 0
-16:13/0 = 0
-17:13/0 = 0
-18:13/0 = 0
-19:13/0 = 0
-20:13/0 = 0
-0:14/0 = 0
-1:14/0 = 0
-2:14/0 = 0
-3:14/0 = 0
-4:14/0 = 0
-5:14/0 = 0
-6:14/0 = 0
-7:14/0 = 0
-8:14/0 = 0
-9:14/0 = 0
-10:14/0 = 0
-11:14/0 = 0
-21:14/0 = 0
-22:14/0 = 0
-23:14/0 = 0
-21:15/0 = 0
-22:15/0 = 0
-23:15/0 = 0
-0:16/0 = 0
-1:16/0 = 0
-2:16/0 = 0
-3:16/0 = 0
-4:16/0 = 0
-5:16/0 = 0
-6:16/0 = 0
-7:16/0 = 0
-8:16/0 = 0
-9:16/0 = 0
-10:16/0 = 0
-11:16/0 = 0
-12:16/0 = 0
-13:16/0 = 0
-14:16/0 = 0
-15:16/0 = 0
-16:16/0 = 0
-17:16/0 = 0
-18:16/0 = 0
-19:16/0 = 0
-20:16/0 = 0
-21:16/0 = 0
-22:16/0 = 0
-23:16/0 = 0
-0:17/0 = 0
-1:17/0 = 0
-2:17/0 = 0
-3:17/0 = 0
-4:17/0 = 0
-5:17/0 = 0
-6:17/0 = 0
-7:17/0 = 0
-8:17/0 = 0
-9:17/0 = 0
-10:17/0 = 0
-11:17/0 = 0
-12:17/0 = 0
-13:17/0 = 0
-14:17/0 = 0
-15:17/0 = 0
-16:17/0 = 0
-17:17/0 = 0
-18:17/0 = 0
-19:17/0 = 0
-20:17/0 = 0
-21:17/0 = 0
-22:17/0 = 0
-23:17/0 = 0
-0:18/0 = 0
-1:18/0 = 0
-2:18/0 = 0
-3:18/0 = 0
-4:18/0 = 0
-5:18/0 = 0
-6:18/0 = 0
-7:18/0 = 0
-8:18/0 = 0
-9:18/0 = 0
-10:18/0 = 0
-11:18/0 = 0
-12:18/0 = 0
-13:18/0 = 0
-14:18/0 = 0
-15:18/0 = 0
-16:18/0 = 0
-17:18/0 = 0
-18:18/0 = 0
-19:18/0 = 0
-20:18/0 = 0
-21:18/0 = 0
-22:18/0 = 0
-23:18/0 = 0
-0:19/0 = 0
-1:19/0 = 0
-2:19/0 = 0
-3:19/0 = 0
-4:19/0 = 0
-5:19/0 = 0
-6:19/0 = 0
-7:19/0 = 0
-8:19/0 = 0
-9:19/0 = 0
-10:19/0 = 0
-11:19/0 = 0
-12:19/0 = 0
-13:19/0 = 0
-14:19/0 = 0
-15:19/0 = 0
-16:19/0 = 0
-17:19/0 = 0
-18:19/0 = 0
-19:19/0 = 0
-20:19/0 = 0
-21:19/0 = 0
-22:19/0 = 0
-23:19/0 = 0
-0:22/0 = 0
-1:22/0 = 0
-2:22/0 = 0
-3:22/0 = 0
-4:22/0 = 0
-5:22/0 = 0
-6:22/0 = 0
-7:22/0 = 0
-8:22/0 = 0
-9:22/0 = 0
-10:22/0 = 0
-11:22/0 = 0
-12:22/0 = 0
-13:22/0 = 0
-14:22/0 = 0
-15:22/0 = 0
-16:22/0 = 0
-17:22/0 = 0
-18:22/0 = 0
-19:22/0 = 0
-20:22/0 = 0
-21:22/0 = 0
-22:22/0 = 0
-23:22/0 = 0
-0:23/0 = 0
-1:23/0 = 0
-2:23/0 = 0
-3:23/0 = 0
-4:23/0 = 0
-5:23/0 = 0
-6:23/0 = 0
-7:23/0 = 0
-8:23/0 = 0
-9:23/0 = 0
-10:23/0 = 0
-11:23/0 = 0
-12:23/0 = 0
-13:23/0 = 0
-14:23/0 = 0
-15:23/0 = 0
-16:23/0 = 0
-17:23/0 = 0
-18:23/0 = 0
-19:23/0 = 0
-20:23/0 = 0
-21:23/0 = 0
-22:23/0 = 0
-23:23/0 = 0
-0:24/0 = 0
-1:24/0 = 0
-2:24/0 = 0
-3:24/0 = 0
-4:24/0 = 0
-5:24/0 = 0
-6:24/0 = 0
-7:24/0 = 0
-8:24/0 = 0
-9:24/0 = 0
-10:24/0 = 0
-11:24/0 = 0
-12:24/0 = 0
-13:24/0 = 0
-14:24/0 = 0
-15:24/0 = 0
-16:24/0 = 0
-17:24/0 = 0
-18:24/0 = 0
-19:24/0 = 0
-20:24/0 = 0
-21:24/0 = 0
-22:24/0 = 0
-23:24/0 = 0
-0:25/0 = 0
-1:25/0 = 0
-2:25/0 = 0
-3:25/0 = 0
-4:25/0 = 0
-5:25/0 = 0
-6:25/0 = 0
-7:25/0 = 0
-8:25/0 = 0
-9:25/0 = 0
-10:25/0 = 0
-11:25/0 = 0
-12:25/0 = 0
-13:25/0 = 0
-14:25/0 = 0
-15:25/0 = 0
-16:25/0 = 0
-17:25/0 = 0
-18:25/0 = 0
-19:25/0 = 0
-20:25/0 = 0
-21:25/0 = 0
-22:25/0 = 0
-23:25/0 = 0
-0:27/0 = 0
-1:27/0 = 0
-2:27/0 = 0
-3:27/0 = 0
-4:27/0 = 0
-5:27/0 = 0
-6:27/0 = 0
-7:27/0 = 0
-8:27/0 = 0
-9:27/0 = 0
-10:27/0 = 0
-11:27/0 = 0
-12:27/0 = 0
-13:27/0 = 0
-14:27/0 = 0
-16:27/0 = 0
-18:27/0 = 0
-23:27/0 = 0
-0:28/0 = 0
-1:28/0 = 0
-2:28/0 = 0
-3:28/0 = 0
-4:28/0 = 0
-5:28/0 = 0
-6:28/0 = 0
-7:28/0 = 0
-8:28/0 = 0
-9:28/0 = 0
-10:28/0 = 0
-11:28/0 = 0
-12:28/0 = 0
-13:28/0 = 0
-14:28/0 = 0
-15:28/0 = 0
-16:28/0 = 0
-17:28/0 = 0
-18:28/0 = 0
-19:28/0 = 0
-20:28/0 = 0
-21:28/0 = 0
-22:28/0 = 0
-23:28/0 = 0
-0:29/0 = 0
-1:29/0 = 0
-2:29/0 = 0
-3:29/0 = 0
-4:29/0 = 0
-5:29/0 = 0
-6:29/0 = 0
-7:29/0 = 0
-8:29/0 = 0
-9:29/0 = 0
-10:29/0 = 0
-11:29/0 = 0
-12:29/0 = 0
-13:29/0 = 0
-14:29/0 = 0
-15:29/0 = 0
-16:29/0 = 0
-17:29/0 = 0
-18:29/0 = 0
-19:29/0 = 0
-20:29/0 = 0
-21:29/0 = 0
-22:29/0 = 0
-23:29/0 = 0
-0:30/0 = 0
-1:30/0 = 0
-2:30/0 = 0
-3:30/0 = 0
-4:30/0 = 0
-5:30/0 = 0
-6:30/0 = 0
-7:30/0 = 0
-8:30/0 = 0
-9:30/0 = 0
-10:30/0 = 0
-11:30/0 = 0
-0:31/0 = 0
-1:31/0 = 0
-2:31/0 = 0
-3:31/0 = 0
-4:31/0 = 0
-5:31/0 = 0
-6:31/0 = 0
-7:31/0 = 0
-8:31/0 = 0
-9:31/0 = 0
-10:31/0 = 0
-11:31/0 = 0
-12:31/0 = 0
-13:31/0 = 0
-14:31/0 = 0
-15:31/0 = 0
-16:31/0 = 0
-17:31/0 = 0
-0:32/0 = 0
-1:32/0 = 0
-2:32/0 = 0
-3:32/0 = 0
-4:32/0 = 0
-5:32/0 = 0
-6:32/0 = 0
-7:32/0 = 0
-8:32/0 = 0
-9:32/0 = 0
-10:32/0 = 0
-11:32/0 = 0
-12:32/0 = 0
-13:32/0 = 0
-14:32/0 = 0
-15:32/0 = 0
-16:32/0 = 0
-17:32/0 = 0
-0:33/0 = 0
-1:33/0 = 0
-2:33/0 = 0
-0:34/0 = 0
-1:34/0 = 0
-2:34/0 = 0
-3:34/0 = 0
-4:34/0 = 0
-5:34/0 = 0
-6:34/0 = 0
-7:34/0 = 0
-8:34/0 = 0
-9:34/0 = 0
-10:34/0 = 0
-11:34/0 = 0
-12:34/0 = 0
-13:34/0 = 0
-14:34/0 = 0
-15:34/0 = 0
-16:34/0 = 0
-17:34/0 = 0
-18:34/0 = 0
-19:34/0 = 0
-20:34/0 = 0
-0:35/0 = 0
-1:35/0 = 0
-2:35/0 = 0
-3:35/0 = 0
-4:35/0 = 0
-5:35/0 = 0
-6:35/0 = 0
-7:35/0 = 0
-8:35/0 = 0
-9:35/0 = 0
-10:35/0 = 0
-11:35/0 = 0
-12:35/0 = 0
-13:35/0 = 0
-14:35/0 = 0
-15:35/0 = 0
-16:35/0 = 0
-17:35/0 = 0
-18:35/0 = 0
-19:35/0 = 0
-20:35/0 = 0
-8:6/0 = 0
-7:6/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_5aaqh"]
-sources/0 = SubResource("TileSetAtlasSource_gh6pd")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_85srl"]
-size = Vector2(460, 100)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fi46"]
+size = Vector2(800, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvbud"]
 size = Vector2(38, 480)
@@ -681,30 +52,36 @@ size = Vector2(80, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ksra"]
 size = Vector2(90, 100)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6gys"]
+size = Vector2(210, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxeco"]
+size = Vector2(84, 52)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sjpxy"]
+radius = 36.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_grxkq"]
+radius = 36.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exam"]
+radius = 35.0
+
 [node name="School(Evin)" type="Node2D" unique_id=1702948037]
+script = ExtResource("1_0hk1x")
 
 [node name="Arun_Charchter(Evin)" parent="." unique_id=795189499 instance=ExtResource("1_bec7o")]
 z_index = 10
+y_sort_enabled = false
 position = Vector2(328, 450)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1652013169]
-position = Vector2(391, 360)
-zoom = Vector2(0.9, 0.9)
-limit_left = 0
-limit_top = 0
-limit_right = 782
-limit_bottom = 721
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=490948040]
-visible = false
-tile_map_data = PackedByteArray("AAAtABEAAAAHAAEAAAAuABEAAAAHAAEAAAAvABEAAAAHAAEAAAAtABIAAAAHAAEAAAAuABIAAAAHAAEAAAAvABIAAAAHAAEAAAAtABMAAAAHAAEAAAAuABMAAAAHAAEAAAAvABMAAAAHAAEAAAAtABQAAAAHAAEAAAAuABQAAAAHAAEAAAAvABQAAAAHAAEAAAAtABUAAAAHAAEAAAAuABUAAAAHAAEAAAAvABUAAAAHAAEAAAAtABYAAAAHAAEAAAAuABYAAAAHAAEAAAAvABYAAAAHAAEAAAAxABEAAAAHAAEAAAAyABEAAAAHAAEAAAAzABEAAAAHAAEAAAA0ABEAAAAHAAEAAAAxABIAAAAHAAEAAAAyABIAAAAHAAEAAAAzABIAAAAHAAEAAAA0ABIAAAAHAAEAAAAxABMAAAAHAAEAAAAyABMAAAAHAAEAAAAzABMAAAAHAAEAAAA0ABMAAAAHAAEAAAAxABQAAAAHAAEAAAAyABQAAAAHAAEAAAAzABQAAAAHAAEAAAA0ABQAAAAHAAEAAAAxABUAAAAHAAEAAAAyABUAAAAHAAEAAAAzABUAAAAHAAEAAAA0ABUAAAAHAAEAAAAxABYAAAAHAAEAAAAyABYAAAAHAAEAAAAzABYAAAAHAAEAAAA0ABYAAAAHAAEAAAAtABoAAAAHAAEAAAAuABoAAAAHAAEAAAAtABsAAAAHAAEAAAAuABsAAAAHAAEAAAAyABoAAAAHAAEAAAAzABoAAAAHAAEAAAAyABsAAAAHAAEAAAAzABsAAAAHAAEAAAAtABAAAAAHAAEAAAAuABAAAAAHAAEAAAAvABAAAAAHAAEAAAAwABAAAAAHAAEAAAAxABAAAAAHAAEAAAAyABAAAAAHAAEAAAAzABAAAAAHAAEAAAA0ABAAAAAHAAEAAAA1ABAAAAAHAAEAAAA2ABAAAAAHAAEAAAA3ABAAAAAHAAEAAAA4ABAAAAAHAAEAAAAwABEAAAAHAAEAAAA1ABEAAAAHAAEAAAA2ABEAAAAHAAEAAAA3ABEAAAAHAAEAAAA4ABEAAAAHAAEAAAAwABIAAAAHAAEAAAA1ABIAAAAHAAEAAAA2ABIAAAAHAAEAAAA3ABIAAAAHAAEAAAA4ABIAAAAHAAEAAAAwABMAAAAHAAEAAAA1ABMAAAAHAAEAAAA2ABMAAAAHAAEAAAA3ABMAAAAHAAEAAAA4ABMAAAAHAAEAAAAwABQAAAAHAAEAAAA1ABQAAAAHAAEAAAA2ABQAAAAHAAEAAAA3ABQAAAAHAAEAAAA4ABQAAAAHAAEAAAAwABUAAAAHAAEAAAA1ABUAAAAHAAEAAAA2ABUAAAAHAAEAAAA3ABUAAAAHAAEAAAA4ABUAAAAHAAEAAAAwABYAAAAHAAEAAAA1ABYAAAAHAAEAAAA2ABYAAAAHAAEAAAA3ABYAAAAHAAEAAAA4ABYAAAAHAAEAAAAtABcAAAAHAAEAAAAuABcAAAAHAAEAAAAvABcAAAAHAAEAAAAwABcAAAAHAAEAAAAxABcAAAAHAAEAAAAyABcAAAAHAAEAAAAzABcAAAAHAAEAAAA0ABcAAAAHAAEAAAA1ABcAAAAHAAEAAAA2ABcAAAAHAAEAAAA3ABcAAAAHAAEAAAA4ABcAAAAHAAEAAAAtABgAAAAHAAEAAAAuABgAAAAHAAEAAAAvABgAAAAHAAEAAAAwABgAAAAHAAEAAAAxABgAAAAHAAEAAAAyABgAAAAHAAEAAAAzABgAAAAHAAEAAAA0ABgAAAAHAAEAAAA1ABgAAAAHAAEAAAA2ABgAAAAHAAEAAAA3ABgAAAAHAAEAAAA4ABgAAAAHAAEAAAAtABkAAAAHAAEAAAAuABkAAAAHAAEAAAAvABkAAAAHAAEAAAAwABkAAAAHAAEAAAAxABkAAAAHAAEAAAAyABkAAAAHAAEAAAAzABkAAAAHAAEAAAA0ABkAAAAHAAEAAAA1ABkAAAAHAAEAAAA2ABkAAAAHAAEAAAA3ABkAAAAHAAEAAAA4ABkAAAAHAAEAAAAvABoAAAAHAAEAAAAwABoAAAAHAAEAAAAxABoAAAAHAAEAAAA0ABoAAAAHAAEAAAA1ABoAAAAHAAEAAAA2ABoAAAAHAAEAAAA3ABoAAAAHAAEAAAA4ABoAAAAHAAEAAAAvABsAAAAHAAEAAAAwABsAAAAHAAEAAAAxABsAAAAHAAEAAAA0ABsAAAAHAAEAAAA1ABsAAAAHAAEAAAA2ABsAAAAHAAEAAAA3ABsAAAAHAAEAAAA4ABsAAAAHAAEAAAAtABwAAAAHAAEAAAAuABwAAAAHAAEAAAAvABwAAAAHAAEAAAAwABwAAAAHAAEAAAAxABwAAAAHAAEAAAAyABwAAAAHAAEAAAAzABwAAAAHAAEAAAA0ABwAAAAHAAEAAAA1ABwAAAAHAAEAAAA2ABwAAAAHAAEAAAA3ABwAAAAHAAEAAAA4ABwAAAAHAAEAAAAwAB0AAAAHAAEAAAAxAB0AAAAHAAEAAAAyAB0AAAAHAAEAAAAzAB0AAAAHAAEAAAAtAB4AAAAHAAEAAAAuAB4AAAAHAAEAAAAvAB4AAAAHAAEAAAAwAB4AAAAHAAEAAAAxAB4AAAAHAAEAAAAyAB4AAAAHAAEAAAAzAB4AAAAHAAEAAAA0AB4AAAAHAAEAAAA1AB4AAAAHAAEAAAA2AB4AAAAHAAEAAAA3AB4AAAAHAAEAAAA4AB4AAAAHAAEAAAA5AB4AAAAHAAEAAAA6AB4AAAAHAAEAAAA7AB4AAAAHAAEAAAA8AB4AAAAHAAEAAAA9AB4AAAAHAAEAAAA+AB4AAAAHAAEAAAA/AB4AAAAHAAEAAAAtAB8AAAAHAAEAAAAuAB8AAAAHAAEAAAAvAB8AAAAHAAEAAAAwAB8AAAAHAAEAAAAxAB8AAAAHAAEAAAAyAB8AAAAHAAEAAAAzAB8AAAAHAAEAAAA0AB8AAAAHAAEAAAA1AB8AAAAHAAEAAAA2AB8AAAAHAAEAAAA3AB8AAAAHAAEAAAA4AB8AAAAHAAEAAAA5AB8AAAAHAAEAAAA6AB8AAAAHAAEAAAA7AB8AAAAHAAEAAAA8AB8AAAAHAAEAAAA9AB8AAAAHAAEAAAA+AB8AAAAHAAEAAAA/AB8AAAAHAAEAAAAtACAAAAAHAAEAAAAuACAAAAAHAAEAAAAvACAAAAAHAAEAAAAwACAAAAAHAAEAAAAxACAAAAAHAAEAAAAyACAAAAAHAAEAAAAzACAAAAAHAAEAAAA0ACAAAAAHAAEAAAA1ACAAAAAHAAEAAAA2ACAAAAAHAAEAAAA3ACAAAAAHAAEAAAA4ACAAAAAHAAEAAAA5ACAAAAAHAAEAAAA6ACAAAAAHAAEAAAA7ACAAAAAHAAEAAAA8ACAAAAAHAAEAAAA9ACAAAAAHAAEAAAA+ACAAAAAHAAEAAAA/ACAAAAAHAAEAAAAtACEAAAAHAAEAAAAuACEAAAAHAAEAAAAvACEAAAAHAAEAAAAwACEAAAAHAAEAAAAxACEAAAAHAAEAAAAyACEAAAAHAAEAAAAzACEAAAAHAAEAAAA0ACEAAAAHAAEAAAA1ACEAAAAHAAEAAAA2ACEAAAAHAAEAAAA3ACEAAAAHAAEAAAA4ACEAAAAHAAEAAAA5ACEAAAAHAAEAAAA6ACEAAAAHAAEAAAA7ACEAAAAHAAEAAAA8ACEAAAAHAAEAAAA9ACEAAAAHAAEAAAA+ACEAAAAHAAEAAAA/ACEAAAAHAAEAAAAtACIAAAAHAAEAAAAuACIAAAAHAAEAAAAvACIAAAAHAAEAAAAwACIAAAAHAAEAAAAxACIAAAAHAAEAAAAyACIAAAAHAAEAAAAzACIAAAAHAAEAAAA0ACIAAAAHAAEAAAA1ACIAAAAHAAEAAAA2ACIAAAAHAAEAAAA3ACIAAAAHAAEAAAA4ACIAAAAHAAEAAAA5ACIAAAAHAAEAAAA6ACIAAAAHAAEAAAA7ACIAAAAHAAEAAAA8ACIAAAAHAAEAAAA9ACIAAAAHAAEAAAA+ACIAAAAHAAEAAAA/ACIAAAAHAAEAAAAtAA8AAAACAAwAAAAuAA8AAAACAAwAAAAvAA8AAAACAAwAAAAwAA8AAAACAAwAAAAxAA8AAAACAAwAAAAyAA8AAAACAAwAAAAzAA8AAAACAAwAAAA0AA8AAAACAAwAAAA1AA8AAAACAAwAAAA2AA8AAAACAAwAAAA3AA8AAAACAAwAAAA4AA8AAAACAAwAAAA5AA8AAAACAAwAAAA5ABAAAAACAAwAAAA5ABEAAAACAAwAAAA5ABIAAAACAAwAAAA5ABMAAAACAAwAAAA5ABQAAAACAAwAAAA5ABUAAAACAAwAAAA5ABYAAAACAAwAAAA5ABcAAAACAAwAAAA5ABgAAAACAAwAAAA5ABkAAAACAAwAAAA5ABoAAAACAAwAAAA5ABsAAAACAAwAAAA5ABwAAAACAAwAAAA5AB0AAAACAAwAAAAtAB0AAAACAAwAAAAuAB0AAAACAAwAAAAvAB0AAAACAAwAAAA0AB0AAAACAAwAAAA1AB0AAAACAAwAAAA2AB0AAAACAAwAAAA3AB0AAAACAAwAAAA4AB0AAAACAAwAAAAtACMAAAACAAwAAAAuACMAAAACAAwAAAAvACMAAAACAAwAAAAwACMAAAACAAwAAAAxACMAAAACAAwAAAAyACMAAAACAAwAAAAzACMAAAACAAwAAAA0ACMAAAACAAwAAAA1ACMAAAACAAwAAAA2ACMAAAACAAwAAAA3ACMAAAACAAwAAAA4ACMAAAACAAwAAAA5ACMAAAACAAwAAAA6ACMAAAACAAwAAAA7ACMAAAACAAwAAAA8ACMAAAACAAwAAAA9ACMAAAACAAwAAAA+ACMAAAACAAwAAAA/ACMAAAACAAwAAAA=")
-tile_set = SubResource("TileSet_5aaqh")
-
 [node name="RoomWalls" type="StaticBody2D" parent="." unique_id=1404174581]
+collision_layer = 2
+collision_mask = 0
 
 [node name="Back" type="CollisionShape2D" parent="RoomWalls" unique_id=1851884590]
-position = Vector2(390, 150)
-shape = SubResource("RectangleShape2D_85srl")
+position = Vector2(391, 215)
+shape = SubResource("RectangleShape2D_5fi46")
 
 [node name="Left" type="CollisionShape2D" parent="RoomWalls" unique_id=9741707]
 position = Vector2(59, 390)
@@ -758,8 +135,96 @@ shape = SubResource("RectangleShape2D_0omaj")
 position = Vector2(675, 220)
 shape = SubResource("RectangleShape2D_7ksra")
 
+[node name="TeacherDesk" type="CollisionShape2D" parent="RoomWalls" unique_id=190606444]
+position = Vector2(391, 248)
+shape = SubResource("RectangleShape2D_p6gys")
+
 [node name="Classroom" type="Sprite2D" parent="." unique_id=1980546604]
 z_index = -10
 texture_filter = 1
 texture = ExtResource("3_gh6pd")
 centered = false
+
+[node name="DoorToWalkway" type="Area2D" parent="." unique_id=2125143712]
+position = Vector2(391, 646)
+script = ExtResource("4_36an1")
+target_scene = "res://Scence/Walkway.tscn"
+target_door_id = "from_school"
+prompt_message = "[E] Go Outside"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToWalkway" unique_id=733091663]
+shape = SubResource("RectangleShape2D_oxeco")
+
+[node name="NPC_Teacher" type="StaticBody2D" parent="." unique_id=1728985788]
+position = Vector2(391, 200)
+script = ExtResource("5_1wnpj")
+npc_name = "Mr. Kumar"
+sprite_texture = ExtResource("6_wd4wk")
+
+[node name="NPC_Classmate" type="StaticBody2D" parent="." unique_id=1984288021]
+position = Vector2(290, 400)
+script = ExtResource("5_1wnpj")
+npc_name = "Meera"
+sprite_texture = ExtResource("6_wd4wk")
+
+[node name="NPC_Rohan" type="StaticBody2D" parent="." unique_id=1988228868]
+position = Vector2(195, 460)
+script = ExtResource("5_1wnpj")
+dialogue_lines = ["Psst! Arun! Look at this paper airplane I made out of formula sheets.", "Bro, relax! Nobody looks at high school grades ten years from now.", "After this period, let's hit the walkway stream and get some fresh air.", "Breathe easy, man. You stress way too much!"]
+npc_name = "Rohan"
+sprite_texture = ExtResource("6_wd4wk")
+
+[node name="Prop_ExamPaper" type="Area2D" parent="." unique_id=1315385288]
+position = Vector2(418, 455)
+script = ExtResource("7_36an1")
+prompt_text = "[E] Read Exam Paper"
+modal_title = "MID-TERM EXAM: MATHEMATICS & LOGIC"
+modal_content = "STUDENT: Arun Sharma | ROLL NO: 24 | TIME: 90 MINS
+---------------------------------------------------------
+Q1. If mental pressure increases by 20% every minute,
+    calculate the time remaining until complete freeze.
+    [Arun's scribbled answer in margin:
+     'Take a deep breath and Bounce Back!']
+
+Q2. Solve for x:  x + Anxiety = Progress
+    [Teacher's note in red ink:
+     'x = Resilience. You've got this, Arun!']
+
+Q3. Multiple Choice:
+    When feeling overwhelmed, you should:
+    (A) Panic and freeze
+    (B) Give up completely
+    (C) Breathe, focus, and step forward [X]"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_ExamPaper" unique_id=386758257]
+shape = SubResource("CircleShape2D_sjpxy")
+
+[node name="Prop_NoticeBoard" type="Area2D" parent="." unique_id=249266228]
+position = Vector2(125, 235)
+script = ExtResource("7_36an1")
+prop_name = "Notice Board"
+prompt_text = "[E] Inspect Notice Board"
+modal_title = "CLASSROOM BULLETIN & COUNSELING"
+modal_content = "ANNOUNCEMENTS - HACK HIGH SCHOOL
+=============================================
+• Period 1: Math Mid-Terms (Stay calm, read carefully)
+• Period 2: Science Laboratory
+• Recess: Counseling Room open for exam stress debrief
+• NOTE: Rooftop access is currently locked for safety.
+  (Available after school hours for reflection)
+
+'Stress is just energy waiting to be redirected.
+ Bounce Back stronger every time.'"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_NoticeBoard" unique_id=824221023]
+shape = SubResource("CircleShape2D_grxkq")
+
+[node name="MagicalGuide" parent="." unique_id=252904519 instance=ExtResource("8_guide")]
+position = Vector2(418, 100)
+
+[node name="ExamSpotlightSequence" type="Area2D" parent="." unique_id=1628688397]
+position = Vector2(418, 484)
+script = ExtResource("9_exam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExamSpotlightSequence" unique_id=1864998781]
+shape = SubResource("CircleShape2D_exam")
