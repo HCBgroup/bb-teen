@@ -7,11 +7,8 @@
 [ext_resource type="Script" uid="uid://b6r8s0xyftcjr" path="res://Scripts/npc.gd" id="5_1wnpj"]
 [ext_resource type="Texture2D" uid="uid://dmn3ou52kjo1t" path="res://assests/Arunboy/Idle/frame-1.png" id="6_wd4wk"]
 [ext_resource type="Script" uid="uid://d1g1fcc5rhk3s" path="res://Scripts/interactive_prop.gd" id="7_36an1"]
-[ext_resource type="PackedScene" path="res://Scence/MagicalGuide.tscn" id="8_guide"]
-[ext_resource type="Script" path="res://Scripts/exam_spotlight.gd" id="9_exam"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_exam"]
-radius = 35.0
+[ext_resource type="PackedScene" uid="uid://bvy535q8h41b2" path="res://Scence/MagicalGuide.tscn" id="8_guide"]
+[ext_resource type="Script" uid="uid://ml35urqg11jp" path="res://Scripts/exam_spotlight.gd" id="9_exam"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fi46"]
 size = Vector2(800, 36)
@@ -66,6 +63,9 @@ radius = 36.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_grxkq"]
 radius = 36.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exam"]
+radius = 35.0
 
 [node name="School(Evin)" type="Node2D" unique_id=1702948037]
 script = ExtResource("1_0hk1x")
@@ -219,14 +219,12 @@ modal_content = "ANNOUNCEMENTS - HACK HIGH SCHOOL
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Prop_NoticeBoard" unique_id=824221023]
 shape = SubResource("CircleShape2D_grxkq")
 
-[node name="MagicalGuide" parent="." instance=ExtResource("8_guide")]
+[node name="MagicalGuide" parent="." unique_id=252904519 instance=ExtResource("8_guide")]
 position = Vector2(418, 100)
 
-[node name="ExamSpotlightSequence" type="Area2D" parent="." node_paths=PackedStringArray("arun", "magical_guide")]
+[node name="ExamSpotlightSequence" type="Area2D" parent="." unique_id=1628688397]
 position = Vector2(418, 484)
 script = ExtResource("9_exam")
-arun = NodePath("Arun_Charchter(Evin)")
-magical_guide = NodePath("MagicalGuide")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExamSpotlightSequence"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExamSpotlightSequence" unique_id=1864998781]
 shape = SubResource("CircleShape2D_exam")

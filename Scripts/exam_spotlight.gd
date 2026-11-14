@@ -125,6 +125,8 @@ func _setup_dialogue_ui() -> void:
 	_continue_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	vbox.add_child(_continue_lbl)
 
+var _current_pitch: float = 1.0
+
 func _process(delta: float) -> void:
 	if _sequence_started and arun and _shader_mat:
 		# Update screen coordinate of Arun for spotlight
@@ -137,6 +139,12 @@ func _process(delta: float) -> void:
 			_typewriter_timer = 0.0
 			_char_idx += 1
 			_text_lbl.text = _current_target.substr(0, _char_idx)
+
+			# Play dialogue chatter blip every 2 characters
+			if _char_idx % 2 == 0:
+				var audio_mgr = get_node_or_null("/root/AudioManager")
+				if audio_mgr and audio_mgr.has_method("play_talk_blip"):
+					audio_mgr.play_talk_blip(_current_pitch)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo():
@@ -157,6 +165,9 @@ func start_exam_sequence() -> void:
 	_sequence_started = true
 	_is_player_near = false
 	_prompt_label.visible = false
+
+	if not arun:
+		arun = get_node_or_null("../Arun_Charchter(Evin)")
 
 	if arun:
 		# Sit Arun squarely at the desk
@@ -213,6 +224,18 @@ func _display_current_line() -> void:
 		_char_idx = 0
 		_text_lbl.text = ""
 		_is_typing = true
+
+		if "MENTOR" in data["speaker"] or "✨" in data["speaker"]:
+			_current_pitch = 1.45
+		else:
+			_current_pitch = 0.95
+
+		var audio_mgr = get_node_or_null("/root/AudioManager")
+		if audio_mgr:
+			if audio_mgr.has_method("play_interact"):
+				audio_mgr.play_interact()
+			if audio_mgr.has_method("speak_tts"):
+				audio_mgr.speak_tts(_current_target, _current_pitch)
 	else:
 		_dialogue_panel.visible = false
 
@@ -222,10 +245,19 @@ func _advance_dialogue() -> void:
 		# Anxiety peak: trigger Magical Guide swoop-in!
 		_dialogue_panel.visible = false
 		_is_typing = false
+		var audio_mgr = get_node_or_null("/root/AudioManager")
+		if audio_mgr and audio_mgr.has_method("play_powerup"):
+			audio_mgr.play_powerup()
+
+		if not magical_guide:
+			magical_guide = get_node_or_null("../MagicalGuide")
+
 		if magical_guide:
 			magical_guide.fly_in(Vector2(470, 440))
 			await magical_guide.arrival_finished
 			magical_guide.pulse_wisdom()
+			if audio_mgr and audio_mgr.has_method("play_magic_sparkle"):
+				audio_mgr.play_magic_sparkle()
 
 		_dialogue_lines.append({
 			"speaker": "✨ BOUNCE MENTOR (Magical Guide)",
@@ -258,6 +290,13 @@ func _advance_dialogue() -> void:
 func _finish_exam_sequence() -> void:
 	_dialogue_panel.visible = false
 	_is_typing = false
+
+	var audio_mgr = get_node_or_null("/root/AudioManager")
+	if audio_mgr:
+		if audio_mgr.has_method("stop_tts"):
+			audio_mgr.stop_tts()
+		if audio_mgr.has_method("play_prop_open"):
+			audio_mgr.play_prop_open()
 
 	# Restore lighting with golden glow
 	var tween = create_tween().set_parallel(true)

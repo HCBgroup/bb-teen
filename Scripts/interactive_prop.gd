@@ -135,6 +135,13 @@ func open_modal() -> void:
 	_prompt_label.visible = false
 	_ui_canvas.visible = true
 
+	var audio_mgr = get_node_or_null("/root/AudioManager")
+	if audio_mgr:
+		if audio_mgr.has_method("play_prop_open"):
+			audio_mgr.play_prop_open()
+		if audio_mgr.has_method("speak_tts"):
+			audio_mgr.speak_tts(modal_title)
+
 	# Play a subtle pop-in tween
 	_panel.scale = Vector2(0.9, 0.9)
 	_panel.pivot_offset = _panel.size / 2.0
@@ -144,6 +151,14 @@ func open_modal() -> void:
 func close_modal() -> void:
 	_is_open = false
 	_ui_canvas.visible = false
+
+	var audio_mgr = get_node_or_null("/root/AudioManager")
+	if audio_mgr:
+		if audio_mgr.has_method("play_interact"):
+			audio_mgr.play_interact()
+		if audio_mgr.has_method("stop_tts"):
+			audio_mgr.stop_tts()
+
 	if _player_in_range:
 		_prompt_label.visible = true
 

@@ -114,6 +114,8 @@ func _start_opening_dialogue() -> void:
 	]
 	_play_next_dialogue()
 
+var _current_pitch: float = 1.0
+
 func _process(delta: float) -> void:
 	if _is_dialogue_active and _char_index < _target_text.length():
 		_typewriter_timer += delta
@@ -121,6 +123,12 @@ func _process(delta: float) -> void:
 			_typewriter_timer = 0.0
 			_char_index += 1
 			_dialogue_label.text = _target_text.substr(0, _char_index)
+
+			# Play retro speech chatter blip every 2 characters
+			if _char_index % 2 == 0:
+				var audio_mgr = get_node_or_null("/root/AudioManager")
+				if audio_mgr and audio_mgr.has_method("play_talk_blip"):
+					audio_mgr.play_talk_blip(_current_pitch)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not _is_dialogue_active:
@@ -151,8 +159,24 @@ func _play_next_dialogue() -> void:
 	_dialogue_label.text = ""
 	_is_dialogue_active = true
 
+	if "MOM" in current["speaker"]:
+		_current_pitch = 1.15
+	else:
+		_current_pitch = 1.0
+
+	var audio_mgr = get_node_or_null("/root/AudioManager")
+	if audio_mgr:
+		if audio_mgr.has_method("play_interact"):
+			audio_mgr.play_interact()
+		if audio_mgr.has_method("speak_tts"):
+			audio_mgr.speak_tts(_target_text, _current_pitch)
+
 func _close_dialogue() -> void:
 	_is_dialogue_active = false
+	var audio_mgr = get_node_or_null("/root/AudioManager")
+	if audio_mgr and audio_mgr.has_method("stop_tts"):
+		audio_mgr.stop_tts()
+
 	var panel = _dialogue_box.get_node_or_null("DialoguePanel")
 	if panel:
 		var tween = create_tween()

@@ -57,6 +57,11 @@ func _trigger_transition() -> void:
 		player_in_range = false
 		prompt_label.visible = false
 		transition_lock_timer = 1.0 # Lock transitions for 1.0s across scene reload
+
+		var audio_mgr = get_node_or_null("/root/AudioManager")
+		if audio_mgr and audio_mgr.has_method("play_door_transition"):
+			audio_mgr.play_door_transition()
+
 		SceneMgr.transition_to(target_scene, target_door_id)
 
 func _on_body_entered(body: Node2D) -> void:
