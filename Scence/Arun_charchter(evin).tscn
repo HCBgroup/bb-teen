@@ -1,8 +1,16 @@
-[gd_scene format=3 uid="uid://664qps4hqm6m"]
+[gd_scene load_steps=14 format=3 uid="uid://664qps4hqm6m"]
 
-[ext_resource type="Script" uid="uid://dlrsgxexxmunm" path="res://Scripts/character_body_2d.gd" id="1_bd0o1"]
-[ext_resource type="Texture2D" uid="uid://dmn3ou52kjo1t" path="res://assests/Arunboy/Idle/frame-1.png" id="1_n5jdl"]
-[ext_resource type="Texture2D" uid="uid://dvjsbtxw500oq" path="res://assests/Arunboy/Idle/frame-2.png" id="2_bd0o1"]
+[ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="1_bd0o1"]
+[ext_resource type="Texture2D" path="res://assests/Arunboy/Idle/frame-1.png" id="1_n5jdl"]
+[ext_resource type="Texture2D" path="res://assests/Arunboy/Idle/frame-2.png" id="2_bd0o1"]
+[ext_resource type="Texture2D" path="res://assests/Arunboy/running/frame-1.png" id="3_run1"]
+[ext_resource type="Texture2D" path="res://assests/Arunboy/running/frame-2.png" id="4_run2"]
+[ext_resource type="Texture2D" path="res://assests/Arunboy/running/frame-3.png" id="5_run3"]
+[ext_resource type="Texture2D" path="res://assests/Arunboy/running/frame-4.png" id="6_run4"]
+[ext_resource type="Texture2D" path="res://assests/Arunboy/running/frame5.png" id="7_run5"]
+[ext_resource type="Texture2D" path="res://assests/Arunboy/running/frame-6.png" id="8_run6"]
+[ext_resource type="Script" path="res://Scripts/components/movement_component.gd" id="9_move"]
+[ext_resource type="Script" path="res://Scripts/components/camera_tracking_component.gd" id="10_cam"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5aaqh"]
 animations = [{
@@ -13,30 +21,59 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_bd0o1")
 }],
-"loop": 1,
+"loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_run1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_run2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_run3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_run4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_run5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_run6")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8bdw"]
-size = Vector2(14, 10)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_feet"]
+radius = 8.0
+height = 20.0
 
-[node name="Arun_Charchter(Evin)" type="Node2D" unique_id=795189499]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=419735395]
+[node name="Arun_Charchter(Evin)" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 1
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_bd0o1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=18880827]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -16)
-scale = Vector2(0.045, 0.045)
+position = Vector2(0, -22)
+scale = Vector2(0.065, 0.065)
 sprite_frames = SubResource("SpriteFrames_5aaqh")
 autoplay = "default"
-frame_progress = 0.6052402
-metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=102974538]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_h8bdw")
-metadata/_edit_group_ = true
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_feet")
+
+[node name="MovementComponent" type="Node" parent="."]
+script = ExtResource("9_move")
+
+[node name="CameraTrackingComponent" type="Node" parent="."]
+script = ExtResource("10_cam")

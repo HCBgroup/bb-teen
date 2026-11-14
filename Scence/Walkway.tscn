@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bt6vxiedx5los"]
+
+[ext_resource type="Script" uid="uid://c2575fqsxxoqi" path="res://Scripts/walkway.gd" id="1_tj0vj"]
+[ext_resource type="Texture2D" uid="uid://dljowv0aovgs0" path="res://assests/Grasslands - Free/{62C2B537-5C15-4152-8C33-FDCBC39CD257}.png" id="2_clfol"]
+[ext_resource type="Script" uid="uid://w8lwa7sxyngq" path="res://Scripts/scene_transition_door.gd" id="4_06mn2"]
+[ext_resource type="PackedScene" uid="uid://664qps4hqm6m" path="res://Scence/Arun_charchter(evin).tscn" id="4_arun"]
+[ext_resource type="Script" uid="uid://b6r8s0xyftcjr" path="res://Scripts/npc.gd" id="5_mlpel"]
+[ext_resource type="Texture2D" uid="uid://dmn3ou52kjo1t" path="res://assests/Arunboy/Idle/frame-1.png" id="6_tsxbs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flxem"]
+size = Vector2(1272, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5om8x"]
+size = Vector2(1272, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ib4sr"]
+size = Vector2(30, 855)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cymow"]
+size = Vector2(30, 855)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wyklk"]
+size = Vector2(80, 120)
+
+[node name="Walkway" type="Node2D" unique_id=1809491623]
+script = ExtResource("1_tj0vj")
+
+[node name="Borders" type="StaticBody2D" parent="." unique_id=1750690131]
+collision_layer = 2
+collision_mask = 0
+
+[node name="ColTop" type="CollisionShape2D" parent="Borders" unique_id=487468702]
+position = Vector2(636, 15)
+shape = SubResource("RectangleShape2D_flxem")
+
+[node name="ColBottom" type="CollisionShape2D" parent="Borders" unique_id=760697633]
+position = Vector2(636, 840)
+shape = SubResource("RectangleShape2D_5om8x")
+
+[node name="ColLeft" type="CollisionShape2D" parent="Borders" unique_id=232487212]
+position = Vector2(15, 427)
+shape = SubResource("RectangleShape2D_ib4sr")
+
+[node name="ColRight" type="CollisionShape2D" parent="Borders" unique_id=512261745]
+position = Vector2(1257, 427)
+shape = SubResource("RectangleShape2D_cymow")
+
+[node name="Arun_Charchter(Evin)" parent="." unique_id=61409712 instance=ExtResource("4_arun")]
+y_sort_enabled = false
+position = Vector2(300, 430)
+
+[node name="Camera2D" type="Camera2D" parent="Arun_Charchter(Evin)" unique_id=1814252324]
+zoom = Vector2(1.6, 1.6)
+limit_left = 0
+limit_top = 0
+limit_right = 1272
+limit_bottom = 855
+position_smoothing_enabled = true
+editor_draw_limits = true
+
+[node name="MapSprite" type="Sprite2D" parent="." unique_id=797318448]
+z_index = -1
+texture = ExtResource("2_clfol")
+centered = false
+
+[node name="DoorToSchool" type="Area2D" parent="." unique_id=313293454]
+position = Vector2(1210, 430)
+script = ExtResource("4_06mn2")
+prompt_message = "[E] Enter School"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToSchool" unique_id=1904973008]
+shape = SubResource("RectangleShape2D_wyklk")
+
+[node name="NPC_Friend" type="StaticBody2D" parent="." unique_id=1419900704]
+position = Vector2(500, 380)
+script = ExtResource("5_mlpel")
+npc_name = "Priya"
+sprite_texture = ExtResource("6_tsxbs")
