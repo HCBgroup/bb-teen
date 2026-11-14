@@ -104,7 +104,7 @@ func _setup_dialogue_ui() -> void:
 	_dialogue_panel.name = "DialogueBox"
 
 	var vbox = VBoxContainer.new()
-	vbox.theme_override_constants.separation = 6
+	vbox.add_theme_constant_override("separation", 6)
 	_dialogue_panel.add_child(vbox)
 
 	_speaker_lbl = Label.new()
@@ -164,7 +164,8 @@ func start_exam_sequence() -> void:
 		return
 	_sequence_started = true
 	_is_player_near = false
-	_prompt_label.visible = false
+	if _prompt_label:
+		_prompt_label.visible = false
 
 	if not arun:
 		arun = get_node_or_null("../Arun_Charchter(Evin)")
@@ -178,25 +179,30 @@ func start_exam_sequence() -> void:
 			move_comp.facing_dir = Vector2.UP
 
 	# Enable spotlight overlay & smoothly dim the room
-	_overlay_rect.visible = true
-	var tween = create_tween().set_parallel(true)
-	tween.tween_method(func(v: float):
-		if _shader_mat:
-			_shader_mat.set_shader_parameter("darkness", v)
-	, 0.0, 0.90, 1.4).set_trans(Tween.TRANS_SINE)
+	if _overlay_rect:
+		_overlay_rect.visible = true
+	var tween = create_tween()
+	if tween:
+		tween.set_parallel(true)
+		tween.tween_method(func(v: float):
+			if _shader_mat:
+				_shader_mat.set_shader_parameter("darkness", v)
+		, 0.0, 0.90, 1.4).set_trans(Tween.TRANS_SINE)
 
-	# Pulse the spotlight slightly like a nervous heartbeat
-	var pulse_tween = create_tween().set_loops(6)
-	pulse_tween.tween_method(func(r: float):
-		if _shader_mat:
-			_shader_mat.set_shader_parameter("inner_radius", r)
-	, 60.0, 52.0, 0.5)
-	pulse_tween.tween_method(func(r: float):
-		if _shader_mat:
-			_shader_mat.set_shader_parameter("inner_radius", r)
-	, 52.0, 60.0, 0.5)
+		# Pulse the spotlight slightly like a nervous heartbeat
+		var pulse_tween = create_tween()
+		if pulse_tween:
+			pulse_tween.set_loops(6)
+			pulse_tween.tween_method(func(r: float):
+				if _shader_mat:
+					_shader_mat.set_shader_parameter("inner_radius", r)
+			, 60.0, 52.0, 0.5)
+			pulse_tween.tween_method(func(r: float):
+				if _shader_mat:
+					_shader_mat.set_shader_parameter("inner_radius", r)
+			, 52.0, 60.0, 0.5)
 
-	await tween.finished
+		await tween.finished
 
 	# The Exam Shot: Room goes dead silent, clock ticks, and the exam begins
 	_dialogue_lines = [
@@ -272,9 +278,11 @@ func _transition_to_minigame() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and not _sequence_started:
 		_is_player_near = true
-		_prompt_label.visible = true
+		if _prompt_label:
+			_prompt_label.visible = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		_is_player_near = false
-		_prompt_label.visible = false
+		if _prompt_label:
+			_prompt_label.visible = false
