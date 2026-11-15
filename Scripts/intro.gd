@@ -251,7 +251,7 @@ func _build_prologue_layer() -> void:
 
 	# Skip button (top right)
 	_prologue_skip_btn = Button.new()
-	_prologue_skip_btn.text = "SKIP PROLOGUE ⏩"
+	_prologue_skip_btn.text = "SKIP PROLOGUE >>"
 	_prologue_skip_btn.position = Vector2(1080, 25)
 	_prologue_skip_btn.custom_minimum_size = Vector2(170, 36)
 	_style_button(_prologue_skip_btn, Color(0.2, 0.22, 0.32), Color(0.8, 0.6, 0.2))
@@ -295,7 +295,6 @@ func _build_title_layer() -> void:
 		_title_label.add_theme_font_override("font", font_bold)
 	_title_layer.add_child(_title_label)
 
-	# Creator Credits Banner (Evin Jacob Subin, Acel Lindo, Jaya Krishna • 24 Hours at Hack Club Haven)
 	var creators_panel = PanelContainer.new()
 	var c_style = StyleBoxFlat.new()
 	c_style.bg_color = Color(0.09, 0.12, 0.2, 0.9)
@@ -322,7 +321,7 @@ func _build_title_layer() -> void:
 	creators_panel.add_child(c_vbox)
 
 	var creators_lbl = Label.new()
-	creators_lbl.text = "★ CREATED BY: EVIN JACOB SUBIN  •  ACEL LINDO  •  JAYA KRISHNA ★"
+	creators_lbl.text = "* CREATED BY: EVIN JACOB SUBIN  -  AIZEL LINTO  -  JAY KRISHNA *"
 	creators_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	creators_lbl.add_theme_font_size_override("font_size", 11)
 	creators_lbl.add_theme_color_override("font_color", Color(1.0, 0.9, 0.45))
@@ -377,7 +376,7 @@ func _build_title_layer() -> void:
 
 	# Interactive bounce prompt under hero
 	_bounce_hint_label = Label.new()
-	_bounce_hint_label.text = "⚡ Press [SPACE] to Test Your Bounce! ⚡"
+	_bounce_hint_label.text = "Press [SPACE] to Test Your Bounce!"
 	_bounce_hint_label.position = Vector2(-150, 195)
 	_bounce_hint_label.custom_minimum_size = Vector2(450, 24)
 	_bounce_hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -418,14 +417,14 @@ func _build_title_layer() -> void:
 	menu_vbox.add_child(hbox)
 
 	var code_btn = Button.new()
-	code_btn.text = "💡 RESILIENCE CODE"
+	code_btn.text = "RESILIENCE CODE"
 	code_btn.custom_minimum_size = Vector2(193, 40)
 	_style_button(code_btn, Color(0.2, 0.25, 0.4), Color(0.6, 0.8, 1.0), 10)
 	code_btn.pressed.connect(_show_quote_popup)
 	hbox.add_child(code_btn)
 
 	var credits_btn = Button.new()
-	credits_btn.text = "📜 CREDITS"
+	credits_btn.text = "CREDITS"
 	credits_btn.custom_minimum_size = Vector2(193, 40)
 	_style_button(credits_btn, Color(0.2, 0.25, 0.4), Color(0.6, 0.8, 1.0), 10)
 	credits_btn.pressed.connect(_on_credits_pressed)
@@ -433,7 +432,7 @@ func _build_title_layer() -> void:
 
 	# Bottom Audio Toggle
 	_music_toggle_btn = Button.new()
-	_music_toggle_btn.text = "🔊 MUSIC: ON"
+	_music_toggle_btn.text = "MUSIC: ON"
 	_music_toggle_btn.position = Vector2(30, 670)
 	_music_toggle_btn.custom_minimum_size = Vector2(140, 32)
 	_style_button(_music_toggle_btn, Color(0.15, 0.18, 0.25), Color(0.7, 0.7, 0.8), 9)
@@ -506,7 +505,7 @@ func _build_quote_popup() -> void:
 	vbox.add_child(qbody)
 
 	var close_btn = Button.new()
-	close_btn.text = "I WILL BOUNCE BACK ✊"
+	close_btn.text = "I WILL BOUNCE BACK"
 	close_btn.custom_minimum_size = Vector2(240, 38)
 	close_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	_style_button(close_btn, Color(0.8, 0.5, 0.1), Color(1.0, 0.9, 0.4), 11)
@@ -651,9 +650,9 @@ func _show_quote_popup() -> void:
 func _toggle_music() -> void:
 	_music_enabled = not _music_enabled
 	if _music_enabled:
-		_music_toggle_btn.text = "🔊 MUSIC: ON"
+		_music_toggle_btn.text = "MUSIC: ON"
 		_start_music()
 	else:
-		_music_toggle_btn.text = "🔇 MUSIC: OFF"
+		_music_toggle_btn.text = "MUSIC: OFF"
 		if _music_player:
 			_music_player.stop()

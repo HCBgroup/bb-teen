@@ -190,9 +190,9 @@ func _on_player_health_changed(current_hp: int, max_hp: int) -> void:
 	var hearts: String = ""
 	for i: int in range(max_hp):
 		if i < current_hp:
-			hearts += "♥ "
+			hearts += "# "
 		else:
-			hearts += "♡ "
+			hearts += "- "
 	hp_value_label.text = hearts.strip_edges()
 	if current_hp <= 1:
 		hp_value_label.modulate = Color(1.0, 0.2, 0.2)
@@ -219,7 +219,7 @@ func _finish_minigame(passed: bool) -> void:
 
 	# Update Game Over UI
 	if passed:
-		result_title_label.text = "EXAM PASSED! 🎉"
+		result_title_label.text = "EXAM PASSED!"
 		result_title_label.add_theme_color_override("font_color", Color(0.2, 0.95, 0.4))
 		result_subtitle_label.text = "You shredded through the exam! Bouncing Back to victory!"
 		

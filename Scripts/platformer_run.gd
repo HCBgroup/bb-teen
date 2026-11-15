@@ -83,7 +83,7 @@ func _build_hud() -> void:
 
 	# Mission Header
 	var title = Label.new()
-	title.text = "⚡ MORNING DASH: RUN TO SCHOOL!"
+	title.text = "MORNING DASH: RUN TO SCHOOL!"
 	title.add_theme_font_size_override("font_size", 12)
 	title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	title.add_theme_color_override("font_shadow_color", Color.BLACK)
@@ -109,7 +109,7 @@ func _build_hud() -> void:
 
 	# Coin Counter
 	_coin_label = Label.new()
-	_coin_label.text = "🪙 0 / %d" % total_coins
+	_coin_label.text = "Coins: 0 / %d" % total_coins
 	_coin_label.add_theme_font_size_override("font_size", 12)
 	_coin_label.add_theme_color_override("font_color", Color(1.0, 0.95, 0.4))
 	_coin_label.add_theme_color_override("font_shadow_color", Color.BLACK)
@@ -179,7 +179,7 @@ func _build_quote_card() -> void:
 	_quote_card.add_child(qbox)
 
 	_quote_title = Label.new()
-	_quote_title.text = "✨ BOUNCE BACK!"
+	_quote_title.text = "BOUNCE BACK!"
 	_quote_title.add_theme_font_size_override("font_size", 13)
 	_quote_title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	_quote_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -194,7 +194,7 @@ func _build_quote_card() -> void:
 	qbox.add_child(_quote_text)
 
 	var footer = Label.new()
-	footer.text = "🌱 Getting back up..."
+	footer.text = "Getting back up..."
 	footer.add_theme_font_size_override("font_size", 10)
 	footer.add_theme_color_override("font_color", Color(0.6, 0.85, 0.6))
 	footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -225,11 +225,11 @@ func on_coin_collected(amount: int) -> void:
 	var tw = create_tween().set_parallel(true)
 	tw.tween_property(_motivation_bar, "value", pct, 0.25).set_trans(Tween.TRANS_CUBIC)
 
-	_coin_label.text = "🪙 %d / %d" % [collected_coins, total_coins]
+	_coin_label.text = "Coins: %d / %d" % [collected_coins, total_coins]
 
 	if collected_coins == total_coins / 2:
-		_status_label.text = "⚡ Halfway! Momentum building! Keep running!"
+		_status_label.text = "Halfway! Momentum building! Keep running!"
 		_status_label.add_theme_color_override("font_color", Color(0.4, 1.0, 0.6))
 	elif collected_coins >= total_coins:
-		_status_label.text = "✨ MAX FOCUS! Arun is fully ready to Bounce Back!"
+		_status_label.text = "MAX FOCUS! Arun is fully ready to Bounce Back!"
 		_status_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.2))

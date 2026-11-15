@@ -545,65 +545,65 @@ but have not been individually re-audited headless yet.
 
 | Tool | Headless | Notes |
 |------|----------|-------|
-| `script_read` | ✅ | Merged: accepts optional `start_line`/`end_line` for partial reads |
-| `script_write` | ✅ | |
-| `script_delete` | ✅ | |
-| `script_check` | ✅ | |
-| `folder_create` | ✅ | |
-| `folder_delete` | ✅ | |
-| `file_delete` | ✅ | |
-| `scene_create` | ✅ | File-based |
-| `scene_delete` | ✅ | File-based |
-| `scene_open` | ✅ | `EditorInterface.open_scene_from_path()` works headless |
-| `scene_close` | ✅ | Requires 4.5+ (same as GUI mode) |
-| `scene_get_tree` | ✅ | Requires a scene opened via `scene_open` |
-| `scene_create_node` | ✅ | |
-| `scene_delete_node` | ✅ | |
-| `scene_instantiate` | ✅ | |
-| `scene_diff` | ✅ | |
-| `node_get_property` | ✅ | |
-| `node_set_property` | ✅ | |
-| `node_get_property_list` | ✅ | |
-| `node_set_script` | ✅ | |
-| `node_call_method` | ✅ | Works; but a **4.4+ headless** editor never re-instantiates a reloaded node, so a call to a freshly-added method returns `INVALID_METHOD` + a headless stale `hint` (set the script again with `node_set_script`, or relaunch a display editor). See the live-reload note above |
-| `signal_list` | ✅ | |
-| `signal_manage` | ✅ | |
-| `signal_emit` | ✅ | |
-| `resource_load` | ✅ | |
-| `resource_write` | ✅ | |
-| `resource_delete` | ✅ | |
-| `asset_list` | ✅ | |
-| `asset_get_dependencies` | ✅ | |
-| `asset_import` | ✅ | |
-| `save_read` | ✅ | |
-| `save_write` | ✅ | |
-| `save_delete` | ✅ | |
-| `save_list` | ✅ | |
-| `classdb_get_info` | ✅ | |
-| `classdb_search` | ✅ | |
-| `project_get_settings` | ✅ | |
-| `project_set_setting` | ✅ | |
-| `input_map_action` | ✅ | |
-| `input_map_event` | ✅ | |
-| `input_map_list` | ✅ | |
-| `animation_keyframe` | ✅ | |
-| `animation_get_keys` | ✅ | |
-| `tilemap_set_cells` | ✅ | |
-| `editor_save_scene` | ✅ | |
-| `editor_refresh` | ✅ | |
-| `editor_get_console` | ✅ | Captures runtime output headless; but a headless editor doesn't revalidate scripts, so editor **parse** errors aren't captured — an error-capture query (`level_filter:["error"]` or a `text_filter`) attaches a `headless_hint` steering to `script_check`. See the parse-capture note above |
-| `editor_wait_for_idle` | ✅ | |
-| `game_start` | ❌ | Returns `HEADLESS_UNSUPPORTED` — the game process can't launch without a display, so the runtime connection (the running game) never establishes. Use `script_check` / scene inspection / `editor_get_console` to verify |
-| `game_stop` | ✅ | |
-| `editor_screenshot` | ❌ | Returns `HEADLESS_UNSUPPORTED`. Merged: accepts optional `node_path` for node-focused capture. |
-| `runtime_screenshot` | ❌ | Requires display in game process |
-| `runtime_get_node_state` | ⚠️ | Requires game with runtime server |
-| `debugger_get_log` | ⚠️ | Requires game with runtime server |
-| `input_simulate` | ❌ | Requires display for input events |
-| `animation_player_control` | ⚠️ | Requires game with runtime server |
-| `execute_code` | ⚠️ | Game context requires a game with the runtime server |
+| `script_read` | YES | Merged: accepts optional `start_line`/`end_line` for partial reads |
+| `script_write` | YES | |
+| `script_delete` | YES | |
+| `script_check` | YES | |
+| `folder_create` | YES | |
+| `folder_delete` | YES | |
+| `file_delete` | YES | |
+| `scene_create` | YES | File-based |
+| `scene_delete` | YES | File-based |
+| `scene_open` | YES | `EditorInterface.open_scene_from_path()` works headless |
+| `scene_close` | YES | Requires 4.5+ (same as GUI mode) |
+| `scene_get_tree` | YES | Requires a scene opened via `scene_open` |
+| `scene_create_node` | YES | |
+| `scene_delete_node` | YES | |
+| `scene_instantiate` | YES | |
+| `scene_diff` | YES | |
+| `node_get_property` | YES | |
+| `node_set_property` | YES | |
+| `node_get_property_list` | YES | |
+| `node_set_script` | YES | |
+| `node_call_method` | YES | Works; but a **4.4+ headless** editor never re-instantiates a reloaded node, so a call to a freshly-added method returns `INVALID_METHOD` + a headless stale `hint` (set the script again with `node_set_script`, or relaunch a display editor). See the live-reload note above |
+| `signal_list` | YES | |
+| `signal_manage` | YES | |
+| `signal_emit` | YES | |
+| `resource_load` | YES | |
+| `resource_write` | YES | |
+| `resource_delete` | YES | |
+| `asset_list` | YES | |
+| `asset_get_dependencies` | YES | |
+| `asset_import` | YES | |
+| `save_read` | YES | |
+| `save_write` | YES | |
+| `save_delete` | YES | |
+| `save_list` | YES | |
+| `classdb_get_info` | YES | |
+| `classdb_search` | YES | |
+| `project_get_settings` | YES | |
+| `project_set_setting` | YES | |
+| `input_map_action` | YES | |
+| `input_map_event` | YES | |
+| `input_map_list` | YES | |
+| `animation_keyframe` | YES | |
+| `animation_get_keys` | YES | |
+| `tilemap_set_cells` | YES | |
+| `editor_save_scene` | YES | |
+| `editor_refresh` | YES | |
+| `editor_get_console` | YES | Captures runtime output headless; but a headless editor doesn't revalidate scripts, so editor **parse** errors aren't captured — an error-capture query (`level_filter:["error"]` or a `text_filter`) attaches a `headless_hint` steering to `script_check`. See the parse-capture note above |
+| `editor_wait_for_idle` | YES | |
+| `game_start` | NO | Returns `HEADLESS_UNSUPPORTED` — the game process can't launch without a display, so the runtime connection (the running game) never establishes. Use `script_check` / scene inspection / `editor_get_console` to verify |
+| `game_stop` | YES | |
+| `editor_screenshot` | NO | Returns `HEADLESS_UNSUPPORTED`. Merged: accepts optional `node_path` for node-focused capture. |
+| `runtime_screenshot` | NO | Requires display in game process |
+| `runtime_get_node_state` | PARTIAL | Requires game with runtime server |
+| `debugger_get_log` | PARTIAL | Requires game with runtime server |
+| `input_simulate` | NO | Requires display for input events |
+| `animation_player_control` | PARTIAL | Requires game with runtime server |
+| `execute_code` | PARTIAL | Game context requires a game with the runtime server |
 
-✅ = works &nbsp; ⚠️ = depends on runtime server availability &nbsp; ❌ = requires display
+YES = works &nbsp; PARTIAL = depends on runtime server availability &nbsp; NO = requires display
 
 ### CI/pipeline usage
 

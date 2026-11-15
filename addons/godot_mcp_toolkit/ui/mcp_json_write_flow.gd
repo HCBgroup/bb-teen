@@ -77,7 +77,7 @@ func write(force_overwrite: bool = false, on_result: Callable = Callable(), conf
 			body = ("Update the " + MCPJsonSync.get_own_entry_key() + " entry in .mcp.json?\n\n" + dest
 				+ "\n\nOnly this entry changes; other servers and your env keys are kept.")
 		# "Cancel" is repurposed as "Open .mcp.json": declining the update opens the
-		# file so the user can inspect it rather than have the entry changed. Esc/✕
+		# file so the user can inspect it rather than have the entry changed. Esc/X
 		# route through the same path.
 		DockConfirm.confirm(
 			"Update the .mcp.json entry",

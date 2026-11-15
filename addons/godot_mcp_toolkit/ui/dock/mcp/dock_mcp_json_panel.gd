@@ -171,19 +171,19 @@ func refresh() -> void:
 	# One parse per tick serves the presence, validity and server-spec checks.
 	var file_state := MCPJsonSync.read_file_state()
 	if not bool(file_state["present"]):  # live file FACT — safe to show live
-		warn_text = "⚠️ NO .mcp.json — the MCP client has nothing to connect with. Use the \"Write .mcp.json\" button below to create one from the bundled template."
+		warn_text = "[!] NO .mcp.json — the MCP client has nothing to connect with. Use the \"Write .mcp.json\" button below to create one from the bundled template."
 		btn_text = "Write .mcp.json"
 		btn_tip = "No .mcp.json found — write one from the bundled template"
 		highlight = true
 	elif bool(file_state["malformed"]):  # live file FACT — present but invalid JSON
-		warn_text = "⚠️ .mcp.json isn't valid JSON, or its mcpServers isn't an object — the MCP client can't read it, so it won't connect. Open it to fix it, or delete it and click Write."
+		warn_text = "[!] .mcp.json isn't valid JSON, or its mcpServers isn't an object — the MCP client can't read it, so it won't connect. Open it to fix it, or delete it and click Write."
 		btn_tip = "Open .mcp.json in the system editor to fix the JSON (or delete it, then write a new one)"
 		highlight = true
 	else:
 		readable = true
 		if _read_only_active:  # cached, server-synced (NOT a live read-only poll)
-			warn_text = "⚠️ READ-ONLY MODE — mutating tools are hidden. Remove GODOT_MCP_READ_ONLY from .mcp.json and reconnect the MCP client to restore full access."
-			btn_text = "Open .mcp.json ⚠"
+			warn_text = "[!] READ-ONLY MODE — mutating tools are hidden. Remove GODOT_MCP_READ_ONLY from .mcp.json and reconnect the MCP client to restore full access."
+			btn_text = "Open .mcp.json [!]"
 			btn_tip = "Open .mcp.json in the system editor (read-only mode active)"
 			highlight = true
 	# Warning text (shared by all three states).

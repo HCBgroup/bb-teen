@@ -97,7 +97,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.25, 0.25, 1)
 theme_override_font_sizes/font_size = 24
-text = "♥ ♥ ♥ ♥ ♥"
+text = "# # # # #"
 
 [node name="ScoreContainer" type="HBoxContainer" parent="UI/HUD/HBoxContainer" unique_id=285262656]
 layout_mode = 2

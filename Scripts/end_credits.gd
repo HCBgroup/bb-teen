@@ -153,7 +153,7 @@ func _build_ui() -> void:
 	h_vbox.add_child(h_title)
 
 	var h_status = Label.new()
-	h_status.text = "★ STANDING STRONG ★"
+	h_status.text = "* STANDING STRONG *"
 	h_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	h_status.add_theme_font_size_override("font_size", 9)
 	h_status.add_theme_color_override("font_color", Color(0.4, 1.0, 0.6))
@@ -226,8 +226,8 @@ func _populate_credits_content() -> void:
 
 	_add_header("DEVELOPMENT TEAM", 18, Color(1.0, 0.7, 0.2))
 	_add_role_entry("Game Direction & Programming", "Evin Jacob Subin")
-	_add_role_entry("Level Design, Art & Narrative", "Acel Lindo")
-	_add_role_entry("Audio, Mechanics & Minigame", "Jaya Krishna")
+	_add_role_entry("Level Design, Art & Narrative", "Aizel Linto")
+	_add_role_entry("Audio, Mechanics & Minigame", "Jay Krishna")
 	_add_role_entry("Hackathon", "Hack Club Haven (Built in 24 Hours)")
 
 	_add_divider()
@@ -313,7 +313,7 @@ func _add_role_entry(role: String, name_str: String) -> void:
 
 func _add_divider() -> void:
 	var d = Label.new()
-	d.text = "✦  ━━━━━━━━━━━━━━━━━━  ✦"
+	d.text = "*  ==================  *"
 	d.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	d.add_theme_font_size_override("font_size", 10)
 	d.add_theme_color_override("font_color", Color(0.5, 0.4, 0.7, 0.6))
@@ -344,14 +344,14 @@ func _build_bottom_bar() -> void:
 	add_child(_action_bar)
 
 	var replay_btn = Button.new()
-	replay_btn.text = "🔄 PLAY AGAIN"
+	replay_btn.text = "PLAY AGAIN"
 	replay_btn.custom_minimum_size = Vector2(220, 44)
 	_style_button(replay_btn, Color(0.85, 0.55, 0.1), Color(1.0, 0.85, 0.4), 12)
 	replay_btn.pressed.connect(_on_replay_pressed)
 	_action_bar.add_child(replay_btn)
 
 	var title_btn = Button.new()
-	title_btn.text = "🏠 TITLE SCREEN"
+	title_btn.text = "TITLE SCREEN"
 	title_btn.custom_minimum_size = Vector2(220, 44)
 	_style_button(title_btn, Color(0.2, 0.25, 0.4), Color(0.7, 0.85, 1.0), 12)
 	title_btn.pressed.connect(_on_title_pressed)
@@ -369,7 +369,7 @@ func _build_bottom_bar() -> void:
 	_action_bar.add_child(_speed_hint)
 
 	var music_btn = Button.new()
-	music_btn.text = "🔊 AUDIO"
+	music_btn.text = "AUDIO"
 	music_btn.custom_minimum_size = Vector2(140, 44)
 	_style_button(music_btn, Color(0.15, 0.18, 0.25), Color(0.7, 0.7, 0.8), 10)
 	music_btn.pressed.connect(_toggle_music)
@@ -427,7 +427,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_is_fast_forward = event.is_pressed()
 		elif event.keycode == KEY_P and event.is_pressed() and not event.is_echo():
 			_is_paused = not _is_paused
-			_speed_hint.text = "⏸ PAUSED — Press [P] to Resume" if _is_paused else "Hold [SPACE] to Speed Up • [P] to Pause"
+			_speed_hint.text = "PAUSED -- Press [P] to Resume" if _is_paused else "Hold [SPACE] to Speed Up - [P] to Pause"
 		elif event.keycode == KEY_ESCAPE and event.is_pressed() and not event.is_echo():
 			_on_title_pressed()
 

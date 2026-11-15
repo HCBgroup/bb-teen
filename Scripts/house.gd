@@ -102,13 +102,13 @@ func _setup_dialogue_box() -> void:
 func _start_opening_dialogue() -> void:
 	_dialogue_queue = [
 		{
-			"speaker": "📢 MOM (Shouting from the Kitchen)",
+			"speaker": "MOM (Shouting from the Kitchen)",
 			"color": Color(1.0, 0.8, 0.25),
 			"text": "\"ARUN! Are you STILL staring into that mirror?! Your turmeric milk is getting cold on the table, and the bus leaves in 15 minutes! The math exam starts at 8:30!\"",
 			"voice_res": "res://assests/audio/voice/mom_mirror_yell.mp3"
 		},
 		{
-			"speaker": "💭 ARUN (Looking into Mirror)",
+			"speaker": "ARUN (Looking into Mirror)",
 			"color": Color(0.4, 0.8, 1.0),
 			"text": "\"Deep breath... Uniform is on. Formula sheets are packed. Everyone expects top marks, but I can't let anxiety freeze me. Take a breath and Bounce Back.\"",
 			"voice_res": "res://assests/audio/voice/arun_mirror_intro.mp3"

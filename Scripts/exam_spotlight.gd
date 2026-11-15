@@ -216,19 +216,19 @@ func start_exam_sequence() -> void:
 	# The Exam Shot: Room goes dead silent, clock ticks, and the exam begins
 	_dialogue_lines = [
 		{
-			"speaker": "📋 MR. KUMAR (Invigilator)",
+			"speaker": "MR. KUMAR (Invigilator)",
 			"color": Color(1.0, 0.85, 0.3),
 			"text": "\"The exam begins now. Remember: breathe, stay focused, and bounce back!\"",
 			"voice_res": "res://assests/audio/voice/kumar_start_exam.mp3"
 		},
 		{
-			"speaker": "💭 ARUN (Heart Pounding)",
+			"speaker": "ARUN (Heart Pounding)",
 			"color": Color(0.4, 0.8, 1.0),
 			"text": "\"Mathematics Mid-Term Exam... 90 minutes. 100 marks. My hands are sweating... The formulas are spinning... What if I freeze?\"",
 			"voice_res": "res://assests/audio/voice/arun_exam_anxiety_2.mp3"
 		},
 		{
-			"speaker": "💭 ARUN (Steeling Resolve)",
+			"speaker": "ARUN (Steeling Resolve)",
 			"color": Color(1.0, 0.5, 0.3),
 			"text": "\"No! Remember: Gravity only exists so you have something to push against! Let us shred this exam and Bounce Back!\"",
 			"voice_res": "res://assests/audio/voice/arun_exam_resolve.mp3"

@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b4quopxq00enl" path="res://Scripts/house.gd" id="1_house"]
 [ext_resource type="Texture2D" uid="uid://dfmkx1vkevmi7" path="res://assests/house/house_layout.png" id="2_layout"]
-[ext_resource type="PackedScene" uid="uid://664qps4hqm6m" path="res://Scence/Arun_charchter(evin).tscn" id="3_arun"]
+[ext_resource type="PackedScene" uid="uid://664qps4hqm6m" path="res://Scence/Arun.tscn" id="3_arun"]
 [ext_resource type="Script" uid="uid://w8lwa7sxyngq" path="res://Scripts/scene_transition_door.gd" id="4_door"]
 [ext_resource type="Script" uid="uid://b6r8s0xyftcjr" path="res://Scripts/npc.gd" id="5_npc"]
 [ext_resource type="Texture2D" uid="uid://c5uhuotjqdows" path="res://assests/house/mom_idle.png" id="6_mom"]
-[ext_resource type="Script" path="res://Scripts/interactive_prop.gd" id="7_prop"]
-[ext_resource type="AudioStream" path="res://assests/audio/voice/mom_living_room.mp3" id="8_mom_voice"]
+[ext_resource type="Script" uid="uid://d1g1fcc5rhk3s" path="res://Scripts/interactive_prop.gd" id="7_prop"]
+[ext_resource type="AudioStream" uid="uid://b0307ph4ajs1s" path="res://assests/audio/voice/mom_living_room.mp3" id="8_mom_voice"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_top_wall"]
 size = Vector2(1280, 140)
@@ -46,25 +46,25 @@ size = Vector2(45, 45)
 size = Vector2(100, 65)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bookshelf"]
-size = Vector2(130, 110)
+size = Vector2(178, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sofa"]
 size = Vector2(180, 75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_coffee_table"]
-size = Vector2(120, 60)
+size = Vector2(120, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bench"]
-size = Vector2(50, 90)
+size = Vector2(55, 115)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_armchair"]
-size = Vector2(55, 60)
+size = Vector2(125.25, 86)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv"]
-size = Vector2(90, 70)
+size = Vector2(67, 134)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dresser"]
-size = Vector2(110, 110)
+size = Vector2(693, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_counter"]
 size = Vector2(190, 70)
@@ -146,31 +146,31 @@ position = Vector2(110, 522)
 shape = SubResource("RectangleShape2D_desk")
 
 [node name="BookshelfCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=1630138902]
-position = Vector2(330, 185)
+position = Vector2(369, 284)
 shape = SubResource("RectangleShape2D_bookshelf")
 
 [node name="SofaCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=165842819]
-position = Vector2(585, 290)
+position = Vector2(658, 374)
 shape = SubResource("RectangleShape2D_sofa")
 
 [node name="CoffeeTableCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=199928371]
-position = Vector2(588, 385)
+position = Vector2(661, 457)
 shape = SubResource("RectangleShape2D_coffee_table")
 
 [node name="BenchCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=199928372]
-position = Vector2(495, 340)
+position = Vector2(811.5, 421.5)
 shape = SubResource("RectangleShape2D_bench")
 
 [node name="ArmchairCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=199928373]
-position = Vector2(680, 360)
+position = Vector2(650, 571)
 shape = SubResource("RectangleShape2D_armchair")
 
 [node name="TvCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=199928374]
-position = Vector2(588, 490)
+position = Vector2(508.5, 424)
 shape = SubResource("RectangleShape2D_tv")
 
 [node name="DresserCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=199928375]
-position = Vector2(840, 185)
+position = Vector2(663.5, 212)
 shape = SubResource("RectangleShape2D_dresser")
 
 [node name="KitchenCounterCollider" type="CollisionShape2D" parent="WallsAndFurniture" unique_id=202334455]
@@ -184,7 +184,6 @@ shape = SubResource("RectangleShape2D_dining")
 [node name="DoorToMorningRun" type="Area2D" parent="." unique_id=1587391924]
 position = Vector2(1210, 590)
 collision_layer = 0
-collision_mask = 1
 script = ExtResource("4_door")
 target_scene = "res://Scence/MorningRun.tscn"
 target_door_id = "from_house"
@@ -193,7 +192,7 @@ prompt_message = "[E] Head Outside to School"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToMorningRun" unique_id=1267403803]
 shape = SubResource("RectangleShape2D_door_exit")
 
-[node name="Mom" type="StaticBody2D" parent="."]
+[node name="Mom" type="StaticBody2D" parent="." unique_id=1355174720]
 position = Vector2(1090, 270)
 collision_layer = 2
 collision_mask = 0
@@ -202,7 +201,7 @@ dialogue_lines = ["Eat your breakfast, beta. Remember to read every question twi
 npc_name = "Mom"
 sprite_texture = ExtResource("6_mom")
 target_height = 68.0
-voice_clips = [ExtResource("8_mom_voice")]
+voice_clips = Array[AudioStream]([ExtResource("8_mom_voice")])
 
 [node name="Prop_Mirror" type="Area2D" parent="." unique_id=519374779]
 position = Vector2(184, 110)

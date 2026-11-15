@@ -13,14 +13,14 @@ extends RefCounted
 
 
 ## Builds a ConfirmationDialog, pops it centered on the editor base control, and
-## frees it on EVERY dismissal — OK runs `on_confirm`, Cancel/Esc/✕ runs
+## frees it on EVERY dismissal — OK runs `on_confirm`, Cancel/Esc/X runs
 ## `on_cancel` (if given) — then `queue_free()`s itself. No caller cleanup is
 ## needed: the self-free is baked in here so no call site can leak the dialog.
 ##
 ## `cancel_text` empty → keep the default "Cancel" button label. `on_cancel`
 ## empty → dismiss-and-free only (the plain "are you sure?" case).
 ##
-## The engine routes the window-close (✕) and Esc through the same `canceled`
+## The engine routes the window-close (X) and Esc through the same `canceled`
 ## signal as the Cancel button (AcceptDialog::_cancel_pressed), so connecting
 ## `confirmed` + `canceled` covers all three dismissal paths.
 static func confirm(

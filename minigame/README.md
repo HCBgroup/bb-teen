@@ -4,7 +4,7 @@ An embeddable Godot 4.x arcade dodge-and-shred minigame where the player dodges 
 
 ---
 
-## 📁 Project Architecture & Clean Asset Paths
+## Project Architecture & Clean Asset Paths
 
 ```
 res://
@@ -31,7 +31,7 @@ res://
 
 ---
 
-## 🎮 Game Rules
+## Game Rules
 
 1. **Player Movement & Attack**:
    - Move with `WASD` or Arrow keys.
@@ -46,7 +46,7 @@ res://
 
 ---
 
-## 🔌 Embedding in Another Godot Game
+## Embedding in Another Godot Game
 
 The scene `res://minigame/marksheet_dodge_game.tscn` is designed to be instantiated and embedded directly inside any parent scene or minigame manager.
 
@@ -92,7 +92,7 @@ func _on_score_changed(new_score: int) -> void:
 
 ---
 
-## ⚙️ Export Properties Reference
+## Export Properties Reference
 
 | Property | Type | Default | Description |
 |---|---|---|---|
@@ -109,7 +109,7 @@ func _on_score_changed(new_score: int) -> void:
 
 ---
 
-## 📡 Public Signals Reference
+## Public Signals Reference
 
 | Signal | Parameters | Description |
 |---|---|---|
@@ -123,7 +123,7 @@ func _on_score_changed(new_score: int) -> void:
 
 ---
 
-## 🔧 Public Methods
+## Public Methods
 
 - `start_game()`: Starts/resets a new round.
 - `stop_game()`: Pauses game timers and input.

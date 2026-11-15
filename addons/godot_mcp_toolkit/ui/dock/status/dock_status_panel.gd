@@ -169,7 +169,7 @@ func refresh_compat() -> void:
 		compat = _server.get_peer_compat()
 	var below_floor := str(compat.get("state", "")).ends_with("_below_floor")
 	_compat_label.visible = below_floor
-	_compat_label.text = "⚠️ " + str(compat.get("message", "")) if below_floor else ""
+	_compat_label.text = "[!] " + str(compat.get("message", "")) if below_floor else ""
 
 
 ## Repaint the runtime label from the playtest/runtime-port state. Called on the
@@ -220,14 +220,14 @@ func refresh_lsp() -> void:
 				_lsp_label.add_theme_color_override("font_color", Color(0.5, 1.0, 0.5))
 				_lsp_label.tooltip_text = "This editor owns the GDScript LSP port (reported by the MCP server)."
 			"conflict":
-				_lsp_label.text = "LSP: %d ⚠ conflict — another editor owns this port" % port
+				_lsp_label.text = "LSP: %d [!] conflict — another editor owns this port" % port
 				_lsp_label.add_theme_color_override("font_color", Color(1.0, 0.8, 0.2))
 				_lsp_label.tooltip_text = (
 					"Another editor owns the machine-wide GDScript LSP port, so this editor's "
 					+ "LSP tools are unavailable. Give each editor a distinct --lsp-port + "
 					+ "GODOT_MCP_LSP_PORT. See docs/multi-instance.md.")
 			_:  # "unavailable" / unknown
-				_lsp_label.text = "LSP: %d ⚠ unavailable" % port
+				_lsp_label.text = "LSP: %d [!] unavailable" % port
 				_lsp_label.add_theme_color_override("font_color", Color(1.0, 0.8, 0.2))
 				_lsp_label.tooltip_text = str(st.get("detail", "GDScript LSP not reachable."))
 		return
@@ -277,4 +277,4 @@ func _update_port_warning() -> void:
 	var active := bool(state.get("active", false))
 	_port_warning_label.visible = active
 	if active:
-		_port_warning_label.text = "⚠️ " + str(state.get("message", ""))
+		_port_warning_label.text = "[!] " + str(state.get("message", ""))
