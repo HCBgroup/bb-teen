@@ -6,7 +6,8 @@
 [ext_resource type="Script" uid="uid://w8lwa7sxyngq" path="res://Scripts/scene_transition_door.gd" id="4_door"]
 [ext_resource type="Script" uid="uid://b6r8s0xyftcjr" path="res://Scripts/npc.gd" id="5_npc"]
 [ext_resource type="Texture2D" uid="uid://c5uhuotjqdows" path="res://assests/house/mom_idle.png" id="6_mom"]
-[ext_resource type="Script" uid="uid://d1g1fcc5rhk3s" path="res://Scripts/interactive_prop.gd" id="7_prop"]
+[ext_resource type="Script" path="res://Scripts/interactive_prop.gd" id="7_prop"]
+[ext_resource type="AudioStream" path="res://assests/audio/voice/mom_living_room.mp3" id="8_mom_voice"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_top_wall"]
 size = Vector2(1280, 140)
@@ -192,14 +193,16 @@ prompt_message = "[E] Head Outside to School"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToMorningRun" unique_id=1267403803]
 shape = SubResource("RectangleShape2D_door_exit")
 
-[node name="Mom" type="StaticBody2D" parent="." unique_id=2076812822]
+[node name="Mom" type="StaticBody2D" parent="."]
 position = Vector2(1090, 270)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("5_npc")
-dialogue_lines = ["Arun! Eat your breakfast before it gets cold!", "Don't stress so much over the exam today. Just give it your best!", "Remember: breathe, stay focused, and bounce back!"]
+dialogue_lines = ["Eat your breakfast, beta. Remember to read every question twice and breathe.", "Don't stress so much over the exam today. Just give it your best!", "Remember: breathe, stay focused, and bounce back!"]
 npc_name = "Mom"
 sprite_texture = ExtResource("6_mom")
+target_height = 68.0
+voice_clips = [ExtResource("8_mom_voice")]
 
 [node name="Prop_Mirror" type="Area2D" parent="." unique_id=519374779]
 position = Vector2(184, 110)

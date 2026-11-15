@@ -283,7 +283,7 @@ func _build_title_layer() -> void:
 	_title_label = Label.new()
 	_title_label.name = "TitleLabel"
 	_title_label.text = "BOUNCE BACK"
-	_title_label.position = Vector2(0, 75)
+	_title_label.position = Vector2(0, 65)
 	_title_label.custom_minimum_size = Vector2(1280, 70)
 	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_title_label.add_theme_font_size_override("font_size", 54)
@@ -295,15 +295,59 @@ func _build_title_layer() -> void:
 		_title_label.add_theme_font_override("font", font_bold)
 	_title_layer.add_child(_title_label)
 
+	# Creator Credits Banner (Evin Jacob Subin, Acel Lindo, Jaya Krishna • 24 Hours at Hack Club Haven)
+	var creators_panel = PanelContainer.new()
+	var c_style = StyleBoxFlat.new()
+	c_style.bg_color = Color(0.09, 0.12, 0.2, 0.9)
+	c_style.border_color = Color(0.9, 0.72, 0.25, 0.95)
+	c_style.border_width_left = 2
+	c_style.border_width_right = 2
+	c_style.border_width_top = 2
+	c_style.border_width_bottom = 2
+	c_style.corner_radius_top_left = 6
+	c_style.corner_radius_top_right = 6
+	c_style.corner_radius_bottom_left = 6
+	c_style.corner_radius_bottom_right = 6
+	c_style.content_margin_left = 20
+	c_style.content_margin_right = 20
+	c_style.content_margin_top = 6
+	c_style.content_margin_bottom = 6
+	creators_panel.add_theme_stylebox_override("panel", c_style)
+	creators_panel.position = Vector2(240, 140)
+	creators_panel.custom_minimum_size = Vector2(800, 38)
+	_title_layer.add_child(creators_panel)
+
+	var c_vbox = VBoxContainer.new()
+	c_vbox.add_theme_constant_override("separation", 2)
+	creators_panel.add_child(c_vbox)
+
+	var creators_lbl = Label.new()
+	creators_lbl.text = "★ CREATED BY: EVIN JACOB SUBIN  •  ACEL LINDO  •  JAYA KRISHNA ★"
+	creators_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	creators_lbl.add_theme_font_size_override("font_size", 11)
+	creators_lbl.add_theme_color_override("font_color", Color(1.0, 0.9, 0.45))
+	if font_bold:
+		creators_lbl.add_theme_font_override("font", font_bold)
+	c_vbox.add_child(creators_lbl)
+
+	var jam_lbl = Label.new()
+	jam_lbl.text = "Built in 24 Hours at Hack Club Haven • Ready to Ship on itch.io"
+	jam_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	jam_lbl.add_theme_font_size_override("font_size", 10)
+	jam_lbl.add_theme_color_override("font_color", Color(0.65, 0.85, 1.0))
+	if font_regular:
+		jam_lbl.add_theme_font_override("font", font_regular)
+	c_vbox.add_child(jam_lbl)
+
 	# Tagline
 	_tagline_label = Label.new()
 	_tagline_label.text = "\"Whatever happens in life, bounce back like nothing happened and stay always stronger.\""
-	_tagline_label.position = Vector2(140, 160)
-	_tagline_label.custom_minimum_size = Vector2(1000, 35)
+	_tagline_label.position = Vector2(140, 195)
+	_tagline_label.custom_minimum_size = Vector2(1000, 30)
 	_tagline_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_tagline_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_tagline_label.add_theme_font_size_override("font_size", 12)
-	_tagline_label.add_theme_color_override("font_color", Color(0.75, 0.9, 1.0))
+	_tagline_label.add_theme_font_size_override("font_size", 11)
+	_tagline_label.add_theme_color_override("font_color", Color(0.8, 0.9, 0.95))
 	if font_regular:
 		_tagline_label.add_theme_font_override("font", font_regular)
 	_title_layer.add_child(_tagline_label)
@@ -311,7 +355,7 @@ func _build_title_layer() -> void:
 	# Character Centerpiece with Interactive Bounce!
 	_hero_container = Control.new()
 	_hero_container.name = "HeroContainer"
-	_hero_container.position = Vector2(565, 230)
+	_hero_container.position = Vector2(565, 235)
 	_hero_container.custom_minimum_size = Vector2(150, 190)
 	_title_layer.add_child(_hero_container)
 

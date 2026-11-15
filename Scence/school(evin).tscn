@@ -11,6 +11,12 @@
 [ext_resource type="Texture2D" path="res://assests/school/student_generic.png" id="9_generic"]
 [ext_resource type="Script" path="res://Scripts/interactive_prop.gd" id="10_prop"]
 [ext_resource type="Script" path="res://Scripts/exam_spotlight.gd" id="11_exam"]
+[ext_resource type="AudioStream" path="res://assests/audio/voice/kumar_welcome.mp3" id="12_k1"]
+[ext_resource type="AudioStream" path="res://assests/audio/voice/kumar_desk_assign.mp3" id="13_k2"]
+[ext_resource type="AudioStream" path="res://assests/audio/voice/kumar_start_exam.mp3" id="14_k3"]
+[ext_resource type="AudioStream" path="res://assests/audio/voice/rohan_whisper_1.mp3" id="15_r1"]
+[ext_resource type="AudioStream" path="res://assests/audio/voice/rohan_whisper_2.mp3" id="16_r2"]
+[ext_resource type="AudioStream" path="res://assests/audio/voice/rohan_whisper_3.mp3" id="17_r3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fi46"]
 size = Vector2(800, 36)
@@ -163,40 +169,59 @@ prompt_message = "[E] Go Outside"
 shape = SubResource("RectangleShape2D_oxeco")
 
 [node name="NPC_Teacher" type="StaticBody2D" parent="."]
-position = Vector2(391, 200)
+position = Vector2(391, 280)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("5_1wnpj")
 dialogue_lines = PackedStringArray("Good morning, Arun! You are just in time for the Mathematics Mid-Term.", "Take your seat at Desk 24. No talking, no mobile phones.", "The exam begins now. Remember: breathe, stay focused, and bounce back!")
 npc_name = "Mr. Kumar"
 sprite_texture = ExtResource("6_kumar")
-
-[node name="NPC_Sharma" type="StaticBody2D" parent="."]
-position = Vector2(540, 240)
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("5_1wnpj")
-dialogue_lines = PackedStringArray("Calculators must remain in your bags, students.", "Read every question carefully before writing.")
-npc_name = "Sharma (Invigilator)"
-sprite_texture = ExtResource("9_generic")
-
-[node name="NPC_Classmate" type="StaticBody2D" parent="."]
-position = Vector2(290, 400)
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("5_1wnpj")
-dialogue_lines = PackedStringArray("I've been reviewing formulas all morning!", "Good luck Arun, we are all in this together!")
-npc_name = "Meera"
-sprite_texture = ExtResource("7_meera")
+target_height = 66.0
+voice_clips = [ExtResource("12_k1"), ExtResource("13_k2"), ExtResource("14_k3")]
 
 [node name="NPC_Rohan" type="StaticBody2D" parent="."]
-position = Vector2(195, 460)
+position = Vector2(265, 470)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("5_1wnpj")
-dialogue_lines = PackedStringArray("Psst! Arun! Look at this paper airplane I made out of formula sheets.", "Bro, relax! Nobody looks at high school grades ten years from now.", "After this period, let's hit the walkway stream and get some fresh air.", "Breathe easy, man. You stress way too much!")
+dialogue_lines = PackedStringArray("Psst! Arun! Look at this paper airplane I made out of formula sheets.", "Bro, relax! Nobody looks at high school grades ten years from now.", "After this period, let's hit the walkway stream and get some fresh air. Breathe easy, man. You stress way too much!")
 npc_name = "Rohan"
 sprite_texture = ExtResource("8_rohan")
+target_height = 50.0
+voice_clips = [ExtResource("15_r1"), ExtResource("16_r2"), ExtResource("17_r3")]
+
+[node name="StaticStudents" type="Node2D" parent="."]
+z_index = 2
+
+[node name="Student_DeskTopLeft" type="Sprite2D" parent="StaticStudents"]
+texture_filter = 1
+position = Vector2(200, 335)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("7_meera")
+
+[node name="Student_DeskTopRight" type="Sprite2D" parent="StaticStudents"]
+texture_filter = 1
+position = Vector2(580, 335)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("9_generic")
+
+[node name="Student_DeskMidRight" type="Sprite2D" parent="StaticStudents"]
+texture_filter = 1
+position = Vector2(580, 445)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("9_generic")
+
+[node name="Student_DeskBotLeft" type="Sprite2D" parent="StaticStudents"]
+texture_filter = 1
+position = Vector2(200, 555)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("9_generic")
+
+[node name="Student_DeskBotRight" type="Sprite2D" parent="StaticStudents"]
+texture_filter = 1
+position = Vector2(580, 555)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("9_generic")
 
 [node name="Prop_NoticeBoard" type="Area2D" parent="."]
 position = Vector2(125, 235)

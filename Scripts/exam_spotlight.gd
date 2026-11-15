@@ -218,17 +218,20 @@ func start_exam_sequence() -> void:
 		{
 			"speaker": "📋 MR. KUMAR (Invigilator)",
 			"color": Color(1.0, 0.85, 0.3),
-			"text": "\"Silence in the examination hall. Pens ready. You have 90 minutes. Turn your papers over... and begin!\""
+			"text": "\"The exam begins now. Remember: breathe, stay focused, and bounce back!\"",
+			"voice_res": "res://assests/audio/voice/kumar_start_exam.mp3"
 		},
 		{
 			"speaker": "💭 ARUN (Heart Pounding)",
 			"color": Color(0.4, 0.8, 1.0),
-			"text": "\"Question 1: 'Solve for x under extreme pressure.' The numbers are blurring... Everyone's pens are scratching so fast!\""
+			"text": "\"Mathematics Mid-Term Exam... 90 minutes. 100 marks. My hands are sweating... The formulas are spinning... What if I freeze?\"",
+			"voice_res": "res://assests/audio/voice/arun_exam_anxiety_2.mp3"
 		},
 		{
 			"speaker": "💭 ARUN (Steeling Resolve)",
 			"color": Color(1.0, 0.5, 0.3),
-			"text": "\"No! I won't freeze up today. Deep breath. I'm going to shred through this exam and BOUNCE BACK!\""
+			"text": "\"No! Remember: Gravity only exists so you have something to push against! Let us shred this exam and Bounce Back!\"",
+			"voice_res": "res://assests/audio/voice/arun_exam_resolve.mp3"
 		}
 	]
 	_dialogue_idx = 0
@@ -257,7 +260,11 @@ func _display_current_line() -> void:
 		if audio_mgr:
 			if audio_mgr.has_method("play_interact"):
 				audio_mgr.play_interact()
-			if audio_mgr.has_method("speak_tts"):
+			if data.has("voice_res") and ResourceLoader.exists(data["voice_res"]):
+				if audio_mgr.has_method("play_voice"):
+					audio_mgr.play_voice(data["voice_res"])
+			elif audio_mgr.has_method("speak_tts"):
+				audio_mgr.speak_tts(_current_target, _current_pitch)
 				audio_mgr.speak_tts(_current_target, _current_pitch)
 	else:
 		_transition_to_minigame()

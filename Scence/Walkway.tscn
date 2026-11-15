@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://Scence/Arun_charchter(evin).tscn" id="4_arun"]
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="5_mlpel"]
 [ext_resource type="Texture2D" path="res://assests/Arunboy/Idle/frame-1.png" id="6_tsxbs"]
+[ext_resource type="Script" path="res://Scripts/companion_student.gd" id="7_comp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flxem"]
 size = Vector2(1272, 30)
@@ -73,9 +74,9 @@ prompt_message = "[E] Return to Dash Path"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToMorningRun"]
 shape = SubResource("RectangleShape2D_wyklk")
 
-[node name="NPC_Priya" type="StaticBody2D" parent="."]
-position = Vector2(500, 380)
-script = ExtResource("5_mlpel")
-npc_name = "Priya"
-sprite_texture = ExtResource("6_tsxbs")
-dialogue_lines = ["Hey Arun! That was some sprint to school!", "You look charged up and ready for the math assessment.", "Let's head inside together — we're going to do great!"]
+[node name="NPC_Priya" type="CharacterBody2D" parent="."]
+position = Vector2(380, 430)
+collision_layer = 2
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("7_comp")

@@ -19,16 +19,19 @@
 [ext_resource type="Script" path="res://Scripts/scene_transition_door.gd" id="15_door"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground1"]
-size = Vector2(680, 500)
+size = Vector2(680, 800)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground2"]
-size = Vector2(600, 500)
+size = Vector2(600, 800)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground3"]
-size = Vector2(800, 500)
+size = Vector2(800, 800)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plat"]
 size = Vector2(240, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(40, 1400)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
 size = Vector2(80, 120)
@@ -87,29 +90,61 @@ z_index = 0
 collision_layer = 2
 collision_mask = 0
 
+[node name="ColWallLeft" type="CollisionShape2D" parent="LevelGeometry"]
+position = Vector2(-20, 500)
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="ColWallRight" type="CollisionShape2D" parent="LevelGeometry"]
+position = Vector2(2780, 500)
+shape = SubResource("RectangleShape2D_wall")
+
 [node name="ColGround1" type="CollisionShape2D" parent="LevelGeometry"]
-position = Vector2(340, 770)
+position = Vector2(340, 920)
 shape = SubResource("RectangleShape2D_ground1")
 
 [node name="SpriteGround1" type="Sprite2D" parent="LevelGeometry"]
 position = Vector2(340, 770)
 texture = ExtResource("6_g1")
 
+[node name="DeepSoil1" type="ColorRect" parent="LevelGeometry"]
+z_index = -1
+offset_left = 0.0
+offset_top = 1018.0
+offset_right = 680.0
+offset_bottom = 1500.0
+color = Color(0.25, 0.23, 0.28, 1.0)
+
 [node name="ColGround2" type="CollisionShape2D" parent="LevelGeometry"]
-position = Vector2(1420, 770)
+position = Vector2(1420, 920)
 shape = SubResource("RectangleShape2D_ground2")
 
 [node name="SpriteGround2" type="Sprite2D" parent="LevelGeometry"]
 position = Vector2(1420, 770)
 texture = ExtResource("7_g2")
 
+[node name="DeepSoil2" type="ColorRect" parent="LevelGeometry"]
+z_index = -1
+offset_left = 1120.0
+offset_top = 1018.0
+offset_right = 1720.0
+offset_bottom = 1500.0
+color = Color(0.25, 0.23, 0.28, 1.0)
+
 [node name="ColGround3" type="CollisionShape2D" parent="LevelGeometry"]
-position = Vector2(2400, 770)
+position = Vector2(2400, 920)
 shape = SubResource("RectangleShape2D_ground3")
 
 [node name="SpriteGround3" type="Sprite2D" parent="LevelGeometry"]
 position = Vector2(2400, 770)
 texture = ExtResource("8_g3")
+
+[node name="DeepSoil3" type="ColorRect" parent="LevelGeometry"]
+z_index = -1
+offset_left = 2000.0
+offset_top = 1018.0
+offset_right = 2800.0
+offset_bottom = 1500.0
+color = Color(0.25, 0.23, 0.28, 1.0)
 
 [node name="ColPlat1" type="CollisionShape2D" parent="LevelGeometry"]
 position = Vector2(900, 420)
@@ -151,31 +186,35 @@ texture = ExtResource("9_plat")
 z_index = 1
 
 [node name="Tree1" type="Sprite2D" parent="Props"]
-position = Vector2(200, 410)
+position = Vector2(240, 456)
 texture = ExtResource("10_t1")
 
 [node name="Bush1" type="Sprite2D" parent="Props"]
-position = Vector2(380, 500)
+position = Vector2(400, 488)
 texture = ExtResource("12_b1")
 
 [node name="Bush2" type="Sprite2D" parent="Props"]
-position = Vector2(580, 500)
+position = Vector2(560, 488)
 texture = ExtResource("12_b1")
 
 [node name="Tree2" type="Sprite2D" parent="Props"]
-position = Vector2(1280, 410)
+position = Vector2(1420, 456)
 texture = ExtResource("11_t2")
 
 [node name="Bush3" type="Sprite2D" parent="Props"]
-position = Vector2(1580, 500)
+position = Vector2(1250, 488)
+texture = ExtResource("12_b1")
+
+[node name="Bush4" type="Sprite2D" parent="Props"]
+position = Vector2(1600, 488)
 texture = ExtResource("12_b1")
 
 [node name="Tree3" type="Sprite2D" parent="Props"]
-position = Vector2(2200, 410)
+position = Vector2(2360, 456)
 texture = ExtResource("10_t1")
 
-[node name="Bush4" type="Sprite2D" parent="Props"]
-position = Vector2(2550, 500)
+[node name="Bush5" type="Sprite2D" parent="Props"]
+position = Vector2(2560, 488)
 texture = ExtResource("12_b1")
 
 [node name="Coins" type="Node2D" parent="."]
