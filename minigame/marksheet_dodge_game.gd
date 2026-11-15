@@ -21,8 +21,8 @@ signal player_damaged(damage: int, remaining_hp: int)
 @export var auto_start: bool = true
 ## Target survival time in seconds. 0.0 = endless until player runs out of HP.
 @export var target_survival_time: float = 0.0
-## Target score to complete exam. Default 10 points.
-@export var target_score: int = 10
+## Target score to complete exam. Default 50 points.
+@export var target_score: int = 50
 ## Starting and maximum player health.
 @export var initial_player_health: int = 5
 ## Base falling speed of marksheets.

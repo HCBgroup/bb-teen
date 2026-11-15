@@ -10,6 +10,8 @@ signal dialogue_finished(npc_name: String)
 @export var npc_name: String = "Student"
 @export var sprite_texture: Texture2D
 @export var talk_pitch: float = 1.0
+@export var target_height: float = 50.0
+@export var voice_clips: Array[AudioStream] = []
 
 var _player_in_range: bool = false
 var _is_speaking: bool = false
@@ -37,15 +39,23 @@ func _ready() -> void:
 	# Calculate character-specific talk pitch
 	_configure_character_pitch()
 
+	# Configure character-specific scale if default
+	var lower = npc_name.to_lower()
+	if target_height == 50.0:
+		if "mom" in lower:
+			target_height = 68.0 # Mother stands taller with adult stature
+		elif "kumar" in lower or "teacher" in lower:
+			target_height = 66.0 # Teacher adult stature
+
 	# Visual Sprite representation
 	var spr := Sprite2D.new()
 	spr.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	spr.position = Vector2(0, -22)
+	spr.position = Vector2(0, -target_height * 0.44)
 	if sprite_texture:
 		spr.texture = sprite_texture
 		var tex_h := float(sprite_texture.get_height())
 		if tex_h > 0.0:
-			var s := 50.0 / tex_h
+			var s := target_height / tex_h
 			spr.scale = Vector2(s, s)
 		else:
 			spr.scale = Vector2(0.065, 0.065)
@@ -268,24 +278,29 @@ func _show_current_line() -> void:
 	else:
 		_footer_label.text = "▶ [E] Next"
 
-	# Audio & optional TTS
+	# Audio: Play high-clarity character voice clip if assigned, otherwise speak_tts
 	var audio_mgr = get_node_or_null("/root/AudioManager")
 	if audio_mgr:
 		if audio_mgr.has_method("play_interact"):
 			audio_mgr.play_interact()
-		if audio_mgr.has_method("speak_tts"):
+		if _dialogue_index < voice_clips.size() and voice_clips[_dialogue_index] != null:
+			if audio_mgr.has_method("play_voice_stream"):
+				audio_mgr.play_voice_stream(voice_clips[_dialogue_index])
+		elif audio_mgr.has_method("speak_tts"):
 			audio_mgr.speak_tts(_current_text, talk_pitch)
 
 func _close_dialogue() -> void:
 	_is_speaking = false
 	_dialogue_box.visible = false
 	_tail_poly.visible = false
+	var audio_mgr = get_node_or_null("/root/AudioManager")
+	if audio_mgr:
+		if audio_mgr.has_method("stop_voice"):
+			audio_mgr.stop_voice()
+		if audio_mgr.has_method("stop_tts"):
+			audio_mgr.stop_tts()
 	if _player_in_range:
 		_prompt_badge.visible = true
-
-	var audio_mgr = get_node_or_null("/root/AudioManager")
-	if audio_mgr and audio_mgr.has_method("stop_tts"):
-		audio_mgr.stop_tts()
 
 	dialogue_finished.emit(npc_name)
 

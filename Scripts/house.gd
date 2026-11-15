@@ -104,12 +104,14 @@ func _start_opening_dialogue() -> void:
 		{
 			"speaker": "📢 MOM (Shouting from the Kitchen)",
 			"color": Color(1.0, 0.8, 0.25),
-			"text": "\"ARUN! Are you STILL staring into that mirror?! Your turmeric milk is getting cold on the table, and the bus leaves in 15 minutes! The math exam starts at 8:30!\""
+			"text": "\"ARUN! Are you STILL staring into that mirror?! Your turmeric milk is getting cold on the table, and the bus leaves in 15 minutes! The math exam starts at 8:30!\"",
+			"voice_res": "res://assests/audio/voice/mom_mirror_yell.mp3"
 		},
 		{
 			"speaker": "💭 ARUN (Looking into Mirror)",
 			"color": Color(0.4, 0.8, 1.0),
-			"text": "\"Deep breath... Uniform is on. Formula sheets are packed. Everyone expects top marks, but I can't let anxiety freeze me. Take a breath and Bounce Back.\""
+			"text": "\"Deep breath... Uniform is on. Formula sheets are packed. Everyone expects top marks, but I can't let anxiety freeze me. Take a breath and Bounce Back.\"",
+			"voice_res": "res://assests/audio/voice/arun_mirror_intro.mp3"
 		}
 	]
 	_play_next_dialogue()
@@ -168,7 +170,10 @@ func _play_next_dialogue() -> void:
 	if audio_mgr:
 		if audio_mgr.has_method("play_interact"):
 			audio_mgr.play_interact()
-		if audio_mgr.has_method("speak_tts"):
+		if current.has("voice_res") and ResourceLoader.exists(current["voice_res"]):
+			if audio_mgr.has_method("play_voice"):
+				audio_mgr.play_voice(current["voice_res"])
+		elif audio_mgr.has_method("speak_tts"):
 			audio_mgr.speak_tts(_target_text, _current_pitch)
 
 func _close_dialogue() -> void:

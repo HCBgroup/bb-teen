@@ -225,26 +225,28 @@ func _populate_credits_content() -> void:
 	_add_divider()
 
 	_add_header("DEVELOPMENT TEAM", 18, Color(1.0, 0.7, 0.2))
-	_add_role_entry("Game Direction & Concept", "Hack Club Haven Team")
-	_add_role_entry("GDScript & Systems", "Haven Developers")
-	_add_role_entry("Pixel Art & Staging", "Haven Artists")
-	_add_role_entry("Narrative & Dialogue", "Haven Storycrafters")
+	_add_role_entry("Game Direction & Programming", "Evin Jacob Subin")
+	_add_role_entry("Level Design, Art & Narrative", "Acel Lindo")
+	_add_role_entry("Audio, Mechanics & Minigame", "Jaya Krishna")
+	_add_role_entry("Hackathon", "Hack Club Haven (Built in 24 Hours)")
 
 	_add_divider()
 
 	_add_header("CHARACTERS & CAST", 18, Color(1.0, 0.7, 0.2))
 	_add_role_entry("Arun", "A teenager learning to conquer anxiety")
 	_add_role_entry("Mom", "The morning warmth & firm encouragement")
-	_add_role_entry("Ms. Das", "The strict teacher with high standards")
-	_add_role_entry("Kabir", "The friend who reminds you who you are")
+	_add_role_entry("Mr. Kumar", "The math teacher conducting the exam")
+	_add_role_entry("Rohan", "The lighthearted friend who reminds you to breathe")
+	_add_role_entry("Priya", "Fellow student walking to school")
 
 	_add_divider()
 
 	_add_header("ASSETS & ATTRIBUTIONS", 18, Color(1.0, 0.7, 0.2))
-	_add_role_entry("Cute Fantasy Pack", "Tiles, props, and environment sprites")
-	_add_role_entry("Arun Sprite Set", "Original jumping boy artwork")
-	_add_role_entry("Brackeys Audio & Fonts", "PixelOperator8 & Retro Sound Effects")
-	_add_role_entry("Engine", "Godot Engine 4.7 Forward+ / GL Compatibility")
+	_add_role_entry("Cute Fantasy Pack", "Interior tiles, props, and furniture")
+	_add_role_entry("Godot 2D Platformer Demo", "Oak woods tileset & runner mechanics")
+	_add_role_entry("Arun Character Set", "Top-down & platformer character sprites")
+	_add_role_entry("Voices & Audio", "Microsoft Edge-TTS Neural Voices & Brackeys SFX")
+	_add_role_entry("Engine", "Godot Engine 4.7 Forward+ D3D12")
 
 	_add_divider()
 

@@ -4,6 +4,7 @@ extends Node
 ## Global Audio Manager for background music, retro dialogue blips, TTS, and interaction SFX.
 
 var _bgm_player: AudioStreamPlayer
+var _voice_player: AudioStreamPlayer
 var _sfx_players: Array[AudioStreamPlayer] = []
 var _sfx_pool_size: int = 6
 var _current_sfx_idx: int = 0
@@ -39,6 +40,12 @@ func _ready() -> void:
 	_bgm_player.volume_db = -12.0
 	_bgm_player.bus = "Master"
 	add_child(_bgm_player)
+
+	# Setup Voice Player for crystal-clear character voice lines
+	_voice_player = AudioStreamPlayer.new()
+	_voice_player.volume_db = 0.0
+	_voice_player.bus = "Master"
+	add_child(_voice_player)
 
 	# Setup SFX Pool for polyphonic sound playback
 	for i in range(_sfx_pool_size):
@@ -106,6 +113,23 @@ func play_talk_blip(pitch: float = 1.0) -> void:
 		var jitter = randf_range(-0.04, 0.04)
 		play_sfx(snd_tap, clampf(pitch + jitter, 0.4, 2.5), -7.0)
 
+## Plays a crystal-clear pre-rendered Bing/Edge neural voice file
+func play_voice(voice_res_path: String) -> void:
+	if ResourceLoader.exists(voice_res_path):
+		var stream = load(voice_res_path)
+		play_voice_stream(stream)
+
+func play_voice_stream(stream: AudioStream) -> void:
+	if stream and _voice_player:
+		if _voice_player.playing:
+			_voice_player.stop()
+		_voice_player.stream = stream
+		_voice_player.play()
+
+func stop_voice() -> void:
+	if _voice_player and _voice_player.playing:
+		_voice_player.stop()
+
 ## Speaks text using native OS Text-To-Speech (Windows Speech API - not AI generated)
 func speak_tts(text: String, pitch: float = 1.0, rate: float = 1.0) -> void:
 	if not tts_enabled:
@@ -119,6 +143,7 @@ func speak_tts(text: String, pitch: float = 1.0, rate: float = 1.0) -> void:
 		DisplayServer.tts_speak(text, voice_id, 70, pitch, rate)
 
 func stop_tts() -> void:
+	stop_voice()
 	if DisplayServer.has_feature(DisplayServer.FEATURE_TEXT_TO_SPEECH):
 		if DisplayServer.tts_is_speaking():
 			DisplayServer.tts_stop()
